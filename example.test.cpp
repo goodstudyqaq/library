@@ -10,6 +10,7 @@ int main() {
     int n;
     cin >> n;
     vector<int> s(n);
+
     REP(i, n) {
         cin >> s[i];
     }
