@@ -1,32 +1,37 @@
 #include <bits/stdc++.h>
 using namespace std;
-using i64 = long long;
 /*
 @brief 带权并查集
 @docs docs/weighted_dsu.md
 */
 
 // 带权并查集
+template <typename T>
 struct WeightedDSU {
-    std::vector<int> f, g;
+    std::vector<int> f;
+    vector<T> g;
     WeightedDSU(int n) : f(n), g(n) { std::iota(f.begin(), f.end(), 0); }
-    std::array<int, 2> leader(int x) {
+    std::pair<int, T> leader(int x) {
         if (f[x] == x) {
-            return {x, 0};
+            return {x, g[x]};
         }
         auto [y, z] = leader(f[x]);
         f[x] = y;
-        g[x] ^= z;
+        g[x] += z;
         return {f[x], g[x]};
     }
-    bool merge(int a, int b, int z) {
+    // a->b=z
+    bool merge(int a, int b, T z) {
+        // a->x=u
         auto [x, u] = leader(a);
+        // b->y=v
         auto [y, v] = leader(b);
         if (x == y) {
-            return (u ^ v ^ z) == 0;
+            // a->x
+            return u - v == z;
         }
         f[x] = y;
-        g[x] = u ^ v ^ z;
+        g[x] = v - u + z;
         return true;
     }
 };

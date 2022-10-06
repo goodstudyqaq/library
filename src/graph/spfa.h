@@ -2,8 +2,8 @@
 using namespace std;
 
 /*
-@brief 网络流
-@docs docs/network.md
+@brief 最小费用最大流
+@docs docs/spfa.md
 */
 
 namespace Network {

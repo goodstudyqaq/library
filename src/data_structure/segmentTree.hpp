@@ -4,22 +4,28 @@ using namespace std;
 @brief 线段树
 @docs docs/segment_tree.md
 */
+struct Info {
+    int l, r;
+    Info(int l = -1, int r = -1) : l(l), r(r) {}
+    friend Info operator+(const Info& a, const Info& b) {}
+};
 
 #define lson l, m, rt << 1
 #define rson m + 1, r, rt << 1 | 1
-template <class Info, class Merge = std::plus<Info>>
 struct SegmentTree {
-    SegmentTree(int n) : n(n), merge(Merge()), info(4 << __lg(n)) {}
+    SegmentTree(int n) : n(n), info(4 << __lg(n)) {}
     SegmentTree(vector<Info> init) : SegmentTree(init.size()) {
         function<void(int, int, int)> build = [&](int l, int r, int rt) {
             if (l == r) {
                 info[rt] = init[l];
+                info[rt].l = l;
+                info[rt].r = r;
                 return;
             }
             int m = l + r >> 1;
             build(lson);
             build(rson);
-            push_up(rt);
+            push_up(rt, l, r);
         };
         build(0, n - 1, 1);
     }
@@ -34,10 +40,11 @@ struct SegmentTree {
 
    private:
     const int n;
-    const Merge merge;
     vector<Info> info;
-    void push_up(int rt) {
-        info[rt] = merge(info[rt << 1], info[rt << 1 | 1]);
+    void push_up(int rt, int l, int r) {
+        info[rt] = info[rt << 1] + info[rt << 1 | 1];
+        info[rt].l = l;
+        info[rt].r = r;
     }
 
     Info rangeQuery(int L, int R, int l, int r, int rt) {
@@ -46,7 +53,7 @@ struct SegmentTree {
         }
         int m = l + r >> 1;
         if (L <= m && R > m) {
-            return merge(rangeQuery(L, R, lson), rangeQuery(L, R, rson));
+            return rangeQuery(L, R, lson) + rangeQuery(L, R, rson);
         } else if (L <= m) {
             return rangeQuery(L, R, lson);
         } else {
@@ -56,7 +63,9 @@ struct SegmentTree {
 
     void update(int L, Info& v, int l, int r, int rt) {
         if (l == r) {
-            info[rt] = merge(info[rt], v);
+            info[rt] = info[rt] + v;
+            info[rt].l = l;
+            info[rt].r = r;
             return;
         }
         int m = l + r >> 1;
@@ -65,32 +74,6 @@ struct SegmentTree {
         } else {
             update(L, v, rson);
         }
-        push_up(rt);
+        push_up(rt, l, r);
     }
 };
-
-const int inf = (1 << 30) - 1;
-struct Info {
-    int v[31];
-    Info(int x = inf) {
-        v[0] = x;
-        for (int i = 1; i < 31; i++) {
-            v[i] = inf;
-        }
-    }
-};
-
-Info operator+(const Info& a, const Info& b) {
-    Info c;
-    int i = 0, j = 0;
-    while (i + j < 31) {
-        if (a.v[i] < b.v[j]) {
-            c.v[i + j] = a.v[i];
-            i++;
-        } else {
-            c.v[i + j] = b.v[j];
-            j++;
-        }
-    }
-    return c;
-}

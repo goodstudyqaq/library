@@ -3,6 +3,7 @@ using namespace std;
 /*
 @brief Tarjan
 @docs docs/tarjan.md
+todo: 待整理
 */
 
 // todo: 待整理

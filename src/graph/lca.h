@@ -1,16 +1,17 @@
 #include <bits/stdc++.h>
+
+#include "src/graph/graph_template.hpp"
 using namespace std;
 /*
 @brief LCA
 @docs docs/lca.md
 */
-int lg2(long long x) { return sizeof(long long) * 8 - 1 - __builtin_clzll(x); }
-struct Lca {
-    // [1, n]
-    vector<vector<int>>& g;
+template <typename T = int>
+struct Lca : Graph<T> {
     vector<int> dep;
     vector<vector<int>> parent;
     int LOG;
+    int lg2(long long x) { return sizeof(long long) * 8 - 1 - __builtin_clzll(x); }
     void dfs(int u, int pre, int d) {
         parent[u][0] = pre;
         dep[u] = d;
@@ -21,7 +22,7 @@ struct Lca {
     }
     void rmq(int n) {
         for (int i = 1; i < LOG; i++) {
-            for (int j = 1; j <= n; j++) {
+            for (int j = 0; j < n; j++) {
                 if ((1 << i) > dep[j]) continue;
                 int k = parent[j][i - 1];
                 parent[j][i] = parent[k][i - 1];
@@ -29,14 +30,12 @@ struct Lca {
         }
     }
 
-    Lca(vector<vector<int>>& Graph, int rt = -1) : g(Graph) {
-        int n = Graph.size();
-        LOG = lg2(n);
-        dep.resize(n + 1);
-        parent.resize(n + 1, vector<int>(LOG, -1));
-        if (rt == -1) {
-            rt = 1;
-        }
+    void build(int rt = 0) {
+        int n = g.size();
+        // 2^k <= n
+        LOG = lg2(n) + 1;
+        dep.resize(n);
+        parent.resize(n, vector<int>(LOG, -1));
         dfs(rt, -1, 0);
         rmq(n);
     }

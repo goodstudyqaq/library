@@ -1,14 +1,17 @@
 #include <bits/stdc++.h>
+
+#include "src/graph/graph_template.hpp"
 using namespace std;
 /*
 @brief 最大匹配
 @docs docs/match.md
+todo: 待整理
 */
-struct Hungary {
+template <typename T = int>
+struct Hungary : Graph<T> {
     vector<int> cx, cy;
     vector<bool> used;
     int count;
-    vector<vector<int>> g;
 
     bool dfs(int u) {
         for (auto v : g[u]) {

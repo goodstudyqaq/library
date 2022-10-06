@@ -29,7 +29,7 @@ struct List {
         nodes[b].last = a;
     }
 
-    int new_node(int idx, char _w) {
+    int new_node(int idx, T _w) {
         Node<T> it = Node<T>(_w);
         nodes.emplace_back(it);
         int sz = nodes.size() - 1;
