@@ -44,7 +44,7 @@ data:
       path: src/graph/lca.h
       title: LCA
     - icon: ':warning:'
-      path: src/graph/match.h
+      path: src/graph/max_match.h
       title: "\u6700\u5927\u5339\u914D"
     - icon: ':warning:'
       path: src/graph/shortest_path.h

@@ -34,7 +34,7 @@ data:
     \ == s[++j])\r\n                next[i] = next[j];\r\n            else\r\n   \
     \             next[i] = j;\r\n        }\r\n    }\r\n\r\n    // \u8BA1\u7B97 s\
     \ \u5728 s2 \u4E2D\u51FA\u73B0\u7684\u6B21\u6570, \u9700\u8981\u5148\u8C03\u7528\
-    \ kmp_pre \u51FD\u6570\r\n    int count(string s2) {\r\n        int m = s.size();\r\
+    \ kmp_pre \u51FD\u6570\r\n    int count(string &s2) {\r\n        int m = s.size();\r\
     \n        int n = s2.size();\r\n        int i = 0, j = 0;\r\n        int ans =\
     \ 0;\r\n        while (i < n) {\r\n            while (j != -1 && s2[i] != s[j])\
     \ {\r\n                j = next[j];\r\n            }\r\n            i++, j++;\r\
@@ -64,9 +64,9 @@ data:
     \   next[i] = next[j];\r\n            else\r\n                next[i] = j;\r\n\
     \        }\r\n    }\r\n\r\n    // \u8BA1\u7B97 s \u5728 s2 \u4E2D\u51FA\u73B0\u7684\
     \u6B21\u6570, \u9700\u8981\u5148\u8C03\u7528 kmp_pre \u51FD\u6570\r\n    int count(string\
-    \ s2) {\r\n        int m = s.size();\r\n        int n = s2.size();\r\n       \
-    \ int i = 0, j = 0;\r\n        int ans = 0;\r\n        while (i < n) {\r\n   \
-    \         while (j != -1 && s2[i] != s[j]) {\r\n                j = next[j];\r\
+    \ &s2) {\r\n        int m = s.size();\r\n        int n = s2.size();\r\n      \
+    \  int i = 0, j = 0;\r\n        int ans = 0;\r\n        while (i < n) {\r\n  \
+    \          while (j != -1 && s2[i] != s[j]) {\r\n                j = next[j];\r\
     \n            }\r\n            i++, j++;\r\n            if (j >= m) {\r\n    \
     \            ans++;\r\n            }\r\n        }\r\n        return ans;\r\n \
     \   }\r\n};"
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: src/string/kmp.h
   requiredBy: []
-  timestamp: '2022-10-06 15:28:11+08:00'
+  timestamp: '2022-10-06 23:48:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/string/kmp.h
@@ -84,3 +84,17 @@ redirect_from:
 - /library/src/string/kmp.h.html
 title: KMP
 ---
+# KMP
+
+## 概要
+KMP 是一个用于快速匹配字符串的算法。它的时间复杂度为 O(n+m)。
+### `KMP`
+`KMP` 类是 KMP 的核心类，它提供了一些方法来快速匹配字符串。
+- `KMP(const string &s)` : 构造一个 `KMP` 类，用于匹配字符串 `s` 。
+- `void kmp_pre()`: 预处理字符串 `s` ，计算出 `next` 数组。
+- `void fast_kmp_pre()`: 更快的预处理字符串 `s` ，计算出 `next` 数组。
+- `int count(string &s2)`: 返回字符串 `s2` 在字符串 `s` 中出现的次数。需要先调用 `kmp_pre()` 或 `fast_kmp_pre()` 。
+
+## 常见问题
+
+## 题集

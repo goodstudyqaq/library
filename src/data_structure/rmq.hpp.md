@@ -19,14 +19,14 @@ data:
     \ values;\r\n    vector<vector<int>> range_high;\r\n    function<bool(T, T)> func;\r\
     \n\r\n    RMQ(const vector<T>& _values, function<bool(T, T)> f) {\r\n        func\
     \ = f;\r\n        if (!_values.empty())\r\n            build(_values, f);\r\n\
-    \    }\r\n\r\n    static int largest_bit(int x) {\r\n        return 31 - __builtin_clz(x);\r\
-    \n    }\r\n\r\n    int max_index(int a, int b) const {\r\n        return func(values[a],\
-    \ values[b]) ? a : b;\r\n        // return values[a] > values[b] ? a : b;\r\n\
-    \    }\r\n\r\n    void build(const vector<T>& _values, function<bool(T, T)> f)\
-    \ {\r\n        values = _values;\r\n        n = values.size();\r\n        levels\
-    \ = largest_bit(n) + 1;\r\n        range_high.resize(levels);\r\n\r\n        for\
-    \ (int k = 0; k < levels; k++)\r\n            range_high[k].resize(n - (1 << k)\
-    \ + 1);\r\n\r\n        for (int i = 0; i < n; i++)\r\n            range_high[0][i]\
+    \    }\r\n    RMQ() {}\r\n\r\n    static int largest_bit(int x) {\r\n        return\
+    \ 31 - __builtin_clz(x);\r\n    }\r\n\r\n    int max_index(int a, int b) const\
+    \ {\r\n        return func(values[a], values[b]) ? a : b;\r\n        // return\
+    \ values[a] > values[b] ? a : b;\r\n    }\r\n\r\n    void build(const vector<T>&\
+    \ _values, function<bool(T, T)> f) {\r\n        values = _values;\r\n        n\
+    \ = values.size();\r\n        levels = largest_bit(n) + 1;\r\n        range_high.resize(levels);\r\
+    \n\r\n        for (int k = 0; k < levels; k++)\r\n            range_high[k].resize(n\
+    \ - (1 << k) + 1);\r\n\r\n        for (int i = 0; i < n; i++)\r\n            range_high[0][i]\
     \ = i;\r\n\r\n        for (int k = 1; k < levels; k++)\r\n            for (int\
     \ i = 0; i <= n - (1 << k); i++)\r\n                range_high[k][i] = max_index(range_high[k\
     \ - 1][i], range_high[k - 1][i + (1 << (k - 1))]);\r\n    }\r\n    // [a, b)\r\
@@ -44,10 +44,10 @@ data:
     \ int n = 0, levels = 0;\r\n    vector<T> values;\r\n    vector<vector<int>> range_high;\r\
     \n    function<bool(T, T)> func;\r\n\r\n    RMQ(const vector<T>& _values, function<bool(T,\
     \ T)> f) {\r\n        func = f;\r\n        if (!_values.empty())\r\n         \
-    \   build(_values, f);\r\n    }\r\n\r\n    static int largest_bit(int x) {\r\n\
-    \        return 31 - __builtin_clz(x);\r\n    }\r\n\r\n    int max_index(int a,\
-    \ int b) const {\r\n        return func(values[a], values[b]) ? a : b;\r\n   \
-    \     // return values[a] > values[b] ? a : b;\r\n    }\r\n\r\n    void build(const\
+    \   build(_values, f);\r\n    }\r\n    RMQ() {}\r\n\r\n    static int largest_bit(int\
+    \ x) {\r\n        return 31 - __builtin_clz(x);\r\n    }\r\n\r\n    int max_index(int\
+    \ a, int b) const {\r\n        return func(values[a], values[b]) ? a : b;\r\n\
+    \        // return values[a] > values[b] ? a : b;\r\n    }\r\n\r\n    void build(const\
     \ vector<T>& _values, function<bool(T, T)> f) {\r\n        values = _values;\r\
     \n        n = values.size();\r\n        levels = largest_bit(n) + 1;\r\n     \
     \   range_high.resize(levels);\r\n\r\n        for (int k = 0; k < levels; k++)\r\
@@ -70,7 +70,7 @@ data:
   path: src/data_structure/rmq.hpp
   requiredBy:
   - src/string/sa.h
-  timestamp: '2022-10-06 15:28:11+08:00'
+  timestamp: '2022-10-06 23:48:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/data_structure/rmq.hpp

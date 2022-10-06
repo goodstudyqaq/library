@@ -19,10 +19,10 @@ data:
     \ int n = 0, levels = 0;\r\n    vector<T> values;\r\n    vector<vector<int>> range_high;\r\
     \n    function<bool(T, T)> func;\r\n\r\n    RMQ(const vector<T>& _values, function<bool(T,\
     \ T)> f) {\r\n        func = f;\r\n        if (!_values.empty())\r\n         \
-    \   build(_values, f);\r\n    }\r\n\r\n    static int largest_bit(int x) {\r\n\
-    \        return 31 - __builtin_clz(x);\r\n    }\r\n\r\n    int max_index(int a,\
-    \ int b) const {\r\n        return func(values[a], values[b]) ? a : b;\r\n   \
-    \     // return values[a] > values[b] ? a : b;\r\n    }\r\n\r\n    void build(const\
+    \   build(_values, f);\r\n    }\r\n    RMQ() {}\r\n\r\n    static int largest_bit(int\
+    \ x) {\r\n        return 31 - __builtin_clz(x);\r\n    }\r\n\r\n    int max_index(int\
+    \ a, int b) const {\r\n        return func(values[a], values[b]) ? a : b;\r\n\
+    \        // return values[a] > values[b] ? a : b;\r\n    }\r\n\r\n    void build(const\
     \ vector<T>& _values, function<bool(T, T)> f) {\r\n        values = _values;\r\
     \n        n = values.size();\r\n        levels = largest_bit(n) + 1;\r\n     \
     \   range_high.resize(levels);\r\n\r\n        for (int k = 0; k < levels; k++)\r\
@@ -127,7 +127,7 @@ data:
   isVerificationFile: false
   path: src/string/sa.h
   requiredBy: []
-  timestamp: '2022-10-06 15:28:11+08:00'
+  timestamp: '2022-10-06 23:48:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/string/sa.h
@@ -137,3 +137,15 @@ redirect_from:
 - /library/src/string/sa.h.html
 title: Suffix Array
 ---
+# Suffix Array
+
+## 概要
+Suffix Array 是一种用于快速查找字符串中所有后缀的数据结构。它的构造时间复杂度为 O(nlogn)，空间复杂度为 O(n)。它的应用有很多，比如在字符串匹配中，可以用于快速查找字符串中所有出现的子串。
+### `SuffixArray`
+`SuffixArray` 类是 Suffix Array 的核心类，它提供了一些方法来构造后缀数组。
+- `SuffixArray(string &s)`: 构造一个 `SuffixArray` 类，用于构造字符串 `s` 的后缀数组。
+- `int get_length(int idx1, int idx2)`: 返回字符串中下标为 `idx1` 和 `idx2` 的两个后缀的最长公共前缀的长度。
+
+## 常见问题
+
+## 题集

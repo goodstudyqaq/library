@@ -55,3 +55,14 @@ redirect_from:
 - /library/src/utils/step_matrix.h.html
 title: Step matrix
 ---
+# Step Matrix
+
+## 概要
+Step Matrix 是一个特殊的矩阵： 对于每一行来说，第一个非 0 列的下标是严格递增的。
+
+
+
+## 常见问题
+
+## 题集
+h

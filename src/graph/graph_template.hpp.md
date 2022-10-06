@@ -6,8 +6,17 @@ data:
     path: src/graph/lca.h
     title: LCA
   - icon: ':warning:'
-    path: src/graph/match.h
+    path: src/graph/max_match.h
     title: "\u6700\u5927\u5339\u914D"
+  - icon: ':warning:'
+    path: src/graph/shortest_path.h
+    title: "\u6700\u77ED\u8DEF"
+  - icon: ':warning:'
+    path: src/graph/tarjan.h
+    title: Tarjan
+  - icon: ':warning:'
+    path: src/graph/two_sat.h
+    title: two-sat
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -73,8 +82,11 @@ data:
   isVerificationFile: false
   path: src/graph/graph_template.hpp
   requiredBy:
-  - src/graph/match.h
+  - src/graph/tarjan.h
+  - src/graph/shortest_path.h
+  - src/graph/two_sat.h
   - src/graph/lca.h
+  - src/graph/max_match.h
   timestamp: '2022-10-06 19:21:15+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

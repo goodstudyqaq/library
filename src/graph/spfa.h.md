@@ -116,10 +116,20 @@ redirect_from:
 - /library/src/graph/spfa.h.html
 title: "\u6700\u5C0F\u8D39\u7528\u6700\u5927\u6D41"
 ---
-# SOS DP
+# 最小费用最大流(SPFA算法)
 
 ## 概要
+最小费用最大流问题是指在一个有向图中，从源点到汇点的最大流量为 $F$，且流量为 $F$ 的最小费用为 $C$。这个问题可以转化为一个最小费用流问题，即求解一个有向图中，从源点到汇点的最小费用为 $C$ 的流量为 $F$ 的流。这个问题可以用 SPFA 算法求解。
 
+该算法模板分为两个部分。
+### `IntValue` 和 `DoubleValue` 类
+这两个类用来定义费用和流量的类型。其中 `DoubleValue` 可以设置 `PRECISION` 来控制精度。
+
+### `SPFA`
+`SPFA` 类为算法主体，主要由以下几个函数组成。
+- `SPFA(int n, int m = 0)`: 构造函数，参数为点数和边数。如果不指定边数，那么边数会被初始化为 $0$。
+- `void addedge(int u, int v, T cap, T cost)`: 添加一条从 $u$ 到 $v$ 的容量为 $cap$，费用为 $cost$ 的边。
+- `T minCostMaxflow(int s, int t, T& cost)`: 求解最小费用最大流问题，返回最大流量，同时将最小费用赋值给 `cost`。如果不存在最小费用最大流，那么返回 $0$。
 
 ## 常见问题
 
