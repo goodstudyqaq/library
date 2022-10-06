@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+
+#include "src/graph/graph_template.hpp"
 using namespace std;
 /*
 @brief Tarjan
@@ -6,7 +8,59 @@ using namespace std;
 todo: 待整理
 */
 
-// todo: 待整理
+// template <typename T = int>
+// struct Tarjan : Graph<T> {
+//     vector<int> low, dfn, stk;
+//     vector<bool> in_stk;
+//     int timestamp, scc_cnt;
+
+//     Tarjan() = default;
+//     explicit Tarjan(int n) : Graph<T>(n), low(n), dfn(n), in_stk(n), timestamp(0), scc_cnt(0) {}
+
+//     void dfs(int u) {
+//         low[u] = dfn[u] = ++timestamp;
+//         stk.push_back(u);
+//         in_stk[u] = true;
+
+//         int flag = 0;
+//         for (auto& e : this->g[u]) {
+//             int v = e.to;
+//             if (!dfn[v]) {
+//                 dfs(v);
+//                 low[u] = min(low[u], low[v]);
+
+//                 if (low[v] == dfn[u]) {
+//                     flag++;
+//                     if (u !=)
+//                 }
+
+//             } else if (in_stk[v]) {
+//                 low[u] = min(low[u], dfn[v]);
+//             }
+//         }
+
+//         if (low[u] == dfn[u]) {
+//             scc_cnt++;
+//             while (true) {
+//                 int x = stk.back();
+//                 stk.pop_back();
+//                 in_stk[x] = false;
+//                 if (x == u) {
+//                     break;
+//                 }
+//             }
+//         }
+//     }
+
+//     void solve() {
+//         for (int i = 0; i < this->g.size(); i++) {
+//             if (!dfn[i]) {
+//                 dfs(i);
+//             }
+//         }
+//     }
+// };
+
 //边从0到tot-1，点从1到N
 //如果有重边的话，在tarjan函数自己加上判断函数即可。
 //不管是有向图还是无向图，LOW数组都不能代表点所在的连通分量。

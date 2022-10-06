@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+
+#include "src/graph/graph_template.hpp"
 using namespace std;
 /*
 @brief 最短路
@@ -11,17 +13,17 @@ using namespace std;
 */
 
 // 一般形式的 dijkstra
-struct NormalDijkstra {
+template <typename T = int>
+struct Dijkstra : Graph<T> {
     // 下标从 1 到 n
-    vector<vector<int>> Map;  // 图 Map[i][j] = dis
-    vector<bool> vis;
-    vector<int> d;
-    const int inf = 0x3f3f3f3f;
 
-    void dijkstra(int s, int n) {
+    vector<T> normal_dijkstra(int s) {
         // O(n ^ 2)
-        vis.clear(), vis.resize(n + 1, 0);
-        d.clear(), d.resize(n + 1, inf);
+        const T inf = numeric_limits<T>::max();
+        int n = g.size();
+        vector<bool> vis(n, 0);
+        vector<T> d(n, inf);
+
         d[s] = 0;
         for (int i = 0; i < n; i++) {
             int x, m = inf;
@@ -31,48 +33,40 @@ struct NormalDijkstra {
                 }
             }
             vis[x] = 1;
-            for (int y = 1; y <= n; y++) {
-                d[y] = min(d[y], d[x] + Map[x][y]);
+            for (auto e : g[x]) {
+                int y = e.to;
+                if (d[y] > d[x] + e.w) {
+                    d[y] = d[x] + e.w;
+                }
             }
         }
+        return d;
+    }
+
+    vector<T> dijkstra(int s) {
+        // O(m * log n)
+        const T inf = numeric_limits<T>::max();
+        int n = g.size();
+        vector<T> d(n, inf);
+        priority_queue<pair<T, int>, vector<pair<T, int>>, greater<pair<T, int>>> Q;
+        vector<bool> vis(n, 0);
+
+        d[s] = 0;
+        Q.push({0, s});
+        while (!Q.empty()) {
+            auto [dis, x] = Q.top();
+            Q.pop();
+            if (vis[x]) continue;
+            vis[x] = 1;
+
+            for (auto e : g[x]) {
+                int y = e.to;
+                if (d[y] > d[x] + e.w) {
+                    d[y] = d[x] + e.w;
+                    Q.push({d[y], y});
+                }
+            }
+        }
+        return d;
     }
 };
-
-// 最短路
-// 复杂度 O(mlogn) m <= n ^ 2, 适合稀疏图, 如果 m 很多则比普通的 dijkstra 更慢
-namespace ShortestPath {
-typedef long long ll;
-typedef pair<int, int> pii;
-typedef pair<ll, int> pli;
-priority_queue<pli, vector<pli>, greater<pli>> Q;
-vector<bool> vis;
-vector<ll> dis;
-const ll inf = numeric_limits<ll>::max() / 2;
-void dijkstra(int n, vector<int>& valid, vector<vector<pii>>& V) {
-    vis.resize(n + 1);
-    dis.resize(n + 1);
-    for (int i = 1; i <= n; i++) {
-        vis[i] = 0;
-        dis[i] = inf;
-    }
-    while (!Q.empty()) Q.pop();
-
-    for (auto it : valid) {
-        dis[it] = 0;
-        Q.push({dis[it], it});
-    }
-
-    while (!Q.empty()) {
-        auto it = Q.top();
-        Q.pop();
-        if (vis[it.second]) continue;
-        vis[it.second] = true;
-        for (auto v : V[it.second]) {
-            if (dis[v.first] > it.first + v.second) {
-                dis[v.first] = it.first + v.second;
-                Q.push({dis[v.first], v.first});
-            }
-        }
-    }
-}
-}  // namespace ShortestPath

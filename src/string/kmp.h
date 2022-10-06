@@ -46,7 +46,7 @@ struct KMP {
     }
 
     // 计算 s 在 s2 中出现的次数, 需要先调用 kmp_pre 函数
-    int count(string s2) {
+    int count(string &s2) {
         int m = s.size();
         int n = s2.size();
         int i = 0, j = 0;

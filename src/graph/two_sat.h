@@ -1,18 +1,20 @@
 #include <bits/stdc++.h>
+
+#include "src/graph/graph_template.hpp"
 /*
 @brief two-sat
 @docs docs/two_sat.md
 */
-struct TwoSat {
+template <typename T = int>
+struct TwoSat : Graph<T> {
     // [0, 2 * n]
     int n;
-    std::vector<std::vector<int>> e;
     std::vector<bool> ans;
-    TwoSat(int n) : n(n), e(2 * n), ans(n) {}
+    TwoSat(int n) : n(n), ans(n), Graph<T>(2 * n) {}
     void addClause(int u, bool f, int v, bool g) {
         // (u, f) 和 (v, g) 有矛盾
-        e[2 * u + !f].push_back(2 * v + g);
-        e[2 * v + !g].push_back(2 * u + f);
+        add_directed_edge(2 * u + !f, 2 * v + g);
+        add_directed_edge(2 * v + !g, 2 * u + f);
     }
     bool satisfiable() {
         std::vector<int> id(2 * n, -1), dfn(2 * n, -1), low(2 * n, -1);

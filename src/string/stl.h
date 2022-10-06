@@ -19,7 +19,7 @@ void StringSTL() {
     double num = stod(s);  // string to double
 }
 
-vector<string> split(string s, string delimiter) {
+vector<string> split(string &s, string delimiter) {
     size_t pos_start = 0, pos_end, delim_len = delimiter.length();
     string token;
     vector<string> res;
@@ -34,7 +34,7 @@ vector<string> split(string s, string delimiter) {
     return res;
 }
 
-bool isFloat(string myString) {
+bool isFloat(string &myString) {
     std::istringstream iss(myString);
     float f;
     iss >> noskipws >> f;  // noskipws considers leading whitespace invalid
@@ -46,7 +46,7 @@ bool isFloat(string myString) {
 %02d 2位数字，不满补 0
 */
 template <typename... Args>
-std::string string_format(const std::string& format, Args... args) {
+std::string string_format(const std::string &format, Args... args) {
     int size_s = std::snprintf(nullptr, 0, format.c_str(), args...) + 1;  // Extra space for '\0'
     if (size_s <= 0) {
         throw std::runtime_error("Error during formatting.");

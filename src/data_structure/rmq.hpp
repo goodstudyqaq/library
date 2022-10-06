@@ -18,6 +18,7 @@ struct RMQ {
         if (!_values.empty())
             build(_values, f);
     }
+    RMQ() {}
 
     static int largest_bit(int x) {
         return 31 - __builtin_clz(x);

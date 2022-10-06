@@ -4,8 +4,8 @@
 using namespace std;
 /*
 @brief 最大匹配
-@docs docs/match.md
-todo: 待整理
+@docs docs/max_match.md
+todo: 判断是否是二分图，如果不是二分图，需要报错
 */
 template <typename T = int>
 struct Hungary : Graph<T> {
@@ -27,17 +27,22 @@ struct Hungary : Graph<T> {
         return 0;
     }
 
-    Hungary() {}
-    Hungary(int uN, int vN, vector<vector<int>> &_g) {
-        g = _g;
-        cx.resize(uN, -1);
-        cy.resize(vN, -1);
-        used.resize(vN, 0);
-        int res = 0;
-        for (int u = 0; u < uN; u++) {
-            used.assign(vN, 0);
-            if (dfs(u)) res++;
+    void hungary() {
+        // 需要保证 graph 为二分图
+        int n = g.size();
+        cx.resize(n);
+        cy.reserve(n);
+        used.resize(n);
+        for (int i = 0; i < n; i++) {
+            cx[i] = cy[i] = -1;
+            used[i] = 0;
         }
-        count = res;
+        int res = 0;
+        for (int u = 0; u < n; u++) {
+            if (cx[u] == -1) {
+                for (int i = 0; i < n; i++) used[i] = 0;
+                if (dfs(u)) res++;
+            }
+        }
     }
 };
