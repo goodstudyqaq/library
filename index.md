@@ -14,7 +14,7 @@ data:
       title: "\u5E76\u67E5\u96C6"
     - icon: ':warning:'
       path: src/data_structure/lazySegmentTree.hpp
-      title: "Lazy \u7EBF\u6BB5\u6811"
+      title: Lazy Segment Tree
     - icon: ':warning:'
       path: src/data_structure/list.hpp
       title: List
@@ -25,18 +25,21 @@ data:
       path: src/data_structure/segmentTree.hpp
       title: "\u7EBF\u6BB5\u6811"
     - icon: ':warning:'
-      path: src/data_structure/weighted_dsu.h
+      path: src/data_structure/weighted_dsu.hpp
       title: "\u5E26\u6743\u5E76\u67E5\u96C6"
   - name: src/dp
     pages:
     - icon: ':warning:'
-      path: src/dp/digitdp.h
+      path: src/dp/digitdp.hpp
       title: "\u6570\u4F4Ddp"
     - icon: ':warning:'
-      path: src/dp/sosdp.h
+      path: src/dp/sosdp.hpp
       title: SOSdp
   - name: src/graph
     pages:
+    - icon: ':warning:'
+      path: src/graph/graph_template.hpp
+      title: "\u5E26\u6743\u5E76\u67E5\u96C6"
     - icon: ':warning:'
       path: src/graph/lca.h
       title: LCA
@@ -44,11 +47,11 @@ data:
       path: src/graph/match.h
       title: "\u6700\u5927\u5339\u914D"
     - icon: ':warning:'
-      path: src/graph/network.h
-      title: "\u7F51\u7EDC\u6D41"
-    - icon: ':warning:'
       path: src/graph/shortest_path.h
       title: "\u6700\u77ED\u8DEF"
+    - icon: ':warning:'
+      path: src/graph/spfa.h
+      title: "\u6700\u5C0F\u8D39\u7528\u6700\u5927\u6D41"
     - icon: ':warning:'
       path: src/graph/tarjan.h
       title: Tarjan
