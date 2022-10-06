@@ -1,6 +1,9 @@
-#pragma once
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
+/*
+@brief 树状数组
+@docs docs/bit.md
+*/
 template <typename T>
 struct Fenwick {
 #define lowbit(x) x & -x

@@ -30,7 +30,7 @@ int main() {
     int n, q;
     cin >> n >> q;
 
-    DSU2 dsu(n);
+    DSU dsu(n);
 
     for (int i = 0; i < q; i++) {
         int t, u, v;
