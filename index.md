@@ -41,64 +41,64 @@ data:
       path: src/graph/graph_template.hpp
       title: "\u5E26\u6743\u5E76\u67E5\u96C6"
     - icon: ':warning:'
-      path: src/graph/lca.h
+      path: src/graph/lca.hpp
       title: LCA
     - icon: ':warning:'
-      path: src/graph/max_match.h
+      path: src/graph/max_match.hpp
       title: "\u6700\u5927\u5339\u914D"
     - icon: ':warning:'
-      path: src/graph/shortest_path.h
+      path: src/graph/shortest_path.hpp
       title: "\u6700\u77ED\u8DEF"
     - icon: ':warning:'
-      path: src/graph/spfa.h
+      path: src/graph/spfa.hpp
       title: "\u6700\u5C0F\u8D39\u7528\u6700\u5927\u6D41"
     - icon: ':warning:'
-      path: src/graph/tarjan.h
+      path: src/graph/tarjan.hpp
       title: Tarjan
     - icon: ':warning:'
-      path: src/graph/two_sat.h
+      path: src/graph/two_sat.hpp
       title: two-sat
     - icon: ':warning:'
-      path: src/graph/util.h
+      path: src/graph/util.hpp
       title: Utils
   - name: src/math
     pages:
     - icon: ':warning:'
-      path: src/math/bits.h
+      path: src/math/bits.hpp
       title: "\u4F4D\u8FD0\u7B97"
     - icon: ':warning:'
-      path: src/math/geometry.h
+      path: src/math/geometry.hpp
       title: Geometry
     - icon: ':warning:'
-      path: src/math/matrix.h
+      path: src/math/matrix.hpp
       title: Matrix
     - icon: ':warning:'
-      path: src/math/pcf.h
+      path: src/math/pcf.hpp
       title: "PCF(\u7D20\u6570\u7B5B)"
     - icon: ':warning:'
-      path: src/math/prime.h
+      path: src/math/prime.hpp
       title: "\u7D20\u6570\u7B5B"
     - icon: ':warning:'
-      path: src/math/theory.h
+      path: src/math/theory.hpp
       title: Theory
   - name: src/misc
     pages:
     - icon: ':warning:'
-      path: src/misc/dancingLinks.h
+      path: src/misc/dancingLinks.hpp
       title: Dancing Links
   - name: src/string
     pages:
     - icon: ':warning:'
-      path: src/string/kmp.h
+      path: src/string/kmp.hpp
       title: KMP
     - icon: ':warning:'
-      path: src/string/manacher.h
+      path: src/string/manacher.hpp
       title: Manacher
     - icon: ':warning:'
-      path: src/string/sa.h
+      path: src/string/sa.hpp
       title: Suffix Array
     - icon: ':warning:'
-      path: src/string/stl.h
+      path: src/string/stl.hpp
       title: STL
     - icon: ':warning:'
       path: src/string/trie.hpp
@@ -106,16 +106,16 @@ data:
   - name: src/utils
     pages:
     - icon: ':warning:'
-      path: src/utils/hash_pair.h
+      path: src/utils/hash_pair.hpp
       title: Hash Pair
     - icon: ':warning:'
-      path: src/utils/set.h
+      path: src/utils/set.hpp
       title: Set
     - icon: ':warning:'
-      path: src/utils/step_matrix.h
+      path: src/utils/step_matrix.hpp
       title: Step matrix
     - icon: ':warning:'
-      path: src/utils/sum.h
+      path: src/utils/sum.hpp
       title: "\u524D\u7F00\u548C"
   verificationCategories:
   - name: test

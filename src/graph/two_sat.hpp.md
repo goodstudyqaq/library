@@ -7,13 +7,13 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/two_sat.md
     document_title: two-sat
     links: []
-  bundledCode: "#line 1 \"src/graph/two_sat.h\"\n#include <bits/stdc++.h>\r\n\r\n\
+  bundledCode: "#line 1 \"src/graph/two_sat.hpp\"\n#include <bits/stdc++.h>\r\n\r\n\
     #line 3 \"src/graph/graph_template.hpp\"\nusing namespace std;\r\n\r\n/*\r\n@brief\
     \ \u5E26\u6743\u5E76\u67E5\u96C6\r\n@docs docs/weighted_dsu.md\r\n*/\r\n\r\ntemplate\
     \ <typename T = int>\r\nstruct Edge {\r\n    int from, to;\r\n    T cost;\r\n\
@@ -39,13 +39,13 @@ data:
     \n    }\r\n\r\n    inline vector<Edge<T>> &operator[](const int &u) {\r\n    \
     \    return g[u];\r\n    }\r\n\r\n    inline const vector<Edge<T>> &operator[](const\
     \ int &u) const {\r\n        return g[u];\r\n    }\r\n};\r\n\r\ntemplate <typename\
-    \ T = int>\r\nusing Edges = vector<Edge<T>>;\n#line 4 \"src/graph/two_sat.h\"\n\
-    /*\r\n@brief two-sat\r\n@docs docs/two_sat.md\r\n*/\r\ntemplate <typename T =\
-    \ int>\r\nstruct TwoSat : Graph<T> {\r\n    // [0, 2 * n]\r\n    int n;\r\n  \
-    \  std::vector<bool> ans;\r\n    TwoSat(int n) : n(n), ans(n), Graph<T>(2 * n)\
-    \ {}\r\n    void addClause(int u, bool f, int v, bool g) {\r\n        // (u, f)\
-    \ \u548C (v, g) \u6709\u77DB\u76FE\r\n        add_directed_edge(2 * u + !f, 2\
-    \ * v + g);\r\n        add_directed_edge(2 * v + !g, 2 * u + f);\r\n    }\r\n\
+    \ T = int>\r\nusing Edges = vector<Edge<T>>;\n#line 4 \"src/graph/two_sat.hpp\"\
+    \n/*\r\n@brief two-sat\r\n@docs docs/two_sat.md\r\n*/\r\ntemplate <typename T\
+    \ = int>\r\nstruct TwoSat : Graph<T> {\r\n    // [0, 2 * n]\r\n    int n;\r\n\
+    \    std::vector<bool> ans;\r\n    TwoSat(int n) : n(n), ans(n), Graph<T>(2 *\
+    \ n) {}\r\n    void addClause(int u, bool f, int v, bool g) {\r\n        // (u,\
+    \ f) \u548C (v, g) \u6709\u77DB\u76FE\r\n        add_directed_edge(2 * u + !f,\
+    \ 2 * v + g);\r\n        add_directed_edge(2 * v + !g, 2 * u + f);\r\n    }\r\n\
     \    bool satisfiable() {\r\n        std::vector<int> id(2 * n, -1), dfn(2 * n,\
     \ -1), low(2 * n, -1);\r\n        std::vector<int> stk;\r\n        int now = 0,\
     \ cnt = 0;\r\n        std::function<void(int)> tarjan = [&](int u) {\r\n     \
@@ -104,16 +104,16 @@ data:
   dependsOn:
   - src/graph/graph_template.hpp
   isVerificationFile: false
-  path: src/graph/two_sat.h
+  path: src/graph/two_sat.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:48:29+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/graph/two_sat.h
+documentation_of: src/graph/two_sat.hpp
 layout: document
 redirect_from:
-- /library/src/graph/two_sat.h
-- /library/src/graph/two_sat.h.html
+- /library/src/graph/two_sat.hpp
+- /library/src/graph/two_sat.hpp.html
 title: two-sat
 ---
 # TwoSat

@@ -7,13 +7,13 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/lca.md
     document_title: LCA
     links: []
-  bundledCode: "#line 1 \"src/graph/lca.h\"\n#include <bits/stdc++.h>\r\n\r\n#line\
+  bundledCode: "#line 1 \"src/graph/lca.hpp\"\n#include <bits/stdc++.h>\r\n\r\n#line\
     \ 3 \"src/graph/graph_template.hpp\"\nusing namespace std;\r\n\r\n/*\r\n@brief\
     \ \u5E26\u6743\u5E76\u67E5\u96C6\r\n@docs docs/weighted_dsu.md\r\n*/\r\n\r\ntemplate\
     \ <typename T = int>\r\nstruct Edge {\r\n    int from, to;\r\n    T cost;\r\n\
@@ -39,28 +39,28 @@ data:
     \n    }\r\n\r\n    inline vector<Edge<T>> &operator[](const int &u) {\r\n    \
     \    return g[u];\r\n    }\r\n\r\n    inline const vector<Edge<T>> &operator[](const\
     \ int &u) const {\r\n        return g[u];\r\n    }\r\n};\r\n\r\ntemplate <typename\
-    \ T = int>\r\nusing Edges = vector<Edge<T>>;\n#line 4 \"src/graph/lca.h\"\nusing\
-    \ namespace std;\r\n/*\r\n@brief LCA\r\n@docs docs/lca.md\r\n*/\r\ntemplate <typename\
-    \ T = int>\r\nstruct Lca : Graph<T> {\r\n    vector<int> dep;\r\n    vector<vector<int>>\
-    \ parent;\r\n    int LOG;\r\n    int lg2(long long x) { return sizeof(long long)\
-    \ * 8 - 1 - __builtin_clzll(x); }\r\n    void dfs(int u, int pre, int d) {\r\n\
-    \        parent[u][0] = pre;\r\n        dep[u] = d;\r\n        for (auto v : g[u])\
-    \ {\r\n            if (v == pre) continue;\r\n            dfs(v, u, d + 1);\r\n\
-    \        }\r\n    }\r\n    void rmq(int n) {\r\n        for (int i = 1; i < LOG;\
-    \ i++) {\r\n            for (int j = 0; j < n; j++) {\r\n                if ((1\
-    \ << i) > dep[j]) continue;\r\n                int k = parent[j][i - 1];\r\n \
-    \               parent[j][i] = parent[k][i - 1];\r\n            }\r\n        }\r\
-    \n    }\r\n\r\n    void build(int rt = 0) {\r\n        int n = g.size();\r\n \
-    \       // 2^k <= n\r\n        LOG = lg2(n) + 1;\r\n        dep.resize(n);\r\n\
-    \        parent.resize(n, vector<int>(LOG, -1));\r\n        dfs(rt, -1, 0);\r\n\
-    \        rmq(n);\r\n    }\r\n\r\n    int get_lca(int x, int y) {\r\n        if\
-    \ (dep[x] > dep[y]) swap(x, y);\r\n        for (int j = LOG - 1; j >= 0 && dep[x]\
-    \ != dep[y]; j--) {\r\n            if (dep[y] - (1 << j) < dep[x]) continue;\r\
-    \n            y = parent[y][j];\r\n        }\r\n        if (x == y) return x;\r\
-    \n        for (int j = LOG - 1; j >= 0; j--) {\r\n            if (dep[x] - (1\
-    \ << j) < 0 || parent[x][j] == parent[y][j]) continue;\r\n            x = parent[x][j],\
-    \ y = parent[y][j];\r\n        }\r\n        return parent[x][0];\r\n    }\r\n\
-    };\n"
+    \ T = int>\r\nusing Edges = vector<Edge<T>>;\n#line 4 \"src/graph/lca.hpp\"\n\
+    using namespace std;\r\n/*\r\n@brief LCA\r\n@docs docs/lca.md\r\n*/\r\ntemplate\
+    \ <typename T = int>\r\nstruct Lca : Graph<T> {\r\n    vector<int> dep;\r\n  \
+    \  vector<vector<int>> parent;\r\n    int LOG;\r\n    int lg2(long long x) { return\
+    \ sizeof(long long) * 8 - 1 - __builtin_clzll(x); }\r\n    void dfs(int u, int\
+    \ pre, int d) {\r\n        parent[u][0] = pre;\r\n        dep[u] = d;\r\n    \
+    \    for (auto v : g[u]) {\r\n            if (v == pre) continue;\r\n        \
+    \    dfs(v, u, d + 1);\r\n        }\r\n    }\r\n    void rmq(int n) {\r\n    \
+    \    for (int i = 1; i < LOG; i++) {\r\n            for (int j = 0; j < n; j++)\
+    \ {\r\n                if ((1 << i) > dep[j]) continue;\r\n                int\
+    \ k = parent[j][i - 1];\r\n                parent[j][i] = parent[k][i - 1];\r\n\
+    \            }\r\n        }\r\n    }\r\n\r\n    void build(int rt = 0) {\r\n \
+    \       int n = g.size();\r\n        // 2^k <= n\r\n        LOG = lg2(n) + 1;\r\
+    \n        dep.resize(n);\r\n        parent.resize(n, vector<int>(LOG, -1));\r\n\
+    \        dfs(rt, -1, 0);\r\n        rmq(n);\r\n    }\r\n\r\n    int get_lca(int\
+    \ x, int y) {\r\n        if (dep[x] > dep[y]) swap(x, y);\r\n        for (int\
+    \ j = LOG - 1; j >= 0 && dep[x] != dep[y]; j--) {\r\n            if (dep[y] -\
+    \ (1 << j) < dep[x]) continue;\r\n            y = parent[y][j];\r\n        }\r\
+    \n        if (x == y) return x;\r\n        for (int j = LOG - 1; j >= 0; j--)\
+    \ {\r\n            if (dep[x] - (1 << j) < 0 || parent[x][j] == parent[y][j])\
+    \ continue;\r\n            x = parent[x][j], y = parent[y][j];\r\n        }\r\n\
+    \        return parent[x][0];\r\n    }\r\n};\n"
   code: "#include <bits/stdc++.h>\r\n\r\n#include \"src/graph/graph_template.hpp\"\
     \r\nusing namespace std;\r\n/*\r\n@brief LCA\r\n@docs docs/lca.md\r\n*/\r\ntemplate\
     \ <typename T = int>\r\nstruct Lca : Graph<T> {\r\n    vector<int> dep;\r\n  \
@@ -86,16 +86,16 @@ data:
   dependsOn:
   - src/graph/graph_template.hpp
   isVerificationFile: false
-  path: src/graph/lca.h
+  path: src/graph/lca.hpp
   requiredBy: []
-  timestamp: '2022-10-06 19:21:15+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/graph/lca.h
+documentation_of: src/graph/lca.hpp
 layout: document
 redirect_from:
-- /library/src/graph/lca.h
-- /library/src/graph/lca.h.html
+- /library/src/graph/lca.hpp
+- /library/src/graph/lca.hpp.html
 title: LCA
 ---
 # LCA(最小公共祖先)

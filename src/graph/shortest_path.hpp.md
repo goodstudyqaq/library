@@ -7,7 +7,7 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/shortest_path.md
@@ -15,8 +15,8 @@ data:
     links:
     - https://atcoder.jp/contests/abc245/submissions/32661509
     - https://atcoder.jp/contests/abc245/tasks/abc245_g
-  bundledCode: "#line 1 \"src/graph/shortest_path.h\"\n#include <bits/stdc++.h>\r\n\
-    \r\n#line 3 \"src/graph/graph_template.hpp\"\nusing namespace std;\r\n\r\n/*\r\
+  bundledCode: "#line 1 \"src/graph/shortest_path.hpp\"\n#include <bits/stdc++.h>\r\
+    \n\r\n#line 3 \"src/graph/graph_template.hpp\"\nusing namespace std;\r\n\r\n/*\r\
     \n@brief \u5E26\u6743\u5E76\u67E5\u96C6\r\n@docs docs/weighted_dsu.md\r\n*/\r\n\
     \r\ntemplate <typename T = int>\r\nstruct Edge {\r\n    int from, to;\r\n    T\
     \ cost;\r\n    int idx;\r\n\r\n    Edge() = default;\r\n    Edge(int from, int\
@@ -41,7 +41,7 @@ data:
     \n    }\r\n\r\n    inline vector<Edge<T>> &operator[](const int &u) {\r\n    \
     \    return g[u];\r\n    }\r\n\r\n    inline const vector<Edge<T>> &operator[](const\
     \ int &u) const {\r\n        return g[u];\r\n    }\r\n};\r\n\r\ntemplate <typename\
-    \ T = int>\r\nusing Edges = vector<Edge<T>>;\n#line 4 \"src/graph/shortest_path.h\"\
+    \ T = int>\r\nusing Edges = vector<Edge<T>>;\n#line 4 \"src/graph/shortest_path.hpp\"\
     \nusing namespace std;\r\n/*\r\n@brief \u6700\u77ED\u8DEF\r\n@docs docs/shortest_path.md\r\
     \n*/\r\n\r\n/*\r\n\u5957\u8DEF\u9898\uFF1A\u4E8C\u8FDB\u5236\u5224\u4E0D\u540C\
     \u8272\u6700\u77ED\u8DEF or \u6B21\u77ED\u8DEF\u3002https://atcoder.jp/contests/abc245/tasks/abc245_g\r\
@@ -100,16 +100,16 @@ data:
   dependsOn:
   - src/graph/graph_template.hpp
   isVerificationFile: false
-  path: src/graph/shortest_path.h
+  path: src/graph/shortest_path.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:48:29+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/graph/shortest_path.h
+documentation_of: src/graph/shortest_path.hpp
 layout: document
 redirect_from:
-- /library/src/graph/shortest_path.h
-- /library/src/graph/shortest_path.h.html
+- /library/src/graph/shortest_path.hpp
+- /library/src/graph/shortest_path.hpp.html
 title: "\u6700\u77ED\u8DEF"
 ---
 # 单源最短路(dijkstra)

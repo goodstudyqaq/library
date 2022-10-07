@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: src/string/sa.h
+    path: src/string/sa.hpp
     title: Suffix Array
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -69,7 +69,7 @@ data:
   isVerificationFile: false
   path: src/data_structure/rmq.hpp
   requiredBy:
-  - src/string/sa.h
+  - src/string/sa.hpp
   timestamp: '2022-10-06 23:48:29+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

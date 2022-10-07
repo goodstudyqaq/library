@@ -4,15 +4,15 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/hash_pair.md
     document_title: Hash Pair
     links:
     - http://www.boost.org/doc/libs/1_35_0/doc/html/hash/combine.html
-  bundledCode: "#line 1 \"src/utils/hash_pair.h\"\n#include <functional>\r\n/*\r\n\
-    @brief Hash Pair\r\n@docs docs/hash_pair.md\r\n*/\r\n// from boost (functional/hash):\r\
+  bundledCode: "#line 1 \"src/utils/hash_pair.hpp\"\n#include <functional>\r\n/*\r\
+    \n@brief Hash Pair\r\n@docs docs/hash_pair.md\r\n*/\r\n// from boost (functional/hash):\r\
     \n// see http://www.boost.org/doc/libs/1_35_0/doc/html/hash/combine.html template\r\
     \ntemplate <typename T>\r\ninline void hash_combine(std::size_t& seed, const T&\
     \ val) {\r\n    seed ^= std::hash<T>()(val) + 0x9e3779b9 + (seed << 6) + (seed\
@@ -54,15 +54,36 @@ data:
     \ 0;\r\n}\r\n*/"
   dependsOn: []
   isVerificationFile: false
-  path: src/utils/hash_pair.h
+  path: src/utils/hash_pair.hpp
   requiredBy: []
-  timestamp: '2022-10-06 15:28:11+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/utils/hash_pair.h
+documentation_of: src/utils/hash_pair.hpp
 layout: document
 redirect_from:
-- /library/src/utils/hash_pair.h
-- /library/src/utils/hash_pair.h.html
+- /library/src/utils/hash_pair.hpp
+- /library/src/utils/hash_pair.hpp.html
 title: Hash Pair
 ---
+# Hash pair
+
+## 概要
+主要是用于`std::unordered_map`的`hash`函数，用于计算`std::pair`的`hash`值。
+```cpp
+int main() {
+    std::unordered_map<std::pair<int, int>, pair_hash> mp;
+    mp[std::make_pair(1, 2)] = 3;
+    std::cout << mp[std::make_pair(1, 2)] << std::endl;
+
+    std::unordered_set<std::pair<int, int>, pair_hash> st;
+    st.insert(std::make_pair(1, 2));
+    std::cout << st.count(std::make_pair(1, 2)) << std::endl;
+
+}
+```
+
+
+## 常见问题
+
+## 题集

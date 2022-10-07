@@ -4,15 +4,15 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/manacher.md
     document_title: Manacher
     links: []
-  bundledCode: "#line 1 \"src/string/manacher.h\"\n#include <bits/stdc++.h>\r\nusing\
-    \ namespace std;\r\n\r\n/*\r\n@brief  Manacher\r\n@docs docs/manacher.md\r\n*/\r\
-    \n\r\nstruct Manacher {\r\n    string s;\r\n    vector<int> Mp;\r\n    Manacher(string\
+  bundledCode: "#line 1 \"src/string/manacher.hpp\"\n#include <bits/stdc++.h>\r\n\
+    using namespace std;\r\n\r\n/*\r\n@brief  Manacher\r\n@docs docs/manacher.md\r\
+    \n*/\r\n\r\nstruct Manacher {\r\n    string s;\r\n    vector<int> Mp;\r\n    Manacher(string\
     \ &_s) {\r\n        s = \"\";\r\n        int n = _s.size();\r\n        s += \"\
     $\";\r\n        s += \"#\";\r\n        for (int i = 0; i < n; i++) {\r\n     \
     \       s += _s[i];\r\n            s += \"#\";\r\n        }\r\n        s += \"\
@@ -49,16 +49,16 @@ data:
     \    int length = Mp[idx];\r\n        return length / 2;\r\n    }\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: src/string/manacher.h
+  path: src/string/manacher.hpp
   requiredBy: []
-  timestamp: '2022-10-06 15:28:11+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/string/manacher.h
+documentation_of: src/string/manacher.hpp
 layout: document
 redirect_from:
-- /library/src/string/manacher.h
-- /library/src/string/manacher.h.html
+- /library/src/string/manacher.hpp
+- /library/src/string/manacher.hpp.html
 title: Manacher
 ---
 # Manacher

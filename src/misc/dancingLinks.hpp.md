@@ -4,13 +4,13 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/dancing_links.md
     document_title: Dancing Links
     links: []
-  bundledCode: "#line 1 \"src/misc/dancingLinks.h\"\n#include <bits/stdc++.h>\r\n\
+  bundledCode: "#line 1 \"src/misc/dancingLinks.hpp\"\n#include <bits/stdc++.h>\r\n\
     using namespace std;\r\n/*\r\n@brief Dancing Links\r\n@docs docs/dancing_links.md\r\
     \n*/\r\nstruct DLX {\r\n   private:\r\n    int n, m, size;\r\n    vector<int>\
     \ U, D, R, L, Row, Col;\r\n    vector<int> H;  //\u884C\u5934\u7ED3\u70B9\r\n\
@@ -175,16 +175,16 @@ data:
     \n        }\r\n    }\r\n};\r\n// \u4E0B\u6807\u4ECE 1 \u5F00\u59CB"
   dependsOn: []
   isVerificationFile: false
-  path: src/misc/dancingLinks.h
+  path: src/misc/dancingLinks.hpp
   requiredBy: []
-  timestamp: '2022-10-06 15:28:11+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/misc/dancingLinks.h
+documentation_of: src/misc/dancingLinks.hpp
 layout: document
 redirect_from:
-- /library/src/misc/dancingLinks.h
-- /library/src/misc/dancingLinks.h.html
+- /library/src/misc/dancingLinks.hpp
+- /library/src/misc/dancingLinks.hpp.html
 title: Dancing Links
 ---
 # Dancing Links

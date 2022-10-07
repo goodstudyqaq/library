@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: src/graph/lca.h
+    path: src/graph/lca.hpp
     title: LCA
   - icon: ':warning:'
-    path: src/graph/max_match.h
+    path: src/graph/max_match.hpp
     title: "\u6700\u5927\u5339\u914D"
   - icon: ':warning:'
-    path: src/graph/shortest_path.h
+    path: src/graph/shortest_path.hpp
     title: "\u6700\u77ED\u8DEF"
   - icon: ':warning:'
-    path: src/graph/tarjan.h
+    path: src/graph/tarjan.hpp
     title: Tarjan
   - icon: ':warning:'
-    path: src/graph/two_sat.h
+    path: src/graph/two_sat.hpp
     title: two-sat
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -82,11 +82,11 @@ data:
   isVerificationFile: false
   path: src/graph/graph_template.hpp
   requiredBy:
-  - src/graph/tarjan.h
-  - src/graph/shortest_path.h
-  - src/graph/two_sat.h
-  - src/graph/lca.h
-  - src/graph/max_match.h
+  - src/graph/lca.hpp
+  - src/graph/two_sat.hpp
+  - src/graph/tarjan.hpp
+  - src/graph/max_match.hpp
+  - src/graph/shortest_path.hpp
   timestamp: '2022-10-06 19:21:15+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

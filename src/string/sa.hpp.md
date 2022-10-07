@@ -7,13 +7,13 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/suffix_array.md
     document_title: Suffix Array
     links: []
-  bundledCode: "#line 1 \"src/string/sa.h\"\n#include <bits/stdc++.h>\r\n\r\n#line\
+  bundledCode: "#line 1 \"src/string/sa.hpp\"\n#include <bits/stdc++.h>\r\n\r\n#line\
     \ 2 \"src/data_structure/rmq.hpp\"\nusing namespace std;\r\n\r\n/*\r\n@brief RMQ\r\
     \n@docs docs/rmq.md\r\n*/\r\n\r\ntemplate <typename T>\r\nstruct RMQ {\r\n   \
     \ int n = 0, levels = 0;\r\n    vector<T> values;\r\n    vector<vector<int>> range_high;\r\
@@ -39,7 +39,7 @@ data:
     \       for (int i = sz; i >= 0; i--) {\r\n            if (now + (1 << i) - 1\
     \ < n && max_index(range_high[i][now], idx) == idx) {\r\n                now +=\
     \ (1 << i);\r\n            }\r\n        }\r\n        return now;\r\n    }\r\n\
-    };\n#line 4 \"src/string/sa.h\"\n\r\n/*\r\n@brief Suffix Array\r\n@docs docs/suffix_array.md\r\
+    };\n#line 4 \"src/string/sa.hpp\"\n\r\n/*\r\n@brief Suffix Array\r\n@docs docs/suffix_array.md\r\
     \n*/\r\n\r\nusing namespace std;\r\n// SA[i]=a \u6392\u540D\u4E3Ai\u7684\u4E0B\
     \u6807\u4E3Aa\r\n// rank[a]=i \u4E0B\u6807\u4E3Aa\u7684\u6392\u540D\u4E3Ai\r\n\
     // height[i]=a \u6392\u540D\u4E3Ai\u7684\u548C\u6392\u540D\u4E3Ai-1\u662F\u6700\
@@ -125,16 +125,16 @@ data:
   dependsOn:
   - src/data_structure/rmq.hpp
   isVerificationFile: false
-  path: src/string/sa.h
+  path: src/string/sa.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:48:29+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/string/sa.h
+documentation_of: src/string/sa.hpp
 layout: document
 redirect_from:
-- /library/src/string/sa.h
-- /library/src/string/sa.h.html
+- /library/src/string/sa.hpp
+- /library/src/string/sa.hpp.html
 title: Suffix Array
 ---
 # Suffix Array

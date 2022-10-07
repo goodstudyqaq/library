@@ -4,14 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/step_matrix.md
     document_title: Step matrix
     links:
     - https://atcoder.jp/contests/abc249/tasks/abc249_g
-  bundledCode: "#line 1 \"src/utils/step_matrix.h\"\n#include <bits/stdc++.h>\r\n\
+  bundledCode: "#line 1 \"src/utils/step_matrix.hpp\"\n#include <bits/stdc++.h>\r\n\
     using namespace std;\r\n/*\r\n@brief Step matrix\r\n@docs docs/step_matrix.md\r\
     \n*/\r\n\r\n/*\r\nhttps://atcoder.jp/contests/abc249/tasks/abc249_g\r\n\u5C06\
     \ v \u6570\u7EC4\u7684 01 \u77E9\u9635\u53D8\u4E3A step matrix, step matrix: \u4E3A\
@@ -43,22 +43,24 @@ data:
     \n}"
   dependsOn: []
   isVerificationFile: false
-  path: src/utils/step_matrix.h
+  path: src/utils/step_matrix.hpp
   requiredBy: []
-  timestamp: '2022-10-06 15:28:11+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/utils/step_matrix.h
+documentation_of: src/utils/step_matrix.hpp
 layout: document
 redirect_from:
-- /library/src/utils/step_matrix.h
-- /library/src/utils/step_matrix.h.html
+- /library/src/utils/step_matrix.hpp
+- /library/src/utils/step_matrix.hpp.html
 title: Step matrix
 ---
 # Step Matrix
 
+todo: 待整理
 ## 概要
-Step Matrix 是一个特殊的矩阵： 对于每一行来说，第一个非 0 列的下标是严格递增的。
+Step Matrix 是一个特殊的矩阵： 对于每一行来说，第一个非 0 列的下标是严格递增的。转换完之后可以 On 求出任意选数，使得异或和最大。
+- `vector<long long> convert(vector<long long> v, int bit)`: xxx
 
 
 

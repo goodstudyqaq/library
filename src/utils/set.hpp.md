@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/set.md
@@ -13,7 +13,7 @@ data:
     - https://atcoder.jp/contests/abc254/tasks/abc254_g
     - https://atcoder.jp/contests/abc256/tasks/abc256_h
     - https://leetcode.com/problems/count-integers-in-intervals/
-  bundledCode: "#line 1 \"src/utils/set.h\"\n/*\r\n@brief Set\r\n@docs docs/set.md\r\
+  bundledCode: "#line 1 \"src/utils/set.hpp\"\n/*\r\n@brief Set\r\n@docs docs/set.md\r\
     \n*/\r\n// set \u5E38\u89C1\u4F7F\u7528\u5957\u8DEF\r\n// \u7EF4\u62A4\u533A\u95F4\
     \r\n/*\r\n\u73B0\u5728\u6A21\u677F\u7684\u903B\u8F91\uFF1A[l, r], [r+1, r2] =>\
     \ [l, r2], \u5982\u679C\u60F3\u6539\u6210 [l, r], [r, r2] => [l, r2] \u53EF\u4EE5\
@@ -64,15 +64,32 @@ data:
     \        }\r\n        return *it;\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/utils/set.h
+  path: src/utils/set.hpp
   requiredBy: []
-  timestamp: '2022-10-06 15:28:11+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/utils/set.h
+documentation_of: src/utils/set.hpp
 layout: document
 redirect_from:
-- /library/src/utils/set.h
-- /library/src/utils/set.h.html
+- /library/src/utils/set.hpp
+- /library/src/utils/set.hpp.html
 title: Set
 ---
+# Set
+
+## 概要
+记录 set 常见使用套路
+
+### `CountIntervals`
+维护一个区间集合，求出区间集合中包含的整数个数
+- `void add(int left, int right)`: 向集合中添加一个区间 `[left, right]` 。
+- `int count()`: 求出集合中包含的整数个数。
+- `pii get_interval(int idx)`: 求出包含 `idx` 的区间。如果没有包含 `idx` 的区间，返回 `{-1, -1}` 。
+
+## 常见问题
+
+## 题集
+- https://atcoder.jp/contests/abc254/tasks/abc254_g
+- https://leetcode.com/problems/count-integers-in-intervals/
+- https://atcoder.jp/contests/abc256/tasks/abc256_h

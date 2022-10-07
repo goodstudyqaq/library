@@ -4,13 +4,13 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/pcf.md
     document_title: "PCF(\u7D20\u6570\u7B5B)"
     links: []
-  bundledCode: "#line 1 \"src/math/pcf.h\"\n#include <bits/stdc++.h>\r\nusing namespace\
+  bundledCode: "#line 1 \"src/math/pcf.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n\r\n/*\r\n@brief PCF(\u7D20\u6570\u7B5B)\r\n@docs docs/pcf.md\r\n*/\r\
     \n\r\nnamespace pcf {\r\n// \u6C42 [1, n] \u7D20\u6570\u4E2A\u6570\r\n#define\
     \ setbit(ar, i) (((ar[(i) >> 6]) |= (1 << (((i) >> 1) & 31))))\r\n#define chkbit(ar,\
@@ -80,15 +80,31 @@ data:
     // pcf::init();\r\n// pcf::solve(n);\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/math/pcf.h
+  path: src/math/pcf.hpp
   requiredBy: []
-  timestamp: '2022-10-06 15:28:11+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/math/pcf.h
+documentation_of: src/math/pcf.hpp
 layout: document
 redirect_from:
-- /library/src/math/pcf.h
-- /library/src/math/pcf.h.html
+- /library/src/math/pcf.hpp
+- /library/src/math/pcf.hpp.html
 title: "PCF(\u7D20\u6570\u7B5B)"
 ---
+# PCF(素数筛)
+
+## 概要
+PCF 素数筛可用于求出 $[1,n]$ 中的素数的个数.
+用法为：
+```cpp
+pcf::init();
+pcf::solve(n);
+```
+
+
+
+## 常见问题
+
+## 题集
+h

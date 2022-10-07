@@ -4,27 +4,27 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/math_theory.md
     document_title: Theory
     links: []
-  bundledCode: "#line 1 \"src/math/theory.h\"\n#include <bits/stdc++.h>\r\nusing namespace\
-    \ std;\r\n\r\n/*\r\n@brief Theory\r\n@docs docs/math_theory.md\r\n*/\r\n\r\nstruct\
-    \ IntegerChunk {\r\n    int n;\r\n    IntegerChunk(int n) : n(n) {}\r\n\r\n  \
-    \  struct Iterator {\r\n        int i;\r\n        int n;\r\n        int l, r,\
-    \ val;\r\n        // n / [l, r] = val\r\n        //\u6B63\u7740\r\n        //\
-    \ a / val \u80FD\u6C42\u5230\u4E00\u4E2A\u4E0A\u9650 r\uFF0C a / r = val \u5373\
-    \u6700\u5927\u7684 r \u4F7F\u5F97 a / r = val\r\n        Iterator(int _i, int\
-    \ _n) : i(_i),\r\n                                   n(_n) {\r\n            l\
-    \ = i;\r\n            val = n / l;\r\n            r = n / val;\r\n        }\r\n\
-    \        int operator*() const {\r\n            return i;\r\n        }\r\n   \
-    \     bool operator!=(const Iterator& a) const {\r\n            return i != a.i;\r\
-    \n        }\r\n        Iterator& operator++() {\r\n            return *this =\
-    \ Iterator(r + 1, n);\r\n        }\r\n    };\r\n    Iterator begin() const {\r\
-    \n        return Iterator(1, n);\r\n    }\r\n    Iterator end() const {\r\n  \
-    \      return Iterator(n, n);\r\n    }\r\n};\r\n\r\nstruct ReverseIntegerChunk\
+  bundledCode: "#line 1 \"src/math/theory.hpp\"\n#include <bits/stdc++.h>\r\nusing\
+    \ namespace std;\r\n\r\n/*\r\n@brief Theory\r\n@docs docs/math_theory.md\r\n*/\r\
+    \n\r\nstruct IntegerChunk {\r\n    int n;\r\n    IntegerChunk(int n) : n(n) {}\r\
+    \n\r\n    struct Iterator {\r\n        int i;\r\n        int n;\r\n        int\
+    \ l, r, val;\r\n        // n / [l, r] = val\r\n        //\u6B63\u7740\r\n    \
+    \    // a / val \u80FD\u6C42\u5230\u4E00\u4E2A\u4E0A\u9650 r\uFF0C a / r = val\
+    \ \u5373\u6700\u5927\u7684 r \u4F7F\u5F97 a / r = val\r\n        Iterator(int\
+    \ _i, int _n) : i(_i),\r\n                                   n(_n) {\r\n     \
+    \       l = i;\r\n            val = n / l;\r\n            r = n / val;\r\n   \
+    \     }\r\n        int operator*() const {\r\n            return i;\r\n      \
+    \  }\r\n        bool operator!=(const Iterator& a) const {\r\n            return\
+    \ i != a.i;\r\n        }\r\n        Iterator& operator++() {\r\n            return\
+    \ *this = Iterator(r + 1, n);\r\n        }\r\n    };\r\n    Iterator begin() const\
+    \ {\r\n        return Iterator(1, n);\r\n    }\r\n    Iterator end() const {\r\
+    \n        return Iterator(n, n);\r\n    }\r\n};\r\n\r\nstruct ReverseIntegerChunk\
     \ {\r\n    int n;\r\n    ReverseIntegerChunk(int n) : n(n) {}\r\n\r\n    struct\
     \ Iterator {\r\n        int i;\r\n        int n;\r\n        int l, r, val;\r\n\
     \        /*\r\n        \u53CD\u7740\u679A\u4E3E\r\n        \u5927\u6982\u7684\u903B\
@@ -83,16 +83,16 @@ data:
     \ const {\r\n        return Iterator(1, n);\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/math/theory.h
+  path: src/math/theory.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:48:29+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/math/theory.h
+documentation_of: src/math/theory.hpp
 layout: document
 redirect_from:
-- /library/src/math/theory.h
-- /library/src/math/theory.h.html
+- /library/src/math/theory.hpp
+- /library/src/math/theory.hpp.html
 title: Theory
 ---
 # 数论

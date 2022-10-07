@@ -4,20 +4,20 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/string_stl.md
     document_title: STL
     links: []
-  bundledCode: "#line 1 \"src/string/stl.h\"\n#include <bits/stdc++.h>\r\nusing namespace\
-    \ std;\r\n\r\n/*\r\n@brief STL\r\n@docs docs/string_stl.md\r\n*/\r\n\r\nnamespace\
-    \ STL {\r\n/*\r\n\u8BB0\u5F55\u4E00\u4E9B\u5E38\u7528\u7684 STL \u51FD\u6570\r\
-    \n*/\r\nvoid StringSTL() {\r\n    string s = \"123\";\r\n    int num = stoi(s);\
-    \  // string to int \u8FD4\u56DE\u5B57\u7B26\u4E32\u524D\u7F00\u6574\u6570\uFF0C\
-    \u53EF\u4EE5\u6709\u524D\u5BFC\u96F6\uFF0C\u524D\u7F00\u5FC5\u987B\u662F\u6570\
-    \u5B57(\u7B2C\u4E00\u4E2A\u5B57\u7B26\u53EF\u4EE5\u662F \u2018-\u2019)\r\n   \
-    \ s = \"247+38\";\r\n    int add = s.find('+', 0);  // \u4ECE pos \u5F00\u59CB\
+  bundledCode: "#line 1 \"src/string/stl.hpp\"\n#include <bits/stdc++.h>\r\nusing\
+    \ namespace std;\r\n\r\n/*\r\n@brief STL\r\n@docs docs/string_stl.md\r\n*/\r\n\
+    \r\nnamespace STL {\r\n/*\r\n\u8BB0\u5F55\u4E00\u4E9B\u5E38\u7528\u7684 STL \u51FD\
+    \u6570\r\n*/\r\nvoid StringSTL() {\r\n    string s = \"123\";\r\n    int num =\
+    \ stoi(s);  // string to int \u8FD4\u56DE\u5B57\u7B26\u4E32\u524D\u7F00\u6574\u6570\
+    \uFF0C\u53EF\u4EE5\u6709\u524D\u5BFC\u96F6\uFF0C\u524D\u7F00\u5FC5\u987B\u662F\
+    \u6570\u5B57(\u7B2C\u4E00\u4E2A\u5B57\u7B26\u53EF\u4EE5\u662F \u2018-\u2019)\r\
+    \n    s = \"247+38\";\r\n    int add = s.find('+', 0);  // \u4ECE pos \u5F00\u59CB\
     \u67E5\u627E\uFF0C\u8FD4\u56DE\u7B2C\u4E00\u4E2A\u5339\u914D\u7684\u4E0B\u6807\
     \r\n\r\n    double num = stod(s);  // string to double\r\n}\r\n\r\nvector<string>\
     \ split(string &s, string delimiter) {\r\n    size_t pos_start = 0, pos_end, delim_len\
@@ -69,16 +69,16 @@ data:
     \ STL"
   dependsOn: []
   isVerificationFile: false
-  path: src/string/stl.h
+  path: src/string/stl.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:48:29+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/string/stl.h
+documentation_of: src/string/stl.hpp
 layout: document
 redirect_from:
-- /library/src/string/stl.h
-- /library/src/string/stl.h.html
+- /library/src/string/stl.hpp
+- /library/src/string/stl.hpp.html
 title: STL
 ---
 # String's STL

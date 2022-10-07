@@ -4,7 +4,7 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: h
+  _pathExtension: hpp
   _verificationStatusIcon: ':warning:'
   attributes:
     _deprecated_at_docs: docs/bits.md
@@ -12,15 +12,15 @@ data:
     links:
     - https://codingcompetitions.withgoogle.com/codejam/round/0000000000007706/0000000000045875
     - https://en.wikipedia.org/wiki/Combinatorial_number_system#Applications
-  bundledCode: "#line 1 \"src/math/bits.h\"\n\n\n#include <bits/stdc++.h>\nusing namespace\
-    \ std;\n/*\n@brief \u4F4D\u8FD0\u7B97\n@docs docs/bits.md\n*/\n/*\u4E00\u4E9B\u8BB0\
-    \u4E0D\u4F4F\u7684\u77E5\u8BC6\u70B9*/\n/*\n    1. lowbit\n    lowbit(x): x \u7684\
-    \u6700\u4F4E\u4F4D 1 lowbit(100100) = 100\n    lowbit(x) = x & (~x + 1)\n    ~x\
-    \ \u6309\u4F4D\u53D6\u53CD ~0 = -1, ~1 = -2, ~2 = -3...\n    \u663E\u7136 ~x +\
-    \ 1 = -x\n    \u6240\u4EE5 lowbit(x) = x & -x\n\n    2. __builtin_parity(x) x\
-    \ \u6709\u5076\u6570\u4E2A 1 \u8FD4\u56DE 0\uFF0C\u5947\u6570\u4E2A 1 \u8FD4\u56DE\
-    \ 1\n    3. __builtin_popcount(x) \u8FD4\u56DE x \u7684 1 \u7684\u4E2A\u6570\n\
-    \    3. __builtin_ctz(x) \u6B64\u51FD\u6570\u7528\u4E8E\u8BA1\u7B97\u7ED9\u5B9A\
+  bundledCode: "#line 1 \"src/math/bits.hpp\"\n\n\n#include <bits/stdc++.h>\nusing\
+    \ namespace std;\n/*\n@brief \u4F4D\u8FD0\u7B97\n@docs docs/bits.md\n*/\n/*\u4E00\
+    \u4E9B\u8BB0\u4E0D\u4F4F\u7684\u77E5\u8BC6\u70B9*/\n/*\n    1. lowbit\n    lowbit(x):\
+    \ x \u7684\u6700\u4F4E\u4F4D 1 lowbit(100100) = 100\n    lowbit(x) = x & (~x +\
+    \ 1)\n    ~x \u6309\u4F4D\u53D6\u53CD ~0 = -1, ~1 = -2, ~2 = -3...\n    \u663E\
+    \u7136 ~x + 1 = -x\n    \u6240\u4EE5 lowbit(x) = x & -x\n\n    2. __builtin_parity(x)\
+    \ x \u6709\u5076\u6570\u4E2A 1 \u8FD4\u56DE 0\uFF0C\u5947\u6570\u4E2A 1 \u8FD4\
+    \u56DE 1\n    3. __builtin_popcount(x) \u8FD4\u56DE x \u7684 1 \u7684\u4E2A\u6570\
+    \n    3. __builtin_ctz(x) \u6B64\u51FD\u6570\u7528\u4E8E\u8BA1\u7B97\u7ED9\u5B9A\
     \u6574\u6570\u7684\u5C3E\u968F\u96F6\n    4. __builtin_clz(x) \u6B64\u51FD\u6570\
     \u7528\u4E8E\u8BA1\u7B97\u6574\u6570\u7684\u524D\u5BFC\u96F6\u3002\u6CE8\u610F\
     \uFF1Aclz = \u8BA1\u7B97\u524D\u5BFC\u96F6\n*/\nstruct Subset {\n    /*\n    \u679A\
@@ -211,16 +211,16 @@ data:
     \    Iterator end() const {\n        return Iterator(0, status);\n    }\n};\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/math/bits.h
+  path: src/math/bits.hpp
   requiredBy: []
-  timestamp: '2022-10-06 23:48:29+08:00'
+  timestamp: '2022-10-07 12:16:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/math/bits.h
+documentation_of: src/math/bits.hpp
 layout: document
 redirect_from:
-- /library/src/math/bits.h
-- /library/src/math/bits.h.html
+- /library/src/math/bits.hpp
+- /library/src/math/bits.hpp.html
 title: "\u4F4D\u8FD0\u7B97"
 ---
 #  位运算
