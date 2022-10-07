@@ -1,0 +1,26 @@
+name: import
+
+on:
+  schedule:
+    - cron: '0/10 * * * *'
+  workflow_dispatch:
+
+jobs:
+  import_markdown:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: yucchiy/notion-to-markdown@main
+        with:
+          notion_auth_token: ${{ secrets.NOTION_TOKEN }}
+          notion_database_id: 'https://www.notion.so/goodstudyqaq/c1c395eca7634c0fb9900748eae455f7?v=34f1708569d0406595468024e45e5d9d'
+      - name: Push imported markdown files 
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add ./src/pages
+          git commit -m "Import files from notion database"
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
