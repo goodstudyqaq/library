@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: yucchiy/notion-to-markdown@main
         with:
-          notion_auth_token: 'd75939218098d9ef8f35fe68909b83e565eabc66d9ecd570b7e8bc87f055d2fd0b62bcb1c619013664e0927da78af1db71c8e737ce1cfe05e2f6d750b298e99f355c558e686ec8c28bf469af5230'
+          notion_auth_token: ${{ secrets.NOTION_AUTH_TOKEN }}
           notion_database_id: 'c1c395eca7634c0fb9900748eae455f7'
       - name: Push imported markdown files 
         run: |
