@@ -8,8 +8,13 @@ using namespace std;
 @docs docs/aho_corasick.md
 */
 
-struct AhoCorasick : Trie {
+template <typename T = TrieNode>
+struct AhoCorasick : Trie<T> {
     vector<int> fail;
+
+    AhoCorasick(int char_size, int margin) : Trie<T>(char_size, margin) {
+        fail.clear();
+    }
 
     void build() {
         /*

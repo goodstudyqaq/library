@@ -7,36 +7,30 @@ using namespace std;
 @docs docs/trie.md
 */
 
-struct TrieNode {
-    vector<int> nxt;
-    TrieNode(int char_size) {
-        nxt.resize(char_size, -1);
-    }
-    // 一些 hook 函数，用于 Trie 算法以及 ac 自动机, 可以覆盖这些函数来实现一些功能
+struct Trie {
+    struct TrieNode {
+        vector<int> nxt;
+        TrieNode(int char_size) {
+            nxt.resize(char_size, -1);
+        }
+        // 一些 hook 函数，用于 Trie 算法以及 ac 自动机, 可以覆盖这些函数来实现一些功能
 
-    void update_when_finish_in_trie() {
         /*
          * 当加入到字典树后，对最终的节点(当前节点)进行一些操作
          */
-        return;
-    }
+        virtual void update_when_finish_in_trie() = 0;
 
-    void update_when_push_in_trie(TrieNode &child_node) {
         /*
          * 当加入到字典树时，根据当前节点和子节点的信息，对当前节点进行一些操作
          */
-        return;
-    }
+        virtual void update_when_push_in_trie(TrieNode &child_node) = 0;
 
-    void update_when_build_fail(TrieNode &fail_node) {
         /*
          * 当构建 fail 函数时，根据当前节点和 fail 节点的信息，对当前节点进行一些操作
          */
-        return;
-    }
-};
+        virtual void update_when_build_fail(TrieNode &fail_node) = 0;
+    };
 
-struct Trie {
     vector<TrieNode> nodes;
     int root;
 
@@ -58,7 +52,7 @@ struct Trie {
             const int c = s[s_idx] - margin;
             if (nodes[node_idx].nxt[c] == -1) {
                 nodes[node_idx].nxt[c] = nodes.size();
-                nodes.push_back(TrieNode(char_size));
+                nodes.push_back(T(char_size));
             }
             add(s, s_idx + 1, nodes[node_idx].nxt[c]);
             // 根据当前节点的子节点更新当前节点
