@@ -1,9 +1,14 @@
 ---
 data:
   libraryCategories:
-  - name: src/data_structure
+  - name: copypaste
     pages:
     - icon: ':warning:'
+      path: copypaste/debug.h
+      title: copypaste/debug.h
+  - name: src/data_structure
+    pages:
+    - icon: ':x:'
       path: src/data_structure/aho_corasick.hpp
       title: "AC \u81EA\u52A8\u673A"
     - icon: ':warning:'
@@ -100,7 +105,7 @@ data:
     - icon: ':warning:'
       path: src/string/stl.hpp
       title: STL
-    - icon: ':warning:'
+    - icon: ':x:'
       path: src/string/trie.hpp
       title: Trie
   - name: src/utils
@@ -123,5 +128,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/dsu.test.cpp
       title: test/dsu.test.cpp
+    - icon: ':x:'
+      path: test/yukicoder-430.test.cpp
+      title: test/yukicoder-430.test.cpp
 layout: toppage
 ---
