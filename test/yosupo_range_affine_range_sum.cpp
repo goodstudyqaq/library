@@ -51,7 +51,7 @@ struct MyInfo {
         sum = (1LL * sum * v.a % mod + 1LL * (r - l + 1) * v.c % mod) % mod;
     }
 
-    static MyInfo Infomerge(const MyInfo &left_info, const MyInfo &right_info, int l, int r) {
+    static MyInfo merge(const MyInfo &left_info, const MyInfo &right_info, int l, int r) {
         return MyInfo((left_info.sum + right_info.sum) % mod);
     }
 };

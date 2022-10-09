@@ -19,7 +19,7 @@ struct Info {
     // apply 之前需要判断 v 是否为默认值
     void apply(const Tag &v, int l, int r) {}
 
-    static Info Infomerge(const Info &left_info, const Info &right_info, int l, int r) { return Info(); }
+    static Info merge(const Info &left_info, const Info &right_info, int l, int r) { return Info(); }
 };
 
 #define lson l, m, rt << 1
@@ -65,7 +65,7 @@ struct LazySegmentTree {
     vector<Info> info;
     vector<Tag> tag;
     void push_up(int l, int r, int rt) {
-        info[rt] = Info().Infomerge(info[rt << 1], info[rt << 1 | 1], l, r);
+        info[rt] = Info().merge(info[rt << 1], info[rt << 1 | 1], l, r);
     }
 
     void apply(int p, const Tag &v, int l, int r) {
@@ -101,7 +101,7 @@ struct LazySegmentTree {
         int m = l + r >> 1;
         push_down(l, r, rt);
         if (L <= m && R > m) {
-            return Info().Infomerge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);
+            return Info().merge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);
             // return rangeQuery(L, R, lson).merge(rangeQuery(L, R, rson), l, r);
             // return Infomerge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);
         } else if (L <= m) {
