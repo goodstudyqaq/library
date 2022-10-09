@@ -11,14 +11,14 @@ data:
     - icon: ':x:'
       path: src/data_structure/aho_corasick.hpp
       title: "AC \u81EA\u52A8\u673A"
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/data_structure/bit.hpp
       title: "\u6811\u72B6\u6570\u7EC4"
     - icon: ':heavy_check_mark:'
       path: src/data_structure/dsu.hpp
       title: "\u5E76\u67E5\u96C6"
     - icon: ':warning:'
-      path: src/data_structure/lazySegmentTree.hpp
+      path: src/data_structure/lazy_segment_tree.hpp
       title: Lazy Segment Tree
     - icon: ':warning:'
       path: src/data_structure/list.hpp
@@ -27,7 +27,7 @@ data:
       path: src/data_structure/rmq.hpp
       title: RMQ
     - icon: ':warning:'
-      path: src/data_structure/segmentTree.hpp
+      path: src/data_structure/segment_tree.hpp
       title: "\u7EBF\u6BB5\u6811"
     - icon: ':warning:'
       path: src/data_structure/weighted_dsu.hpp
@@ -35,10 +35,10 @@ data:
   - name: src/dp
     pages:
     - icon: ':warning:'
-      path: src/dp/digitdp.hpp
+      path: src/dp/digit_dp.hpp
       title: "\u6570\u4F4Ddp"
     - icon: ':warning:'
-      path: src/dp/sosdp.hpp
+      path: src/dp/sos_dp.hpp
       title: SOSdp
   - name: src/graph
     pages:
@@ -89,7 +89,7 @@ data:
   - name: src/misc
     pages:
     - icon: ':warning:'
-      path: src/misc/dancingLinks.hpp
+      path: src/misc/dancing_links.hpp
       title: Dancing Links
   - name: src/string
     pages:
@@ -128,8 +128,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/dsu.test.cpp
       title: test/dsu.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yosupo_point_add_range_sum.test.cpp
+      title: test/yosupo_point_add_range_sum.test.cpp
     - icon: ':x:'
-      path: test/yukicoder-430.test.cpp
-      title: test/yukicoder-430.test.cpp
+      path: test/yukicoder_430.test.cpp
+      title: test/yukicoder_430.test.cpp
 layout: toppage
 ---

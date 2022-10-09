@@ -10,7 +10,7 @@ data:
     _deprecated_at_docs: docs/segment_tree.md
     document_title: "\u7EBF\u6BB5\u6811"
     links: []
-  bundledCode: "#line 1 \"src/data_structure/segmentTree.hpp\"\n#include <bits/stdc++.h>\r\
+  bundledCode: "#line 1 \"src/data_structure/segment_tree.hpp\"\n#include <bits/stdc++.h>\r\
     \nusing namespace std;\r\n/*\r\n@brief \u7EBF\u6BB5\u6811\r\n@docs docs/segment_tree.md\r\
     \n*/\r\nstruct Info {\r\n    int l, r;\r\n    Info(int l = -1, int r = -1) : l(l),\
     \ r(r) {}\r\n    friend Info operator+(const Info& a, const Info& b) {}\r\n};\r\
@@ -70,16 +70,16 @@ data:
     \ l, r);\r\n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/data_structure/segmentTree.hpp
+  path: src/data_structure/segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-10-06 19:21:15+08:00'
+  timestamp: '2022-10-09 21:28:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/data_structure/segmentTree.hpp
+documentation_of: src/data_structure/segment_tree.hpp
 layout: document
 redirect_from:
-- /library/src/data_structure/segmentTree.hpp
-- /library/src/data_structure/segmentTree.hpp.html
+- /library/src/data_structure/segment_tree.hpp
+- /library/src/data_structure/segment_tree.hpp.html
 title: "\u7EBF\u6BB5\u6811"
 ---
 # 线段树

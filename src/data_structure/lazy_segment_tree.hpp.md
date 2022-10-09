@@ -10,7 +10,7 @@ data:
     _deprecated_at_docs: docs/lazy_segment_tree.md
     document_title: Lazy Segment Tree
     links: []
-  bundledCode: "#line 1 \"src/data_structure/lazySegmentTree.hpp\"\n#include <bits/stdc++.h>\r\
+  bundledCode: "#line 1 \"src/data_structure/lazy_segment_tree.hpp\"\n#include <bits/stdc++.h>\r\
     \nusing namespace std;\r\n/*\r\n@brief Lazy Segment Tree\r\n@docs docs/lazy_segment_tree.md\r\
     \n*/\r\n\r\n/*\r\n */\r\nstruct Tag {\r\n    Tag() {}\r\n    void apply(const\
     \ Tag &v) {\r\n        // apply \u4E4B\u524D\u9700\u8981\u5224\u65AD v \u662F\u5426\
@@ -165,16 +165,16 @@ data:
     };\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: src/data_structure/lazySegmentTree.hpp
+  path: src/data_structure/lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-10-06 19:21:15+08:00'
+  timestamp: '2022-10-09 21:28:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/data_structure/lazySegmentTree.hpp
+documentation_of: src/data_structure/lazy_segment_tree.hpp
 layout: document
 redirect_from:
-- /library/src/data_structure/lazySegmentTree.hpp
-- /library/src/data_structure/lazySegmentTree.hpp.html
+- /library/src/data_structure/lazy_segment_tree.hpp
+- /library/src/data_structure/lazy_segment_tree.hpp.html
 title: Lazy Segment Tree
 ---
 # Lazy Segment Tree

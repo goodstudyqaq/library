@@ -23,7 +23,7 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ test/yukicoder-430.test.cpp: line 7: unable to process #include in #if / #ifdef\
+    \ test/yukicoder_430.test.cpp: line 7: unable to process #include in #if / #ifdef\
     \ / #ifndef other than include guards\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/430\"\r\n#include <bits/stdc++.h>\r\
     \n\r\nusing namespace std;\r\n\r\n#ifdef LOCAL\r\n#include \"copypaste/debug.h\"\
@@ -47,15 +47,15 @@ data:
   - src/data_structure/aho_corasick.hpp
   - src/string/trie.hpp
   isVerificationFile: true
-  path: test/yukicoder-430.test.cpp
+  path: test/yukicoder_430.test.cpp
   requiredBy: []
-  timestamp: '2022-10-09 21:04:30+08:00'
+  timestamp: '2022-10-09 21:30:41+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder-430.test.cpp
+documentation_of: test/yukicoder_430.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder-430.test.cpp
-- /verify/test/yukicoder-430.test.cpp.html
-title: test/yukicoder-430.test.cpp
+- /verify/test/yukicoder_430.test.cpp
+- /verify/test/yukicoder_430.test.cpp.html
+title: test/yukicoder_430.test.cpp
 ---

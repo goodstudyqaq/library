@@ -11,7 +11,7 @@ data:
     document_title: SOSdp
     links:
     - https://codeforces.com/blog/entry/45223
-  bundledCode: "#line 1 \"src/dp/sosdp.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
+  bundledCode: "#line 1 \"src/dp/sos_dp.hpp\"\n#include <bits/stdc++.h>\r\nusing namespace\
     \ std;\r\n/*\r\n@brief SOSdp\r\n@docs docs/sos_dp.md\r\n*/\r\ntemplate <typename\
     \ T>\r\nstruct SOSDP {\r\n    // https://codeforces.com/blog/entry/45223\r\n \
     \   /*\r\n        F[mask] = \\sum_{i \\in mask} A[i]\r\n        Time: O(N2^N)\r\
@@ -53,16 +53,16 @@ data:
     \n"
   dependsOn: []
   isVerificationFile: false
-  path: src/dp/sosdp.hpp
+  path: src/dp/sos_dp.hpp
   requiredBy: []
-  timestamp: '2022-10-06 19:21:15+08:00'
+  timestamp: '2022-10-09 21:28:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/dp/sosdp.hpp
+documentation_of: src/dp/sos_dp.hpp
 layout: document
 redirect_from:
-- /library/src/dp/sosdp.hpp
-- /library/src/dp/sosdp.hpp.html
+- /library/src/dp/sos_dp.hpp
+- /library/src/dp/sos_dp.hpp.html
 title: SOSdp
 ---
 # SPFA(最小费用最大流)

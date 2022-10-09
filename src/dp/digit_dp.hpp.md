@@ -11,7 +11,7 @@ data:
     document_title: "\u6570\u4F4Ddp"
     links:
     - https://leetcode.cn/problems/numbers-with-repeated-digits/submissions/
-  bundledCode: "#line 1 \"src/dp/digitdp.hpp\"\n#include <bits/stdc++.h>\r\nusing\
+  bundledCode: "#line 1 \"src/dp/digit_dp.hpp\"\n#include <bits/stdc++.h>\r\nusing\
     \ namespace std;\r\n\r\n/*\r\n@brief \u6570\u4F4Ddp\r\n@docs docs/digit_dp.md\r\
     \ntodo: \u5F85\u6574\u7406\r\n*/\r\n// https://leetcode.cn/problems/numbers-with-repeated-digits/submissions/\r\
     \nint dp[11][1025][2];\r\nclass Solution {\r\n   public:\r\n    int n;\r\n   \
@@ -50,15 +50,15 @@ data:
     \ -1, sizeof(dp));\r\n        return work(n);\r\n    }\r\n};"
   dependsOn: []
   isVerificationFile: false
-  path: src/dp/digitdp.hpp
+  path: src/dp/digit_dp.hpp
   requiredBy: []
-  timestamp: '2022-10-06 19:21:15+08:00'
+  timestamp: '2022-10-09 21:28:06+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: src/dp/digitdp.hpp
+documentation_of: src/dp/digit_dp.hpp
 layout: document
 redirect_from:
-- /library/src/dp/digitdp.hpp
-- /library/src/dp/digitdp.hpp.html
+- /library/src/dp/digit_dp.hpp
+- /library/src/dp/digit_dp.hpp.html
 title: "\u6570\u4F4Ddp"
 ---
