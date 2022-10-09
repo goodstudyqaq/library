@@ -8,12 +8,14 @@ using namespace std;
 /*
  */
 struct Tag {
+    // 默认值
     Tag() {}
     // apply 之前需要判断 v 是否为默认值
     void apply(const Tag &v, int l, int r) {}
 };
 
 struct Info {
+    // 默认值
     Info() {}
 
     // apply 之前需要判断 v 是否为默认值
@@ -102,8 +104,6 @@ struct LazySegmentTree {
         push_down(l, r, rt);
         if (L <= m && R > m) {
             return Info().merge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);
-            // return rangeQuery(L, R, lson).merge(rangeQuery(L, R, rson), l, r);
-            // return Infomerge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);
         } else if (L <= m) {
             return rangeQuery(L, R, lson);
         } else {
