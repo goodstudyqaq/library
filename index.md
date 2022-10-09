@@ -122,6 +122,11 @@ data:
     - icon: ':warning:'
       path: src/utils/sum.hpp
       title: "\u524D\u7F00\u548C"
+  - name: test
+    pages:
+    - icon: ':warning:'
+      path: test/yosupo_range_affine_range_sum.cpp
+      title: test/yosupo_range_affine_range_sum.cpp
   verificationCategories:
   - name: test
     pages:
