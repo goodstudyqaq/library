@@ -23,6 +23,15 @@ struct fast_ios {
     };
 } fast_ios_;
 
+struct Node : TrieNode {
+    int cnt;
+    Node(int char_size) : TrieNode(char_size), cnt(0) {}
+
+    void update_when_finish_in_trie() { cnt++; }
+
+    void update_when_build_fail(const Node &fail) { cnt += fail.cnt; }
+};
+
 int main() {
 #ifdef LOCAL
     freopen("./data.in", "r", stdin);
@@ -33,7 +42,7 @@ int main() {
     int n;
     cin >> n;
 
-    AhoCorasick aho = AhoCorasick(26, 'A');
+    AhoCorasick<Node> aho = AhoCorasick<Node>(26, 'A');
     for (int i = 0; i < n; i++) {
         string t;
         cin >> t;
@@ -41,4 +50,15 @@ int main() {
     }
 
     aho.build();
+
+    int res = 0;
+
+    Node rt = aho.nodes[aho.root];
+
+    for (int i = 0; i < s.size(); i++) {
+        rt = aho.nodes[rt.nxt[s[i] - 'A']];
+        res += rt.cnt;
+    }
+    cout << res << endl;
+    return 0;
 }

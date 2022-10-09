@@ -25,7 +25,7 @@ struct AhoCorasick : Trie<T> {
         int root = this->root;
         fail[root] = root;
 
-        for (int i = 0; i < char_size; i++) {
+        for (int i = 0; i < this->char_size; i++) {
             if (this->nodes[root].nxt[i] == -1) {
                 this->nodes[root].nxt[i] = root;
             } else {
@@ -39,9 +39,9 @@ struct AhoCorasick : Trie<T> {
             Q.pop();
 
             // 根据 fail 节点更新当前节点
-            this->nodes[node].update_when_build_fail(nodes[fail[node]]);
+            this->nodes[node].update_when_build_fail(this->nodes[fail[node]]);
 
-            for (int i = 0; i < char_size; i++) {
+            for (int i = 0; i < this->char_size; i++) {
                 if (this->nodes[node].nxt[i] == -1) {
                     this->nodes[node].nxt[i] = this->nodes[fail[node]].nxt[i];
                 } else {
