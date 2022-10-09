@@ -31,19 +31,25 @@ data:
     \r\n\r\n#define endl '\\n'\r\ntypedef long long ll;\r\ntypedef pair<int, int>\
     \ pii;\r\ntypedef pair<ll, ll> pll;\r\n\r\nstruct fast_ios {\r\n    fast_ios()\
     \ {\r\n        cin.tie(nullptr);\r\n        ios::sync_with_stdio(false);\r\n \
-    \       cout << fixed << setprecision(10);\r\n    };\r\n} fast_ios_;\r\n\r\nint\
-    \ main() {\r\n#ifdef LOCAL\r\n    freopen(\"./data.in\", \"r\", stdin);\r\n#endif\r\
-    \n\r\n    string s;\r\n    cin >> s;\r\n    int n;\r\n    cin >> n;\r\n\r\n  \
-    \  AhoCorasick aho = AhoCorasick(26, 'A');\r\n    for (int i = 0; i < n; i++)\
-    \ {\r\n        string t;\r\n        cin >> t;\r\n        aho.add(t);\r\n    }\r\
-    \n\r\n    aho.build();\r\n}"
+    \       cout << fixed << setprecision(10);\r\n    };\r\n} fast_ios_;\r\n\r\nstruct\
+    \ Node : TrieNode {\r\n    int cnt;\r\n    Node(int char_size) : TrieNode(char_size),\
+    \ cnt(0) {}\r\n\r\n    void update_when_finish_in_trie() { cnt++; }\r\n\r\n  \
+    \  void update_when_build_fail(const Node &fail) { cnt += fail.cnt; }\r\n};\r\n\
+    \r\nint main() {\r\n#ifdef LOCAL\r\n    freopen(\"./data.in\", \"r\", stdin);\r\
+    \n#endif\r\n\r\n    string s;\r\n    cin >> s;\r\n    int n;\r\n    cin >> n;\r\
+    \n\r\n    AhoCorasick<Node> aho = AhoCorasick<Node>(26, 'A');\r\n    for (int\
+    \ i = 0; i < n; i++) {\r\n        string t;\r\n        cin >> t;\r\n        aho.add(t);\r\
+    \n    }\r\n\r\n    aho.build();\r\n\r\n    int res = 0;\r\n\r\n    Node rt = aho.nodes[aho.root];\r\
+    \n\r\n    for (int i = 0; i < s.size(); i++) {\r\n        rt = aho.nodes[rt.nxt[s[i]\
+    \ - 'A']];\r\n        res += rt.cnt;\r\n    }\r\n    cout << res << endl;\r\n\
+    \    return 0;\r\n}"
   dependsOn:
   - src/data_structure/aho_corasick.hpp
   - src/string/trie.hpp
   isVerificationFile: true
   path: test/yukicoder-430.test.cpp
   requiredBy: []
-  timestamp: '2022-10-08 23:04:20+08:00'
+  timestamp: '2022-10-09 21:04:30+08:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/yukicoder-430.test.cpp
