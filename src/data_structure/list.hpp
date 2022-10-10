@@ -2,7 +2,7 @@
 using namespace std;
 
 /*
-@brief List
+@brief 链表
 @docs docs/list.md
 */
 
