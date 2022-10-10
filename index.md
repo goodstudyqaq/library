@@ -8,7 +8,7 @@ data:
       title: copypaste/debug.h
   - name: src/data_structure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/data_structure/aho_corasick.hpp
       title: "AC \u81EA\u52A8\u673A"
     - icon: ':heavy_check_mark:'
@@ -105,7 +105,7 @@ data:
     - icon: ':warning:'
       path: src/string/stl.hpp
       title: STL
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/string/trie.hpp
       title: Trie
   - name: src/utils
@@ -136,7 +136,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo_point_add_range_sum.test.cpp
       title: test/yosupo_point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder_430.test.cpp
       title: test/yukicoder_430.test.cpp
 layout: toppage

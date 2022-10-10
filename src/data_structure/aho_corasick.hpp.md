@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/string/trie.hpp
     title: Trie
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder_430.test.cpp
     title: test/yukicoder_430.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/aho_corasick.md
     document_title: "AC \u81EA\u52A8\u673A"
@@ -95,7 +95,7 @@ data:
   path: src/data_structure/aho_corasick.hpp
   requiredBy: []
   timestamp: '2022-10-09 21:04:30+08:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder_430.test.cpp
 documentation_of: src/data_structure/aho_corasick.hpp

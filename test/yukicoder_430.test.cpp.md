@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/aho_corasick.hpp
     title: "AC \u81EA\u52A8\u673A"
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/string/trie.hpp
     title: Trie
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://yukicoder.me/problems/no/430
@@ -50,7 +50,7 @@ data:
   path: test/yukicoder_430.test.cpp
   requiredBy: []
   timestamp: '2022-10-09 21:30:41+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/yukicoder_430.test.cpp
 layout: document
