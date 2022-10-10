@@ -33,8 +33,14 @@ struct SegmentTree {
         return rangeQuery(l, r, 0, n - 1, 1);
     }
 
+    // 单点更新, 会将下标为 L 的点与 v 进行 merge 操作
     void update(int L, const Info& v) {
         return update(L, v, 0, n - 1, 1);
+    }
+
+    // 单点赋值, 会将下标为 L 的点直接赋值为 v
+    void assign(int L, const Info& v) {
+        return assign(L, v, 0, n - 1, 1);
     }
 
    private:
@@ -70,6 +76,20 @@ struct SegmentTree {
             update(L, v, lson);
         } else {
             update(L, v, rson);
+        }
+        push_up(rt, l, r);
+    }
+
+    void assign(int L, const Info& v, int l, int r, int rt) {
+        if (l == r) {
+            info[rt] = v;
+            return;
+        }
+        int m = l + r >> 1;
+        if (L <= m) {
+            assign(L, v, lson);
+        } else {
+            assign(L, v, rson);
         }
         push_up(rt, l, r);
     }
