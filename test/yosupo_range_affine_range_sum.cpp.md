@@ -55,7 +55,7 @@ data:
   isVerificationFile: false
   path: test/yosupo_range_affine_range_sum.cpp
   requiredBy: []
-  timestamp: '2022-10-09 22:19:53+08:00'
+  timestamp: '2022-10-09 22:22:10+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: test/yosupo_range_affine_range_sum.cpp
