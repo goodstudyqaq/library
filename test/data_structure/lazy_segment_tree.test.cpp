@@ -1,7 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/range_affine_range_sum"
-#include <bits/stdc++.h>
-
 #include "src/data_structure/lazy_segment_tree.hpp"
+
+#include <bits/stdc++.h>
 
 using namespace std;
 

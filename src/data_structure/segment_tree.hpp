@@ -5,21 +5,20 @@ using namespace std;
 @docs docs/segment_tree.md
 */
 struct Info {
-    int l, r;
-    Info(int l = -1, int r = -1) : l(l), r(r) {}
-    friend Info operator+(const Info& a, const Info& b) {}
+    // 默认值
+    Info() {}
+    static Info merge(const Info& left_info, const Info& right_info, int l, int r) { return Info(); };
 };
 
 #define lson l, m, rt << 1
 #define rson m + 1, r, rt << 1 | 1
+template <typename Info>
 struct SegmentTree {
-    SegmentTree(int n) : n(n), info(4 << __lg(n)) {}
+    SegmentTree(int n) : n(n), merge(Info::merge), info(4 << __lg(n)) {}
     SegmentTree(vector<Info> init) : SegmentTree(init.size()) {
         function<void(int, int, int)> build = [&](int l, int r, int rt) {
             if (l == r) {
                 info[rt] = init[l];
-                info[rt].l = l;
-                info[rt].r = r;
                 return;
             }
             int m = l + r >> 1;
@@ -34,17 +33,17 @@ struct SegmentTree {
         return rangeQuery(l, r, 0, n - 1, 1);
     }
 
-    void update(int L, Info v) {
+    void update(int L, const Info& v) {
         return update(L, v, 0, n - 1, 1);
     }
 
    private:
     const int n;
     vector<Info> info;
+    const function<Info(const Info&, const Info&, int, int)> merge;
+
     void push_up(int rt, int l, int r) {
-        info[rt] = info[rt << 1] + info[rt << 1 | 1];
-        info[rt].l = l;
-        info[rt].r = r;
+        info[rt] = merge(info[rt << 1], info[rt << 1 | 1], l, r);
     }
 
     Info rangeQuery(int L, int R, int l, int r, int rt) {
@@ -53,7 +52,7 @@ struct SegmentTree {
         }
         int m = l + r >> 1;
         if (L <= m && R > m) {
-            return rangeQuery(L, R, lson) + rangeQuery(L, R, rson);
+            return merge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);
         } else if (L <= m) {
             return rangeQuery(L, R, lson);
         } else {
@@ -61,11 +60,9 @@ struct SegmentTree {
         }
     }
 
-    void update(int L, Info& v, int l, int r, int rt) {
+    void update(int L, const Info& v, int l, int r, int rt) {
         if (l == r) {
-            info[rt] = info[rt] + v;
-            info[rt].l = l;
-            info[rt].r = r;
+            info[rt] = merge(info[rt], v, l, r);
             return;
         }
         int m = l + r >> 1;

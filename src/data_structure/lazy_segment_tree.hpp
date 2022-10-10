@@ -28,7 +28,7 @@ struct Info {
 #define rson m + 1, r, rt << 1 | 1
 template <typename Info, typename Tag>
 struct LazySegmentTree {
-    LazySegmentTree(int n) : n(n), info(4 << std::__lg(n)), tag(4 << std::__lg(n)) {}
+    LazySegmentTree(int n) : n(n), merge(Info::merge), info(4 << std::__lg(n)), tag(4 << std::__lg(n)) {}
     LazySegmentTree(vector<Info> &init) : LazySegmentTree(init.size()) {
         function<void(int, int, int)> build = [&](int l, int r, int rt) {
             if (l == r) {
@@ -63,11 +63,13 @@ struct LazySegmentTree {
         return find_last(ll, rr, f, 0, n - 1, 1);
     }
 
+   private:
     const int n;
     vector<Info> info;
     vector<Tag> tag;
+    const function<Info(const Info &, const Info &, int, int)> merge;
     void push_up(int l, int r, int rt) {
-        info[rt] = Info().merge(info[rt << 1], info[rt << 1 | 1], l, r);
+        info[rt] = merge(info[rt << 1], info[rt << 1 | 1], l, r);
     }
 
     void apply(int p, const Tag &v, int l, int r) {
@@ -104,7 +106,7 @@ struct LazySegmentTree {
         int m = l + r >> 1;
         push_down(l, r, rt);
         if (L <= m && R > m) {
-            return Info().merge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);
+            return merge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);
         } else if (L <= m) {
             return rangeQuery(L, R, lson);
         } else {
