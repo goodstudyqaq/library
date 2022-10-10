@@ -24,7 +24,86 @@ data:
     \ Info &left_info, const Info &right_info, int l, int r) { return Info(); }\r\n\
     };\r\n\r\n#define lson l, m, rt << 1\r\n#define rson m + 1, r, rt << 1 | 1\r\n\
     template <typename Info, typename Tag>\r\nstruct LazySegmentTree {\r\n    LazySegmentTree(int\
-    \ n) : n(n), info(4 << std::__lg(n)), tag(4 << std::__lg(n)) {}\r\n    LazySegmentTree(vector<Info>\
+    \ n) : n(n), merge(Info::merge), info(4 << std::__lg(n)), tag(4 << std::__lg(n))\
+    \ {}\r\n    LazySegmentTree(vector<Info> &init) : LazySegmentTree(init.size())\
+    \ {\r\n        function<void(int, int, int)> build = [&](int l, int r, int rt)\
+    \ {\r\n            if (l == r) {\r\n                info[rt] = init[l];\r\n  \
+    \              return;\r\n            }\r\n            int m = l + r >> 1;\r\n\
+    \            build(lson);\r\n            build(rson);\r\n            push_up(rt,\
+    \ l, r);\r\n        };\r\n        build(0, n - 1, 1);\r\n    }\r\n\r\n    void\
+    \ update(int L, const Info &v) {\r\n        update(L, v, 0, n - 1, 1);\r\n   \
+    \ }\r\n\r\n    void rangeUpdate(int L, int R, const Tag &v) {\r\n        return\
+    \ rangeUpdate(L, R, v, 0, n - 1, 1);\r\n    }\r\n\r\n    Info rangeQuery(int L,\
+    \ int R) {\r\n        return rangeQuery(L, R, 0, n - 1, 1);\r\n    }\r\n\r\n \
+    \   int find_first(int ll, int rr, const function<bool(const Info &)> &f) {\r\n\
+    \        return find_first(ll, rr, f, 0, n - 1, 1);\r\n    }\r\n\r\n    int find_last(int\
+    \ ll, int rr, const function<bool(const Info &)> &f) {\r\n        return find_last(ll,\
+    \ rr, f, 0, n - 1, 1);\r\n    }\r\n\r\n   private:\r\n    const int n;\r\n   \
+    \ vector<Info> info;\r\n    vector<Tag> tag;\r\n    const function<Info(const\
+    \ Info &, const Info &, int, int)> merge;\r\n    void push_up(int l, int r, int\
+    \ rt) {\r\n        info[rt] = merge(info[rt << 1], info[rt << 1 | 1], l, r);\r\
+    \n    }\r\n\r\n    void apply(int p, const Tag &v, int l, int r) {\r\n       \
+    \ info[p].apply(v, l, r);\r\n        tag[p].apply(v, l, r);\r\n    }\r\n\r\n \
+    \   void push_down(int l, int r, int rt) {\r\n        int m = l + r >> 1;\r\n\
+    \        apply(rt << 1, tag[rt], l, m);\r\n        apply(rt << 1 | 1, tag[rt],\
+    \ m + 1, r);\r\n        tag[rt] = Tag();\r\n    }\r\n\r\n    void update(int L,\
+    \ const Info &v, int l, int r, int rt) {\r\n        if (l == r) {\r\n        \
+    \    info[rt] = v;\r\n            return;\r\n        }\r\n        int m = l +\
+    \ r >> 1;\r\n        push_down(l, r, rt);\r\n        if (L <= m) {\r\n       \
+    \     update(L, v, lson);\r\n        } else {\r\n            update(L, v, rson);\r\
+    \n        }\r\n        push_up(l, r, rt);\r\n    }\r\n\r\n    Info rangeQuery(int\
+    \ L, int R, int l, int r, int rt) {\r\n        if (L <= l && r <= R) {\r\n   \
+    \         return info[rt];\r\n        }\r\n        int m = l + r >> 1;\r\n   \
+    \     push_down(l, r, rt);\r\n        if (L <= m && R > m) {\r\n            return\
+    \ merge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);\r\n        } else\
+    \ if (L <= m) {\r\n            return rangeQuery(L, R, lson);\r\n        } else\
+    \ {\r\n            return rangeQuery(L, R, rson);\r\n        }\r\n    }\r\n\r\n\
+    \    void rangeUpdate(int L, int R, const Tag &v, int l, int r, int rt) {\r\n\
+    \        if (L <= l && r <= R) {\r\n            apply(rt, v, l, r);\r\n      \
+    \      return;\r\n        }\r\n        int m = l + r >> 1;\r\n        push_down(l,\
+    \ r, rt);\r\n        if (L <= m) {\r\n            rangeUpdate(L, R, v, lson);\r\
+    \n        }\r\n        if (R > m) {\r\n            rangeUpdate(L, R, v, rson);\r\
+    \n        }\r\n        push_up(l, r, rt);\r\n    }\r\n\r\n    int find_first_knowingly(const\
+    \ function<bool(const Info &)> f, int l, int r, int rt) {\r\n        if (l ==\
+    \ r) {\r\n            return l;\r\n        }\r\n        int m = l + r >> 1;\r\n\
+    \        push_down(l, r, rt);\r\n        int res;\r\n        if (f(info[rt <<\
+    \ 1])) {\r\n            res = find_first_knowingly(f, lson);\r\n        } else\
+    \ {\r\n            res = find_first_knowingly(f, rson);\r\n        }\r\n     \
+    \   push_up(l, r, rt);\r\n        return res;\r\n    }\r\n\r\n    int find_first(int\
+    \ L, int R, const function<bool(const Info &)> f, int l, int r, int rt) {\r\n\
+    \        if (L <= l && r <= R) {\r\n            if (!f(info[rt])) {\r\n      \
+    \          return -1;\r\n            }\r\n            return find_first_knowingly(f,\
+    \ l, r, rt);\r\n        }\r\n        int m = l + r >> 1;\r\n        push_down(l,\
+    \ r, rt);\r\n        int res = -1;\r\n        if (L <= m) {\r\n            res\
+    \ = find_first(L, R, f, lson);\r\n        }\r\n        if (R > m && res == -1)\
+    \ {\r\n            res = find_first(L, R, f, rson);\r\n        }\r\n        push_up(l,\
+    \ r, rt);\r\n        return res;\r\n    }\r\n\r\n    int find_last_knowingly(const\
+    \ function<bool(const Info &)> f, int l, int r, int rt) {\r\n        if (l ==\
+    \ r) {\r\n            return l;\r\n        }\r\n        int m = l + r >> 1;\r\n\
+    \        push_down(l, r, rt);\r\n        int res;\r\n        if (f(info[rt <<\
+    \ 1 | 1])) {\r\n            res = find_last_knowingly(f, rson);\r\n        } else\
+    \ {\r\n            res = find_last_knowingly(f, lson);\r\n        }\r\n      \
+    \  push_up(l, r, rt);\r\n        return res;\r\n    }\r\n\r\n    int find_last(int\
+    \ L, int R, const function<bool(const Info &)> f, int l, int r, int rt) {\r\n\
+    \        if (L <= l && r <= R) {\r\n            if (!f(info[rt])) {\r\n      \
+    \          return -1;\r\n            }\r\n            return find_last_knowingly(f,\
+    \ l, r, rt);\r\n        }\r\n        int m = l + r >> 1;\r\n        push_down(l,\
+    \ r, rt);\r\n        int res = -1;\r\n        if (R > m) {\r\n            res\
+    \ = find_last(L, R, f, rson);\r\n        }\r\n        if (L <= m && res == -1)\
+    \ {\r\n            res = find_last(L, R, f, lson);\r\n        }\r\n        push_up(l,\
+    \ r, rt);\r\n        return res;\r\n    }\r\n};\r\n"
+  code: "#include <bits/stdc++.h>\r\nusing namespace std;\r\n/*\r\n@brief Lazy Segment\
+    \ Tree\r\n@docs docs/lazy_segment_tree.md\r\n*/\r\n\r\n/*\r\n */\r\nstruct Tag\
+    \ {\r\n    // \u9ED8\u8BA4\u503C\r\n    Tag() {}\r\n    // apply \u4E4B\u524D\u9700\
+    \u8981\u5224\u65AD v \u662F\u5426\u4E3A\u9ED8\u8BA4\u503C\r\n    void apply(const\
+    \ Tag &v, int l, int r) {}\r\n};\r\n\r\nstruct Info {\r\n    // \u9ED8\u8BA4\u503C\
+    \r\n    Info() {}\r\n\r\n    // apply \u4E4B\u524D\u9700\u8981\u5224\u65AD v \u662F\
+    \u5426\u4E3A\u9ED8\u8BA4\u503C\r\n    void apply(const Tag &v, int l, int r) {}\r\
+    \n\r\n    static Info merge(const Info &left_info, const Info &right_info, int\
+    \ l, int r) { return Info(); }\r\n};\r\n\r\n#define lson l, m, rt << 1\r\n#define\
+    \ rson m + 1, r, rt << 1 | 1\r\ntemplate <typename Info, typename Tag>\r\nstruct\
+    \ LazySegmentTree {\r\n    LazySegmentTree(int n) : n(n), merge(Info::merge),\
+    \ info(4 << std::__lg(n)), tag(4 << std::__lg(n)) {}\r\n    LazySegmentTree(vector<Info>\
     \ &init) : LazySegmentTree(init.size()) {\r\n        function<void(int, int, int)>\
     \ build = [&](int l, int r, int rt) {\r\n            if (l == r) {\r\n       \
     \         info[rt] = init[l];\r\n                return;\r\n            }\r\n\
@@ -37,12 +116,13 @@ data:
     \n    }\r\n\r\n    int find_first(int ll, int rr, const function<bool(const Info\
     \ &)> &f) {\r\n        return find_first(ll, rr, f, 0, n - 1, 1);\r\n    }\r\n\
     \r\n    int find_last(int ll, int rr, const function<bool(const Info &)> &f) {\r\
-    \n        return find_last(ll, rr, f, 0, n - 1, 1);\r\n    }\r\n\r\n    const\
-    \ int n;\r\n    vector<Info> info;\r\n    vector<Tag> tag;\r\n    void push_up(int\
-    \ l, int r, int rt) {\r\n        info[rt] = Info().merge(info[rt << 1], info[rt\
-    \ << 1 | 1], l, r);\r\n    }\r\n\r\n    void apply(int p, const Tag &v, int l,\
-    \ int r) {\r\n        info[p].apply(v, l, r);\r\n        tag[p].apply(v, l, r);\r\
-    \n    }\r\n\r\n    void push_down(int l, int r, int rt) {\r\n        int m = l\
+    \n        return find_last(ll, rr, f, 0, n - 1, 1);\r\n    }\r\n\r\n   private:\r\
+    \n    const int n;\r\n    vector<Info> info;\r\n    vector<Tag> tag;\r\n    const\
+    \ function<Info(const Info &, const Info &, int, int)> merge;\r\n    void push_up(int\
+    \ l, int r, int rt) {\r\n        info[rt] = merge(info[rt << 1], info[rt << 1\
+    \ | 1], l, r);\r\n    }\r\n\r\n    void apply(int p, const Tag &v, int l, int\
+    \ r) {\r\n        info[p].apply(v, l, r);\r\n        tag[p].apply(v, l, r);\r\n\
+    \    }\r\n\r\n    void push_down(int l, int r, int rt) {\r\n        int m = l\
     \ + r >> 1;\r\n        apply(rt << 1, tag[rt], l, m);\r\n        apply(rt << 1\
     \ | 1, tag[rt], m + 1, r);\r\n        tag[rt] = Tag();\r\n    }\r\n\r\n    void\
     \ update(int L, const Info &v, int l, int r, int rt) {\r\n        if (l == r)\
@@ -53,13 +133,13 @@ data:
     \ rangeQuery(int L, int R, int l, int r, int rt) {\r\n        if (L <= l && r\
     \ <= R) {\r\n            return info[rt];\r\n        }\r\n        int m = l +\
     \ r >> 1;\r\n        push_down(l, r, rt);\r\n        if (L <= m && R > m) {\r\n\
-    \            return Info().merge(rangeQuery(L, R, lson), rangeQuery(L, R, rson),\
-    \ l, r);\r\n        } else if (L <= m) {\r\n            return rangeQuery(L, R,\
-    \ lson);\r\n        } else {\r\n            return rangeQuery(L, R, rson);\r\n\
-    \        }\r\n    }\r\n\r\n    void rangeUpdate(int L, int R, const Tag &v, int\
-    \ l, int r, int rt) {\r\n        if (L <= l && r <= R) {\r\n            apply(rt,\
-    \ v, l, r);\r\n            return;\r\n        }\r\n        int m = l + r >> 1;\r\
-    \n        push_down(l, r, rt);\r\n        if (L <= m) {\r\n            rangeUpdate(L,\
+    \            return merge(rangeQuery(L, R, lson), rangeQuery(L, R, rson), l, r);\r\
+    \n        } else if (L <= m) {\r\n            return rangeQuery(L, R, lson);\r\
+    \n        } else {\r\n            return rangeQuery(L, R, rson);\r\n        }\r\
+    \n    }\r\n\r\n    void rangeUpdate(int L, int R, const Tag &v, int l, int r,\
+    \ int rt) {\r\n        if (L <= l && r <= R) {\r\n            apply(rt, v, l,\
+    \ r);\r\n            return;\r\n        }\r\n        int m = l + r >> 1;\r\n \
+    \       push_down(l, r, rt);\r\n        if (L <= m) {\r\n            rangeUpdate(L,\
     \ R, v, lson);\r\n        }\r\n        if (R > m) {\r\n            rangeUpdate(L,\
     \ R, v, rson);\r\n        }\r\n        push_up(l, r, rt);\r\n    }\r\n\r\n   \
     \ int find_first_knowingly(const function<bool(const Info &)> f, int l, int r,\
@@ -90,88 +170,11 @@ data:
     \ = find_last(L, R, f, rson);\r\n        }\r\n        if (L <= m && res == -1)\
     \ {\r\n            res = find_last(L, R, f, lson);\r\n        }\r\n        push_up(l,\
     \ r, rt);\r\n        return res;\r\n    }\r\n};\r\n"
-  code: "#include <bits/stdc++.h>\r\nusing namespace std;\r\n/*\r\n@brief Lazy Segment\
-    \ Tree\r\n@docs docs/lazy_segment_tree.md\r\n*/\r\n\r\n/*\r\n */\r\nstruct Tag\
-    \ {\r\n    // \u9ED8\u8BA4\u503C\r\n    Tag() {}\r\n    // apply \u4E4B\u524D\u9700\
-    \u8981\u5224\u65AD v \u662F\u5426\u4E3A\u9ED8\u8BA4\u503C\r\n    void apply(const\
-    \ Tag &v, int l, int r) {}\r\n};\r\n\r\nstruct Info {\r\n    // \u9ED8\u8BA4\u503C\
-    \r\n    Info() {}\r\n\r\n    // apply \u4E4B\u524D\u9700\u8981\u5224\u65AD v \u662F\
-    \u5426\u4E3A\u9ED8\u8BA4\u503C\r\n    void apply(const Tag &v, int l, int r) {}\r\
-    \n\r\n    static Info merge(const Info &left_info, const Info &right_info, int\
-    \ l, int r) { return Info(); }\r\n};\r\n\r\n#define lson l, m, rt << 1\r\n#define\
-    \ rson m + 1, r, rt << 1 | 1\r\ntemplate <typename Info, typename Tag>\r\nstruct\
-    \ LazySegmentTree {\r\n    LazySegmentTree(int n) : n(n), info(4 << std::__lg(n)),\
-    \ tag(4 << std::__lg(n)) {}\r\n    LazySegmentTree(vector<Info> &init) : LazySegmentTree(init.size())\
-    \ {\r\n        function<void(int, int, int)> build = [&](int l, int r, int rt)\
-    \ {\r\n            if (l == r) {\r\n                info[rt] = init[l];\r\n  \
-    \              return;\r\n            }\r\n            int m = l + r >> 1;\r\n\
-    \            build(lson);\r\n            build(rson);\r\n            push_up(rt,\
-    \ l, r);\r\n        };\r\n        build(0, n - 1, 1);\r\n    }\r\n\r\n    void\
-    \ update(int L, const Info &v) {\r\n        update(L, v, 0, n - 1, 1);\r\n   \
-    \ }\r\n\r\n    void rangeUpdate(int L, int R, const Tag &v) {\r\n        return\
-    \ rangeUpdate(L, R, v, 0, n - 1, 1);\r\n    }\r\n\r\n    Info rangeQuery(int L,\
-    \ int R) {\r\n        return rangeQuery(L, R, 0, n - 1, 1);\r\n    }\r\n\r\n \
-    \   int find_first(int ll, int rr, const function<bool(const Info &)> &f) {\r\n\
-    \        return find_first(ll, rr, f, 0, n - 1, 1);\r\n    }\r\n\r\n    int find_last(int\
-    \ ll, int rr, const function<bool(const Info &)> &f) {\r\n        return find_last(ll,\
-    \ rr, f, 0, n - 1, 1);\r\n    }\r\n\r\n    const int n;\r\n    vector<Info> info;\r\
-    \n    vector<Tag> tag;\r\n    void push_up(int l, int r, int rt) {\r\n       \
-    \ info[rt] = Info().merge(info[rt << 1], info[rt << 1 | 1], l, r);\r\n    }\r\n\
-    \r\n    void apply(int p, const Tag &v, int l, int r) {\r\n        info[p].apply(v,\
-    \ l, r);\r\n        tag[p].apply(v, l, r);\r\n    }\r\n\r\n    void push_down(int\
-    \ l, int r, int rt) {\r\n        int m = l + r >> 1;\r\n        apply(rt << 1,\
-    \ tag[rt], l, m);\r\n        apply(rt << 1 | 1, tag[rt], m + 1, r);\r\n      \
-    \  tag[rt] = Tag();\r\n    }\r\n\r\n    void update(int L, const Info &v, int\
-    \ l, int r, int rt) {\r\n        if (l == r) {\r\n            info[rt] = v;\r\n\
-    \            return;\r\n        }\r\n        int m = l + r >> 1;\r\n        push_down(l,\
-    \ r, rt);\r\n        if (L <= m) {\r\n            update(L, v, lson);\r\n    \
-    \    } else {\r\n            update(L, v, rson);\r\n        }\r\n        push_up(l,\
-    \ r, rt);\r\n    }\r\n\r\n    Info rangeQuery(int L, int R, int l, int r, int\
-    \ rt) {\r\n        if (L <= l && r <= R) {\r\n            return info[rt];\r\n\
-    \        }\r\n        int m = l + r >> 1;\r\n        push_down(l, r, rt);\r\n\
-    \        if (L <= m && R > m) {\r\n            return Info().merge(rangeQuery(L,\
-    \ R, lson), rangeQuery(L, R, rson), l, r);\r\n        } else if (L <= m) {\r\n\
-    \            return rangeQuery(L, R, lson);\r\n        } else {\r\n          \
-    \  return rangeQuery(L, R, rson);\r\n        }\r\n    }\r\n\r\n    void rangeUpdate(int\
-    \ L, int R, const Tag &v, int l, int r, int rt) {\r\n        if (L <= l && r <=\
-    \ R) {\r\n            apply(rt, v, l, r);\r\n            return;\r\n        }\r\
-    \n        int m = l + r >> 1;\r\n        push_down(l, r, rt);\r\n        if (L\
-    \ <= m) {\r\n            rangeUpdate(L, R, v, lson);\r\n        }\r\n        if\
-    \ (R > m) {\r\n            rangeUpdate(L, R, v, rson);\r\n        }\r\n      \
-    \  push_up(l, r, rt);\r\n    }\r\n\r\n    int find_first_knowingly(const function<bool(const\
-    \ Info &)> f, int l, int r, int rt) {\r\n        if (l == r) {\r\n           \
-    \ return l;\r\n        }\r\n        int m = l + r >> 1;\r\n        push_down(l,\
-    \ r, rt);\r\n        int res;\r\n        if (f(info[rt << 1])) {\r\n         \
-    \   res = find_first_knowingly(f, lson);\r\n        } else {\r\n            res\
-    \ = find_first_knowingly(f, rson);\r\n        }\r\n        push_up(l, r, rt);\r\
-    \n        return res;\r\n    }\r\n\r\n    int find_first(int L, int R, const function<bool(const\
-    \ Info &)> f, int l, int r, int rt) {\r\n        if (L <= l && r <= R) {\r\n \
-    \           if (!f(info[rt])) {\r\n                return -1;\r\n            }\r\
-    \n            return find_first_knowingly(f, l, r, rt);\r\n        }\r\n     \
-    \   int m = l + r >> 1;\r\n        push_down(l, r, rt);\r\n        int res = -1;\r\
-    \n        if (L <= m) {\r\n            res = find_first(L, R, f, lson);\r\n  \
-    \      }\r\n        if (R > m && res == -1) {\r\n            res = find_first(L,\
-    \ R, f, rson);\r\n        }\r\n        push_up(l, r, rt);\r\n        return res;\r\
-    \n    }\r\n\r\n    int find_last_knowingly(const function<bool(const Info &)>\
-    \ f, int l, int r, int rt) {\r\n        if (l == r) {\r\n            return l;\r\
-    \n        }\r\n        int m = l + r >> 1;\r\n        push_down(l, r, rt);\r\n\
-    \        int res;\r\n        if (f(info[rt << 1 | 1])) {\r\n            res =\
-    \ find_last_knowingly(f, rson);\r\n        } else {\r\n            res = find_last_knowingly(f,\
-    \ lson);\r\n        }\r\n        push_up(l, r, rt);\r\n        return res;\r\n\
-    \    }\r\n\r\n    int find_last(int L, int R, const function<bool(const Info &)>\
-    \ f, int l, int r, int rt) {\r\n        if (L <= l && r <= R) {\r\n          \
-    \  if (!f(info[rt])) {\r\n                return -1;\r\n            }\r\n    \
-    \        return find_last_knowingly(f, l, r, rt);\r\n        }\r\n        int\
-    \ m = l + r >> 1;\r\n        push_down(l, r, rt);\r\n        int res = -1;\r\n\
-    \        if (R > m) {\r\n            res = find_last(L, R, f, rson);\r\n     \
-    \   }\r\n        if (L <= m && res == -1) {\r\n            res = find_last(L,\
-    \ R, f, lson);\r\n        }\r\n        push_up(l, r, rt);\r\n        return res;\r\
-    \n    }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: src/data_structure/lazy_segment_tree.hpp
   requiredBy: []
-  timestamp: '2022-10-10 21:58:59+08:00'
+  timestamp: '2022-10-10 22:43:43+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/lazy_segment_tree.test.cpp

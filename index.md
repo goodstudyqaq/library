@@ -26,7 +26,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/data_structure/rmq.hpp
       title: RMQ
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/data_structure/segment_tree.hpp
       title: "\u7EBF\u6BB5\u6811"
     - icon: ':warning:'
@@ -140,5 +140,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data_structure/rmq.test.cpp
       title: test/data_structure/rmq.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/segment_tree.test.cpp
+      title: test/data_structure/segment_tree.test.cpp
 layout: toppage
 ---

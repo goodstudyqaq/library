@@ -23,8 +23,8 @@ data:
     \ test/data_structure/lazy_segment_tree.test.cpp: line 9: unable to process #include\
     \ in #if / #ifdef / #ifndef other than include guards\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
-    \r\n#include <bits/stdc++.h>\r\n\r\n#include \"src/data_structure/lazy_segment_tree.hpp\"\
-    \r\n\r\nusing namespace std;\r\n\r\n#ifdef LOCAL\r\n#include \"copypaste/debug.h\"\
+    \r\n#include \"src/data_structure/lazy_segment_tree.hpp\"\r\n\r\n#include <bits/stdc++.h>\r\
+    \n\r\nusing namespace std;\r\n\r\n#ifdef LOCAL\r\n#include \"copypaste/debug.h\"\
     \r\n#else\r\n#define debug(...) 42\r\n#endif\r\n\r\n#define endl '\\n'\r\ntypedef\
     \ long long ll;\r\ntypedef pair<int, int> pii;\r\ntypedef pair<ll, ll> pll;\r\n\
     \r\nstruct fast_ios {\r\n    fast_ios() {\r\n        cin.tie(nullptr);\r\n   \
@@ -57,7 +57,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/lazy_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-10-10 22:05:47+08:00'
+  timestamp: '2022-10-10 22:43:43+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/lazy_segment_tree.test.cpp
