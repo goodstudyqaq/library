@@ -45,13 +45,14 @@ struct RMQ {
             for (int i = 0; i <= n - (1 << k); i++)
                 range_high[k][i] = max_index(range_high[k - 1][i], range_high[k - 1][i + (1 << (k - 1))]);
     }
-    // [a, b)
+    // [a, b]
     int rmq_index(int a, int b) const {
-        assert(a < b);
-        int level = largest_bit(b - a);
-        return max_index(range_high[level][a], range_high[level][b - (1 << level)]);
+        assert(a <= b);
+        int level = largest_bit(b + 1 - a);
+        return max_index(range_high[level][a], range_high[level][b + 1 - (1 << level)]);
     }
 
+    // [a, b]
     T rmq_value(int a, int b) const {
         return values[rmq_index(a, b)];
     }

@@ -76,8 +76,9 @@ struct LazySegmentTree {
     }
 
     void push_down(int l, int r, int rt) {
-        apply(rt << 1, tag[rt], l, r);
-        apply(rt << 1 | 1, tag[rt], l, r);
+        int m = l + r >> 1;
+        apply(rt << 1, tag[rt], l, m);
+        apply(rt << 1 | 1, tag[rt], m + 1, r);
         tag[rt] = Tag();
     }
 
