@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/yosupo_range_affine_range_sum.cpp
-    title: test/yosupo_range_affine_range_sum.cpp
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/yosupo_range_affine_range_sum.test.cpp
+    title: test/yosupo_range_affine_range_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/lazy_segment_tree.md
     document_title: Lazy Segment Tree
@@ -169,11 +169,11 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: src/data_structure/lazy_segment_tree.hpp
-  requiredBy:
-  - test/yosupo_range_affine_range_sum.cpp
+  requiredBy: []
   timestamp: '2022-10-09 22:22:10+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/yosupo_range_affine_range_sum.test.cpp
 documentation_of: src/data_structure/lazy_segment_tree.hpp
 layout: document
 redirect_from:

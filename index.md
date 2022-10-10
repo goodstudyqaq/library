@@ -17,7 +17,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/data_structure/dsu.hpp
       title: "\u5E76\u67E5\u96C6"
-    - icon: ':warning:'
+    - icon: ':x:'
       path: src/data_structure/lazy_segment_tree.hpp
       title: Lazy Segment Tree
     - icon: ':warning:'
@@ -122,11 +122,6 @@ data:
     - icon: ':warning:'
       path: src/utils/sum.hpp
       title: "\u524D\u7F00\u548C"
-  - name: test
-    pages:
-    - icon: ':warning:'
-      path: test/yosupo_range_affine_range_sum.cpp
-      title: test/yosupo_range_affine_range_sum.cpp
   verificationCategories:
   - name: test
     pages:
@@ -136,6 +131,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yosupo_point_add_range_sum.test.cpp
       title: test/yosupo_point_add_range_sum.test.cpp
+    - icon: ':x:'
+      path: test/yosupo_range_affine_range_sum.test.cpp
+      title: test/yosupo_range_affine_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder_430.test.cpp
       title: test/yukicoder_430.test.cpp

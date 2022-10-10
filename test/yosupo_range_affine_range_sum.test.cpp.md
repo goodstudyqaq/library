@@ -1,15 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':x:'
     path: src/data_structure/lazy_segment_tree.hpp
     title: Lazy Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
     links:
     - https://judge.yosupo.jp/problem/range_affine_range_sum
   bundledCode: "Traceback (most recent call last):\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/documentation/build.py\"\
@@ -18,8 +20,8 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ test/yosupo_range_affine_range_sum.cpp: line 9: unable to process #include in\
-    \ #if / #ifdef / #ifndef other than include guards\n"
+    \ test/yosupo_range_affine_range_sum.test.cpp: line 9: unable to process #include\
+    \ in #if / #ifdef / #ifndef other than include guards\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \r\n#include <bits/stdc++.h>\r\n\r\n#include \"src/data_structure/lazy_segment_tree.hpp\"\
     \r\n\r\nusing namespace std;\r\n\r\n#ifdef LOCAL\r\n#include \"copypaste/debug.h\"\
@@ -52,16 +54,16 @@ data:
     \  return 0;\r\n}"
   dependsOn:
   - src/data_structure/lazy_segment_tree.hpp
-  isVerificationFile: false
-  path: test/yosupo_range_affine_range_sum.cpp
+  isVerificationFile: true
+  path: test/yosupo_range_affine_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2022-10-09 22:22:10+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2022-10-10 21:30:12+08:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yosupo_range_affine_range_sum.cpp
+documentation_of: test/yosupo_range_affine_range_sum.test.cpp
 layout: document
 redirect_from:
-- /library/test/yosupo_range_affine_range_sum.cpp
-- /library/test/yosupo_range_affine_range_sum.cpp.html
-title: test/yosupo_range_affine_range_sum.cpp
+- /verify/test/yosupo_range_affine_range_sum.test.cpp
+- /verify/test/yosupo_range_affine_range_sum.test.cpp.html
+title: test/yosupo_range_affine_range_sum.test.cpp
 ---
