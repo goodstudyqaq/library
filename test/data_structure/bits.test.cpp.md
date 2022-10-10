@@ -20,8 +20,8 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ test/yosupo_point_add_range_sum.test.cpp: line 9: unable to process #include\
-    \ in #if / #ifdef / #ifndef other than include guards\n"
+    \ test/data_structure/bits.test.cpp: line 9: unable to process #include in #if\
+    \ / #ifdef / #ifndef other than include guards\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_range_sum\"\r\
     \n#include <bits/stdc++.h>\r\n\r\n#include \"src/data_structure/bit.hpp\"\r\n\r\
     \nusing namespace std;\r\n\r\n#ifdef LOCAL\r\n#include \"copypaste/debug.h\"\r\
@@ -42,15 +42,15 @@ data:
   dependsOn:
   - src/data_structure/bit.hpp
   isVerificationFile: true
-  path: test/yosupo_point_add_range_sum.test.cpp
+  path: test/data_structure/bits.test.cpp
   requiredBy: []
-  timestamp: '2022-10-09 21:30:26+08:00'
+  timestamp: '2022-10-10 22:05:47+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo_point_add_range_sum.test.cpp
+documentation_of: test/data_structure/bits.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo_point_add_range_sum.test.cpp
-- /verify/test/yosupo_point_add_range_sum.test.cpp.html
-title: test/yosupo_point_add_range_sum.test.cpp
+- /verify/test/data_structure/bits.test.cpp
+- /verify/test/data_structure/bits.test.cpp.html
+title: test/data_structure/bits.test.cpp
 ---

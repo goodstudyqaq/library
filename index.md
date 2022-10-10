@@ -17,13 +17,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/data_structure/dsu.hpp
       title: "\u5E76\u67E5\u96C6"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/data_structure/lazy_segment_tree.hpp
       title: Lazy Segment Tree
     - icon: ':warning:'
       path: src/data_structure/list.hpp
-      title: List
-    - icon: ':warning:'
+      title: "\u94FE\u8868"
+    - icon: ':heavy_check_mark:'
       path: src/data_structure/rmq.hpp
       title: RMQ
     - icon: ':warning:'
@@ -123,19 +123,22 @@ data:
       path: src/utils/sum.hpp
       title: "\u524D\u7F00\u548C"
   verificationCategories:
-  - name: test
+  - name: test/data_structure
     pages:
     - icon: ':heavy_check_mark:'
-      path: test/dsu.test.cpp
-      title: test/dsu.test.cpp
+      path: test/data_structure/aho_corasick.test.cpp
+      title: test/data_structure/aho_corasick.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yosupo_point_add_range_sum.test.cpp
-      title: test/yosupo_point_add_range_sum.test.cpp
-    - icon: ':x:'
-      path: test/yosupo_range_affine_range_sum.test.cpp
-      title: test/yosupo_range_affine_range_sum.test.cpp
+      path: test/data_structure/bits.test.cpp
+      title: test/data_structure/bits.test.cpp
     - icon: ':heavy_check_mark:'
-      path: test/yukicoder_430.test.cpp
-      title: test/yukicoder_430.test.cpp
+      path: test/data_structure/dsu.test.cpp
+      title: test/data_structure/dsu.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/lazy_segment_tree.test.cpp
+      title: test/data_structure/lazy_segment_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/data_structure/rmq.test.cpp
+      title: test/data_structure/rmq.test.cpp
 layout: toppage
 ---

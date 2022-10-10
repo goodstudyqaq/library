@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yosupo_point_add_range_sum.test.cpp
-    title: test/yosupo_point_add_range_sum.test.cpp
+    path: test/data_structure/bits.test.cpp
+    title: test/data_structure/bits.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
   timestamp: '2022-10-09 21:27:13+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yosupo_point_add_range_sum.test.cpp
+  - test/data_structure/bits.test.cpp
 documentation_of: src/data_structure/bit.hpp
 layout: document
 redirect_from:

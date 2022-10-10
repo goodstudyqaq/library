@@ -5,10 +5,13 @@ data:
   - icon: ':warning:'
     path: src/string/sa.hpp
     title: Suffix Array
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/data_structure/rmq.test.cpp
+    title: test/data_structure/rmq.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/rmq.md
     document_title: RMQ
@@ -29,16 +32,16 @@ data:
     \ - (1 << k) + 1);\r\n\r\n        for (int i = 0; i < n; i++)\r\n            range_high[0][i]\
     \ = i;\r\n\r\n        for (int k = 1; k < levels; k++)\r\n            for (int\
     \ i = 0; i <= n - (1 << k); i++)\r\n                range_high[k][i] = max_index(range_high[k\
-    \ - 1][i], range_high[k - 1][i + (1 << (k - 1))]);\r\n    }\r\n    // [a, b)\r\
-    \n    int rmq_index(int a, int b) const {\r\n        assert(a < b);\r\n      \
-    \  int level = largest_bit(b - a);\r\n        return max_index(range_high[level][a],\
-    \ range_high[level][b - (1 << level)]);\r\n    }\r\n\r\n    T rmq_value(int a,\
-    \ int b) const {\r\n        return values[rmq_index(a, b)];\r\n    }\r\n\r\n \
-    \   int nxt_idx(int idx) {\r\n        int sz = range_high.size() - 1;\r\n    \
-    \    int now = idx;\r\n        for (int i = sz; i >= 0; i--) {\r\n           \
-    \ if (now + (1 << i) - 1 < n && max_index(range_high[i][now], idx) == idx) {\r\
-    \n                now += (1 << i);\r\n            }\r\n        }\r\n        return\
-    \ now;\r\n    }\r\n};\n"
+    \ - 1][i], range_high[k - 1][i + (1 << (k - 1))]);\r\n    }\r\n    // [a, b]\r\
+    \n    int rmq_index(int a, int b) const {\r\n        assert(a <= b);\r\n     \
+    \   int level = largest_bit(b + 1 - a);\r\n        return max_index(range_high[level][a],\
+    \ range_high[level][b + 1 - (1 << level)]);\r\n    }\r\n\r\n    // [a, b]\r\n\
+    \    T rmq_value(int a, int b) const {\r\n        return values[rmq_index(a, b)];\r\
+    \n    }\r\n\r\n    int nxt_idx(int idx) {\r\n        int sz = range_high.size()\
+    \ - 1;\r\n        int now = idx;\r\n        for (int i = sz; i >= 0; i--) {\r\n\
+    \            if (now + (1 << i) - 1 < n && max_index(range_high[i][now], idx)\
+    \ == idx) {\r\n                now += (1 << i);\r\n            }\r\n        }\r\
+    \n        return now;\r\n    }\r\n};\n"
   code: "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n/*\r\n@brief RMQ\r\
     \n@docs docs/rmq.md\r\n*/\r\n\r\ntemplate <typename T>\r\nstruct RMQ {\r\n   \
     \ int n = 0, levels = 0;\r\n    vector<T> values;\r\n    vector<vector<int>> range_high;\r\
@@ -55,24 +58,25 @@ data:
     \ i = 0; i < n; i++)\r\n            range_high[0][i] = i;\r\n\r\n        for (int\
     \ k = 1; k < levels; k++)\r\n            for (int i = 0; i <= n - (1 << k); i++)\r\
     \n                range_high[k][i] = max_index(range_high[k - 1][i], range_high[k\
-    \ - 1][i + (1 << (k - 1))]);\r\n    }\r\n    // [a, b)\r\n    int rmq_index(int\
-    \ a, int b) const {\r\n        assert(a < b);\r\n        int level = largest_bit(b\
-    \ - a);\r\n        return max_index(range_high[level][a], range_high[level][b\
-    \ - (1 << level)]);\r\n    }\r\n\r\n    T rmq_value(int a, int b) const {\r\n\
-    \        return values[rmq_index(a, b)];\r\n    }\r\n\r\n    int nxt_idx(int idx)\
-    \ {\r\n        int sz = range_high.size() - 1;\r\n        int now = idx;\r\n \
-    \       for (int i = sz; i >= 0; i--) {\r\n            if (now + (1 << i) - 1\
-    \ < n && max_index(range_high[i][now], idx) == idx) {\r\n                now +=\
-    \ (1 << i);\r\n            }\r\n        }\r\n        return now;\r\n    }\r\n\
-    };"
+    \ - 1][i + (1 << (k - 1))]);\r\n    }\r\n    // [a, b]\r\n    int rmq_index(int\
+    \ a, int b) const {\r\n        assert(a <= b);\r\n        int level = largest_bit(b\
+    \ + 1 - a);\r\n        return max_index(range_high[level][a], range_high[level][b\
+    \ + 1 - (1 << level)]);\r\n    }\r\n\r\n    // [a, b]\r\n    T rmq_value(int a,\
+    \ int b) const {\r\n        return values[rmq_index(a, b)];\r\n    }\r\n\r\n \
+    \   int nxt_idx(int idx) {\r\n        int sz = range_high.size() - 1;\r\n    \
+    \    int now = idx;\r\n        for (int i = sz; i >= 0; i--) {\r\n           \
+    \ if (now + (1 << i) - 1 < n && max_index(range_high[i][now], idx) == idx) {\r\
+    \n                now += (1 << i);\r\n            }\r\n        }\r\n        return\
+    \ now;\r\n    }\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: src/data_structure/rmq.hpp
   requiredBy:
   - src/string/sa.hpp
-  timestamp: '2022-10-06 23:48:29+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2022-10-10 21:58:59+08:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/data_structure/rmq.test.cpp
 documentation_of: src/data_structure/rmq.hpp
 layout: document
 redirect_from:

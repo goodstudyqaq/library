@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: src/data_structure/lazy_segment_tree.hpp
     title: Lazy Segment Tree
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_affine_range_sum
@@ -20,7 +20,7 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ test/yosupo_range_affine_range_sum.test.cpp: line 9: unable to process #include\
+    \ test/data_structure/lazy_segment_tree.test.cpp: line 9: unable to process #include\
     \ in #if / #ifdef / #ifndef other than include guards\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_affine_range_sum\"\
     \r\n#include <bits/stdc++.h>\r\n\r\n#include \"src/data_structure/lazy_segment_tree.hpp\"\
@@ -55,15 +55,15 @@ data:
   dependsOn:
   - src/data_structure/lazy_segment_tree.hpp
   isVerificationFile: true
-  path: test/yosupo_range_affine_range_sum.test.cpp
+  path: test/data_structure/lazy_segment_tree.test.cpp
   requiredBy: []
-  timestamp: '2022-10-10 21:30:12+08:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2022-10-10 22:05:47+08:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yosupo_range_affine_range_sum.test.cpp
+documentation_of: test/data_structure/lazy_segment_tree.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yosupo_range_affine_range_sum.test.cpp
-- /verify/test/yosupo_range_affine_range_sum.test.cpp.html
-title: test/yosupo_range_affine_range_sum.test.cpp
+- /verify/test/data_structure/lazy_segment_tree.test.cpp
+- /verify/test/data_structure/lazy_segment_tree.test.cpp.html
+title: test/data_structure/lazy_segment_tree.test.cpp
 ---

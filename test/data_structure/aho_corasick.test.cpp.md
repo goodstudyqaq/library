@@ -23,8 +23,8 @@ data:
     , line 187, in bundle\n    bundler.update(path)\n  File \"/opt/hostedtoolcache/Python/3.10.7/x64/lib/python3.10/site-packages/onlinejudge_verify/languages/cplusplus_bundle.py\"\
     , line 400, in update\n    raise BundleErrorAt(path, i + 1, \"unable to process\
     \ #include in #if / #ifdef / #ifndef other than include guards\")\nonlinejudge_verify.languages.cplusplus_bundle.BundleErrorAt:\
-    \ test/yukicoder_430.test.cpp: line 7: unable to process #include in #if / #ifdef\
-    \ / #ifndef other than include guards\n"
+    \ test/data_structure/aho_corasick.test.cpp: line 7: unable to process #include\
+    \ in #if / #ifdef / #ifndef other than include guards\n"
   code: "#define PROBLEM \"https://yukicoder.me/problems/no/430\"\r\n#include <bits/stdc++.h>\r\
     \n\r\nusing namespace std;\r\n\r\n#ifdef LOCAL\r\n#include \"copypaste/debug.h\"\
     \r\n#else\r\n#define debug(...) 42\r\n#endif\r\n#include \"src/data_structure/aho_corasick.hpp\"\
@@ -47,15 +47,15 @@ data:
   - src/data_structure/aho_corasick.hpp
   - src/string/trie.hpp
   isVerificationFile: true
-  path: test/yukicoder_430.test.cpp
+  path: test/data_structure/aho_corasick.test.cpp
   requiredBy: []
-  timestamp: '2022-10-09 21:30:41+08:00'
+  timestamp: '2022-10-10 22:05:47+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder_430.test.cpp
+documentation_of: test/data_structure/aho_corasick.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder_430.test.cpp
-- /verify/test/yukicoder_430.test.cpp.html
-title: test/yukicoder_430.test.cpp
+- /verify/test/data_structure/aho_corasick.test.cpp
+- /verify/test/data_structure/aho_corasick.test.cpp.html
+title: test/data_structure/aho_corasick.test.cpp
 ---

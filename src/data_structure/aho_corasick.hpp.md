@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder_430.test.cpp
-    title: test/yukicoder_430.test.cpp
+    path: test/data_structure/aho_corasick.test.cpp
+    title: test/data_structure/aho_corasick.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -97,7 +97,7 @@ data:
   timestamp: '2022-10-09 21:04:30+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder_430.test.cpp
+  - test/data_structure/aho_corasick.test.cpp
 documentation_of: src/data_structure/aho_corasick.hpp
 layout: document
 redirect_from:
