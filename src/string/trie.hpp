@@ -14,19 +14,13 @@ struct TrieNode {
     }
     // 一些 hook 函数，用于 Trie 算法以及 ac 自动机, 可以覆盖这些函数来实现一些功能
 
-    /*
-     * 当加入到字典树后，对最终的节点(当前节点)进行一些操作
-     */
+    // 当加入到字典树后，对最终的节点(当前节点)进行一些操作
     void update_when_finish_in_trie(){};
 
-    /*
-     * 当加入到字典树时，根据当前节点和子节点的信息，对当前节点进行一些操作
-     */
+    // 当加入到字典树时，根据当前节点和子节点的信息，对当前节点进行一些操作
     void update_when_push_in_trie(TrieNode &child_node){};
 
-    /*
-     * 当构建 fail 函数时，根据当前节点和 fail 节点的信息，对当前节点进行一些操作
-     */
+    // 当构建 fail 函数时，根据当前节点和 fail 节点的信息，对当前节点进行一些操作
     void update_when_build_fail(TrieNode &fail_node){};
 };
 

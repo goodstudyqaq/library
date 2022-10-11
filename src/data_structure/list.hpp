@@ -6,20 +6,18 @@ using namespace std;
 @docs docs/list.md
 */
 
-template <typename T>
 struct Node {
     int next, last;
-    T w;
-    Node(T _w = T(), int _next = -1, int _last = -1) : w(_w), next(_next), last(_last) {}
+    Node() { next = last = -1; }
 };
 
-template <typename T>
+template <typename Node>
 struct List {
-    vector<Node<T>> nodes;
-    Node<T> ed;
+    vector<Node> nodes;
+    Node ed;
     int init() {
         nodes.clear();
-        ed = Node<T>();
+        ed = Node();
         nodes.emplace_back(ed);
         return nodes.size() - 1;
     }
@@ -29,8 +27,7 @@ struct List {
         nodes[b].last = a;
     }
 
-    int new_node(int idx, T _w) {
-        Node<T> it = Node<T>(_w);
+    int new_node(int idx, Node it) {
         nodes.emplace_back(it);
         int sz = nodes.size() - 1;
         int last = nodes[idx].last;
