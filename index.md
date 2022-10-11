@@ -29,7 +29,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/data_structure/segment_tree.hpp
       title: "\u7EBF\u6BB5\u6811"
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: src/data_structure/weighted_dsu.hpp
       title: "\u5E26\u6743\u5E76\u67E5\u96C6"
   - name: src/dp
@@ -143,7 +143,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data_structure/segment_tree.test.cpp
       title: test/data_structure/segment_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/data_structure/weighted_dsu.test.cpp
       title: test/data_structure/weighted_dsu.test.cpp
 layout: toppage
