@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/data_structure/weighted_dsu.test.cpp
+    title: test/data_structure/weighted_dsu.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     _deprecated_at_docs: docs/weighted_dsu.md
     document_title: "\u5E26\u6743\u5E76\u67E5\u96C6"
@@ -40,8 +43,9 @@ data:
   path: src/data_structure/weighted_dsu.hpp
   requiredBy: []
   timestamp: '2022-10-06 19:21:15+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/data_structure/weighted_dsu.test.cpp
 documentation_of: src/data_structure/weighted_dsu.hpp
 layout: document
 redirect_from:
