@@ -42,10 +42,10 @@ data:
       title: SOSdp
   - name: src/graph
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/graph/graph_template.hpp
-      title: "\u5E26\u6743\u5E76\u67E5\u96C6"
-    - icon: ':warning:'
+      title: Graph template
+    - icon: ':heavy_check_mark:'
       path: src/graph/lca.hpp
       title: LCA
     - icon: ':warning:'
@@ -146,5 +146,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/data_structure/weighted_dsu.test.cpp
       title: test/data_structure/weighted_dsu.test.cpp
+  - name: test/graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/graph/lca.test.cpp
+      title: test/graph/lca.test.cpp
 layout: toppage
 ---
