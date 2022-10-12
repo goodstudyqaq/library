@@ -43,6 +43,9 @@ data:
   - name: src/graph
     pages:
     - icon: ':heavy_check_mark:'
+      path: src/graph/dijkstra.hpp
+      title: Dijkstra
+    - icon: ':heavy_check_mark:'
       path: src/graph/graph_template.hpp
       title: Graph template
     - icon: ':heavy_check_mark:'
@@ -51,9 +54,6 @@ data:
     - icon: ':warning:'
       path: src/graph/max_match.hpp
       title: "\u6700\u5927\u5339\u914D"
-    - icon: ':warning:'
-      path: src/graph/shortest_path.hpp
-      title: "\u6700\u77ED\u8DEF"
     - icon: ':warning:'
       path: src/graph/spfa.hpp
       title: "\u6700\u5C0F\u8D39\u7528\u6700\u5927\u6D41"
@@ -148,6 +148,9 @@ data:
       title: test/data_structure/weighted_dsu.test.cpp
   - name: test/graph
     pages:
+    - icon: ':heavy_check_mark:'
+      path: test/graph/dijkstra.test.cpp
+      title: test/graph/dijkstra.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/graph/lca.test.cpp
       title: test/graph/lca.test.cpp

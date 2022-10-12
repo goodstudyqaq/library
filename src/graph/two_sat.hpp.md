@@ -33,34 +33,42 @@ data:
     \u6811\r\n    explicit Tree(int n, int root = -1) : Graph<Edge>(n), root(root)\
     \ {}\r\n\r\n    // todo: \u53EF\u4EE5\u52A0\u4E00\u4E9B\u5E38\u7528\u7684\u6811\
     \u7684\u64CD\u4F5C\uFF0C\u6BD4\u5982\u6C42\u91CD\u5FC3\uFF0C\u6C42\u76F4\u5F84\
-    \uFF0C\u6C42\u5B50\u6811\u5927\u5C0F\u7B49\r\n};\r\n#line 4 \"src/graph/two_sat.hpp\"\
-    \n/*\r\n@brief two-sat\r\n@docs docs/two_sat.md\r\n*/\r\ntemplate <typename T\
-    \ = int>\r\nstruct TwoSat : Graph<T> {\r\n    // [0, 2 * n]\r\n    int n;\r\n\
-    \    std::vector<bool> ans;\r\n    TwoSat(int n) : n(n), ans(n), Graph<T>(2 *\
-    \ n) {}\r\n    void addClause(int u, bool f, int v, bool g) {\r\n        // (u,\
-    \ f) \u548C (v, g) \u6709\u77DB\u76FE\r\n        add_directed_edge(2 * u + !f,\
-    \ 2 * v + g);\r\n        add_directed_edge(2 * v + !g, 2 * u + f);\r\n    }\r\n\
-    \    bool satisfiable() {\r\n        std::vector<int> id(2 * n, -1), dfn(2 * n,\
-    \ -1), low(2 * n, -1);\r\n        std::vector<int> stk;\r\n        int now = 0,\
-    \ cnt = 0;\r\n        std::function<void(int)> tarjan = [&](int u) {\r\n     \
-    \       stk.push_back(u);\r\n            dfn[u] = low[u] = now++;\r\n        \
-    \    for (auto v : e[u]) {\r\n                if (dfn[v] == -1) {\r\n        \
-    \            tarjan(v);\r\n                    low[u] = std::min(low[u], low[v]);\r\
-    \n                } else if (id[v] == -1) {\r\n                    low[u] = std::min(low[u],\
-    \ dfn[v]);\r\n                }\r\n            }\r\n            if (dfn[u] ==\
-    \ low[u]) {\r\n                int v;\r\n                do {\r\n            \
-    \        v = stk.back();\r\n                    stk.pop_back();\r\n          \
-    \          id[v] = cnt;\r\n                } while (v != u);\r\n             \
-    \   ++cnt;\r\n            }\r\n        };\r\n        for (int i = 0; i < 2 * n;\
-    \ ++i)\r\n            if (dfn[i] == -1) tarjan(i);\r\n\r\n        /*\r\n     \
-    \       \u65B9\u6848\u53EF\u4EE5\u901A\u8FC7\u53D8\u91CF\u5728\u56FE\u4E2D\u7684\
-    \u62D3\u6251\u5E8F\u786E\u5B9A\u8BE5\u53D8\u91CF\u7684\u503C\uFF0C\u5982\u679C\
-    \u53D8\u91CF !x \u7684\u62D3\u6251\u5E8F\u5728 x \u4E4B\u540E\uFF0C\u90A3\u4E48\
-    \ x \u4E3A\u771F.\r\n            \u5E94\u7528\u5230 tarjan \u5F53\u4E2D\uFF0C\u5373\
-    \ x \u7684 SCC \u7F16\u53F7\u5728 !x \u4E4B\u524D\uFF0C\u53D6 x \u4E3A\u771F\u3002\
-    \u56E0\u4E3A tarjan \u7528\u5230\u4E86\u6808\uFF0C\u6240\u4EE5 tarjan \u6C42\u51FA\
-    \u7684 SCC \u7F16\u53F7\u76F8\u5F53\u4E8E\u53CD\u62D3\u6251\u5E8F\u3002\r\n  \
-    \      */\r\n\r\n        for (int i = 0; i < n; ++i) {\r\n            if (id[2\
+    \uFF0C\u6C42\u5B50\u6811\u5927\u5C0F\u7B49\r\n};\r\n\r\ntemplate <typename Edge>\r\
+    \nstruct BipartiteGraph : Graph<Edge> {\r\n    using Graph<Edge>::g;\r\n    using\
+    \ Graph<Edge>::add_directed_edge;\r\n    using Graph<Edge>::add_undirected_edge;\r\
+    \n    using Graph<Edge>::size;\r\n    int n, m;\r\n    // \u4E8C\u5206\u56FE\u7684\
+    \u5DE6\u53F3\u4E24\u8FB9\u7684\u70B9\r\n    vector<int> bl, br;\r\n\r\n    BipartiteGraph()\
+    \ = default;\r\n    explicit BipartiteGraph(int n, int m) : Graph<Edge>(n + m),\
+    \ n(n), m(m) {\r\n        for (int i = 0; i < n; i++) bl.push_back(i);\r\n   \
+    \     for (int i = n; i < n + m; i++) br.push_back(i);\r\n    }\r\n\r\n    void\
+    \ add_edge(int u, int v) {\r\n        add_directed_edge(Edge(u, v + n));\r\n \
+    \   }\r\n};\n#line 4 \"src/graph/two_sat.hpp\"\n/*\r\n@brief two-sat\r\n@docs\
+    \ docs/two_sat.md\r\n*/\r\ntemplate <typename T = int>\r\nstruct TwoSat : Graph<T>\
+    \ {\r\n    // [0, 2 * n]\r\n    int n;\r\n    std::vector<bool> ans;\r\n    TwoSat(int\
+    \ n) : n(n), ans(n), Graph<T>(2 * n) {}\r\n    void addClause(int u, bool f, int\
+    \ v, bool g) {\r\n        // (u, f) \u548C (v, g) \u6709\u77DB\u76FE\r\n     \
+    \   add_directed_edge(2 * u + !f, 2 * v + g);\r\n        add_directed_edge(2 *\
+    \ v + !g, 2 * u + f);\r\n    }\r\n    bool satisfiable() {\r\n        std::vector<int>\
+    \ id(2 * n, -1), dfn(2 * n, -1), low(2 * n, -1);\r\n        std::vector<int> stk;\r\
+    \n        int now = 0, cnt = 0;\r\n        std::function<void(int)> tarjan = [&](int\
+    \ u) {\r\n            stk.push_back(u);\r\n            dfn[u] = low[u] = now++;\r\
+    \n            for (auto v : e[u]) {\r\n                if (dfn[v] == -1) {\r\n\
+    \                    tarjan(v);\r\n                    low[u] = std::min(low[u],\
+    \ low[v]);\r\n                } else if (id[v] == -1) {\r\n                  \
+    \  low[u] = std::min(low[u], dfn[v]);\r\n                }\r\n            }\r\n\
+    \            if (dfn[u] == low[u]) {\r\n                int v;\r\n           \
+    \     do {\r\n                    v = stk.back();\r\n                    stk.pop_back();\r\
+    \n                    id[v] = cnt;\r\n                } while (v != u);\r\n  \
+    \              ++cnt;\r\n            }\r\n        };\r\n        for (int i = 0;\
+    \ i < 2 * n; ++i)\r\n            if (dfn[i] == -1) tarjan(i);\r\n\r\n        /*\r\
+    \n            \u65B9\u6848\u53EF\u4EE5\u901A\u8FC7\u53D8\u91CF\u5728\u56FE\u4E2D\
+    \u7684\u62D3\u6251\u5E8F\u786E\u5B9A\u8BE5\u53D8\u91CF\u7684\u503C\uFF0C\u5982\
+    \u679C\u53D8\u91CF !x \u7684\u62D3\u6251\u5E8F\u5728 x \u4E4B\u540E\uFF0C\u90A3\
+    \u4E48 x \u4E3A\u771F.\r\n            \u5E94\u7528\u5230 tarjan \u5F53\u4E2D\uFF0C\
+    \u5373 x \u7684 SCC \u7F16\u53F7\u5728 !x \u4E4B\u524D\uFF0C\u53D6 x \u4E3A\u771F\
+    \u3002\u56E0\u4E3A tarjan \u7528\u5230\u4E86\u6808\uFF0C\u6240\u4EE5 tarjan \u6C42\
+    \u51FA\u7684 SCC \u7F16\u53F7\u76F8\u5F53\u4E8E\u53CD\u62D3\u6251\u5E8F\u3002\r\
+    \n        */\r\n\r\n        for (int i = 0; i < n; ++i) {\r\n            if (id[2\
     \ * i] == id[2 * i + 1]) return false;\r\n            ans[i] = id[2 * i] < id[2\
     \ * i + 1];\r\n        }\r\n        return true;\r\n    }\r\n    std::vector<bool>\
     \ answer() { return ans; }\r\n};\n"
@@ -100,7 +108,7 @@ data:
   isVerificationFile: false
   path: src/graph/two_sat.hpp
   requiredBy: []
-  timestamp: '2022-10-12 21:42:47+08:00'
+  timestamp: '2022-10-12 22:34:49+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/graph/two_sat.hpp

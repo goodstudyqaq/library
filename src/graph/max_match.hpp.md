@@ -33,24 +33,32 @@ data:
     \u6811\r\n    explicit Tree(int n, int root = -1) : Graph<Edge>(n), root(root)\
     \ {}\r\n\r\n    // todo: \u53EF\u4EE5\u52A0\u4E00\u4E9B\u5E38\u7528\u7684\u6811\
     \u7684\u64CD\u4F5C\uFF0C\u6BD4\u5982\u6C42\u91CD\u5FC3\uFF0C\u6C42\u76F4\u5F84\
-    \uFF0C\u6C42\u5B50\u6811\u5927\u5C0F\u7B49\r\n};\r\n#line 4 \"src/graph/max_match.hpp\"\
-    \nusing namespace std;\r\n/*\r\n@brief \u6700\u5927\u5339\u914D\r\n@docs docs/max_match.md\r\
-    \ntodo: \u5224\u65AD\u662F\u5426\u662F\u4E8C\u5206\u56FE\uFF0C\u5982\u679C\u4E0D\
-    \u662F\u4E8C\u5206\u56FE\uFF0C\u9700\u8981\u62A5\u9519\r\n*/\r\ntemplate <typename\
-    \ T = int>\r\nstruct Hungary : Graph<T> {\r\n    vector<int> cx, cy;\r\n    vector<bool>\
-    \ used;\r\n    int count;\r\n\r\n    bool dfs(int u) {\r\n        for (auto v\
-    \ : g[u]) {\r\n            if (!used[v]) {\r\n                used[v] = 1;\r\n\
-    \                if (cy[v] == -1 || dfs(cy[v])) {\r\n                    cy[v]\
-    \ = u;\r\n                    cx[u] = v;\r\n                    return 1;\r\n\
-    \                }\r\n            }\r\n        }\r\n        return 0;\r\n    }\r\
-    \n\r\n    void hungary() {\r\n        // \u9700\u8981\u4FDD\u8BC1 graph \u4E3A\
-    \u4E8C\u5206\u56FE\r\n        int n = g.size();\r\n        cx.resize(n);\r\n \
-    \       cy.reserve(n);\r\n        used.resize(n);\r\n        for (int i = 0; i\
-    \ < n; i++) {\r\n            cx[i] = cy[i] = -1;\r\n            used[i] = 0;\r\
-    \n        }\r\n        int res = 0;\r\n        for (int u = 0; u < n; u++) {\r\
-    \n            if (cx[u] == -1) {\r\n                for (int i = 0; i < n; i++)\
-    \ used[i] = 0;\r\n                if (dfs(u)) res++;\r\n            }\r\n    \
-    \    }\r\n    }\r\n};\n"
+    \uFF0C\u6C42\u5B50\u6811\u5927\u5C0F\u7B49\r\n};\r\n\r\ntemplate <typename Edge>\r\
+    \nstruct BipartiteGraph : Graph<Edge> {\r\n    using Graph<Edge>::g;\r\n    using\
+    \ Graph<Edge>::add_directed_edge;\r\n    using Graph<Edge>::add_undirected_edge;\r\
+    \n    using Graph<Edge>::size;\r\n    int n, m;\r\n    // \u4E8C\u5206\u56FE\u7684\
+    \u5DE6\u53F3\u4E24\u8FB9\u7684\u70B9\r\n    vector<int> bl, br;\r\n\r\n    BipartiteGraph()\
+    \ = default;\r\n    explicit BipartiteGraph(int n, int m) : Graph<Edge>(n + m),\
+    \ n(n), m(m) {\r\n        for (int i = 0; i < n; i++) bl.push_back(i);\r\n   \
+    \     for (int i = n; i < n + m; i++) br.push_back(i);\r\n    }\r\n\r\n    void\
+    \ add_edge(int u, int v) {\r\n        add_directed_edge(Edge(u, v + n));\r\n \
+    \   }\r\n};\n#line 4 \"src/graph/max_match.hpp\"\nusing namespace std;\r\n/*\r\
+    \n@brief \u6700\u5927\u5339\u914D\r\n@docs docs/max_match.md\r\ntodo: \u5224\u65AD\
+    \u662F\u5426\u662F\u4E8C\u5206\u56FE\uFF0C\u5982\u679C\u4E0D\u662F\u4E8C\u5206\
+    \u56FE\uFF0C\u9700\u8981\u62A5\u9519\r\n*/\r\ntemplate <typename T = int>\r\n\
+    struct Hungary : Graph<T> {\r\n    vector<int> cx, cy;\r\n    vector<bool> used;\r\
+    \n    int count;\r\n\r\n    bool dfs(int u) {\r\n        for (auto v : g[u]) {\r\
+    \n            if (!used[v]) {\r\n                used[v] = 1;\r\n            \
+    \    if (cy[v] == -1 || dfs(cy[v])) {\r\n                    cy[v] = u;\r\n  \
+    \                  cx[u] = v;\r\n                    return 1;\r\n           \
+    \     }\r\n            }\r\n        }\r\n        return 0;\r\n    }\r\n\r\n  \
+    \  void hungary() {\r\n        // \u9700\u8981\u4FDD\u8BC1 graph \u4E3A\u4E8C\u5206\
+    \u56FE\r\n        int n = g.size();\r\n        cx.resize(n);\r\n        cy.reserve(n);\r\
+    \n        used.resize(n);\r\n        for (int i = 0; i < n; i++) {\r\n       \
+    \     cx[i] = cy[i] = -1;\r\n            used[i] = 0;\r\n        }\r\n       \
+    \ int res = 0;\r\n        for (int u = 0; u < n; u++) {\r\n            if (cx[u]\
+    \ == -1) {\r\n                for (int i = 0; i < n; i++) used[i] = 0;\r\n   \
+    \             if (dfs(u)) res++;\r\n            }\r\n        }\r\n    }\r\n};\n"
   code: "#include <bits/stdc++.h>\r\n\r\n#include \"src/graph/graph_template.hpp\"\
     \r\nusing namespace std;\r\n/*\r\n@brief \u6700\u5927\u5339\u914D\r\n@docs docs/max_match.md\r\
     \ntodo: \u5224\u65AD\u662F\u5426\u662F\u4E8C\u5206\u56FE\uFF0C\u5982\u679C\u4E0D\
@@ -74,7 +82,7 @@ data:
   isVerificationFile: false
   path: src/graph/max_match.hpp
   requiredBy: []
-  timestamp: '2022-10-12 21:42:47+08:00'
+  timestamp: '2022-10-12 22:34:49+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/graph/max_match.hpp

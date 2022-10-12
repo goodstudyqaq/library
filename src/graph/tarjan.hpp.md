@@ -33,29 +33,37 @@ data:
     \u6811\r\n    explicit Tree(int n, int root = -1) : Graph<Edge>(n), root(root)\
     \ {}\r\n\r\n    // todo: \u53EF\u4EE5\u52A0\u4E00\u4E9B\u5E38\u7528\u7684\u6811\
     \u7684\u64CD\u4F5C\uFF0C\u6BD4\u5982\u6C42\u91CD\u5FC3\uFF0C\u6C42\u76F4\u5F84\
-    \uFF0C\u6C42\u5B50\u6811\u5927\u5C0F\u7B49\r\n};\r\n#line 4 \"src/graph/tarjan.hpp\"\
-    \nusing namespace std;\r\n/*\r\n@brief Tarjan\r\n@docs docs/tarjan.md\r\ntodo:\
-    \ \u5F85\u6574\u7406\r\n*/\r\n\r\n// template <typename T = int>\r\n// struct\
-    \ Tarjan : Graph<T> {\r\n//     vector<int> low, dfn, stk;\r\n//     vector<bool>\
-    \ in_stk;\r\n//     int timestamp, scc_cnt;\r\n\r\n//     Tarjan() = default;\r\
-    \n//     explicit Tarjan(int n) : Graph<T>(n), low(n), dfn(n), in_stk(n), timestamp(0),\
-    \ scc_cnt(0) {}\r\n\r\n//     void dfs(int u) {\r\n//         low[u] = dfn[u]\
-    \ = ++timestamp;\r\n//         stk.push_back(u);\r\n//         in_stk[u] = true;\r\
-    \n\r\n//         int flag = 0;\r\n//         for (auto& e : this->g[u]) {\r\n\
-    //             int v = e.to;\r\n//             if (!dfn[v]) {\r\n//          \
-    \       dfs(v);\r\n//                 low[u] = min(low[u], low[v]);\r\n\r\n//\
-    \                 if (low[v] == dfn[u]) {\r\n//                     flag++;\r\n\
-    //                     if (u !=)\r\n//                 }\r\n\r\n//           \
-    \  } else if (in_stk[v]) {\r\n//                 low[u] = min(low[u], dfn[v]);\r\
-    \n//             }\r\n//         }\r\n\r\n//         if (low[u] == dfn[u]) {\r\
-    \n//             scc_cnt++;\r\n//             while (true) {\r\n//           \
-    \      int x = stk.back();\r\n//                 stk.pop_back();\r\n//       \
-    \          in_stk[x] = false;\r\n//                 if (x == u) {\r\n//      \
-    \               break;\r\n//                 }\r\n//             }\r\n//     \
-    \    }\r\n//     }\r\n\r\n//     void solve() {\r\n//         for (int i = 0;\
-    \ i < this->g.size(); i++) {\r\n//             if (!dfn[i]) {\r\n//          \
-    \       dfs(i);\r\n//             }\r\n//         }\r\n//     }\r\n// };\r\n\r\
-    \n//\u8FB9\u4ECE0\u5230tot-1\uFF0C\u70B9\u4ECE1\u5230N\r\n//\u5982\u679C\u6709\
+    \uFF0C\u6C42\u5B50\u6811\u5927\u5C0F\u7B49\r\n};\r\n\r\ntemplate <typename Edge>\r\
+    \nstruct BipartiteGraph : Graph<Edge> {\r\n    using Graph<Edge>::g;\r\n    using\
+    \ Graph<Edge>::add_directed_edge;\r\n    using Graph<Edge>::add_undirected_edge;\r\
+    \n    using Graph<Edge>::size;\r\n    int n, m;\r\n    // \u4E8C\u5206\u56FE\u7684\
+    \u5DE6\u53F3\u4E24\u8FB9\u7684\u70B9\r\n    vector<int> bl, br;\r\n\r\n    BipartiteGraph()\
+    \ = default;\r\n    explicit BipartiteGraph(int n, int m) : Graph<Edge>(n + m),\
+    \ n(n), m(m) {\r\n        for (int i = 0; i < n; i++) bl.push_back(i);\r\n   \
+    \     for (int i = n; i < n + m; i++) br.push_back(i);\r\n    }\r\n\r\n    void\
+    \ add_edge(int u, int v) {\r\n        add_directed_edge(Edge(u, v + n));\r\n \
+    \   }\r\n};\n#line 4 \"src/graph/tarjan.hpp\"\nusing namespace std;\r\n/*\r\n\
+    @brief Tarjan\r\n@docs docs/tarjan.md\r\ntodo: \u5F85\u6574\u7406\r\n*/\r\n\r\n\
+    // template <typename T = int>\r\n// struct Tarjan : Graph<T> {\r\n//     vector<int>\
+    \ low, dfn, stk;\r\n//     vector<bool> in_stk;\r\n//     int timestamp, scc_cnt;\r\
+    \n\r\n//     Tarjan() = default;\r\n//     explicit Tarjan(int n) : Graph<T>(n),\
+    \ low(n), dfn(n), in_stk(n), timestamp(0), scc_cnt(0) {}\r\n\r\n//     void dfs(int\
+    \ u) {\r\n//         low[u] = dfn[u] = ++timestamp;\r\n//         stk.push_back(u);\r\
+    \n//         in_stk[u] = true;\r\n\r\n//         int flag = 0;\r\n//         for\
+    \ (auto& e : this->g[u]) {\r\n//             int v = e.to;\r\n//             if\
+    \ (!dfn[v]) {\r\n//                 dfs(v);\r\n//                 low[u] = min(low[u],\
+    \ low[v]);\r\n\r\n//                 if (low[v] == dfn[u]) {\r\n//           \
+    \          flag++;\r\n//                     if (u !=)\r\n//                 }\r\
+    \n\r\n//             } else if (in_stk[v]) {\r\n//                 low[u] = min(low[u],\
+    \ dfn[v]);\r\n//             }\r\n//         }\r\n\r\n//         if (low[u] ==\
+    \ dfn[u]) {\r\n//             scc_cnt++;\r\n//             while (true) {\r\n\
+    //                 int x = stk.back();\r\n//                 stk.pop_back();\r\
+    \n//                 in_stk[x] = false;\r\n//                 if (x == u) {\r\n\
+    //                     break;\r\n//                 }\r\n//             }\r\n\
+    //         }\r\n//     }\r\n\r\n//     void solve() {\r\n//         for (int i\
+    \ = 0; i < this->g.size(); i++) {\r\n//             if (!dfn[i]) {\r\n//     \
+    \            dfs(i);\r\n//             }\r\n//         }\r\n//     }\r\n// };\r\
+    \n\r\n//\u8FB9\u4ECE0\u5230tot-1\uFF0C\u70B9\u4ECE1\u5230N\r\n//\u5982\u679C\u6709\
     \u91CD\u8FB9\u7684\u8BDD\uFF0C\u5728tarjan\u51FD\u6570\u81EA\u5DF1\u52A0\u4E0A\
     \u5224\u65AD\u51FD\u6570\u5373\u53EF\u3002\r\n//\u4E0D\u7BA1\u662F\u6709\u5411\
     \u56FE\u8FD8\u662F\u65E0\u5411\u56FE\uFF0CLOW\u6570\u7EC4\u90FD\u4E0D\u80FD\u4EE3\
@@ -130,7 +138,7 @@ data:
   isVerificationFile: false
   path: src/graph/tarjan.hpp
   requiredBy: []
-  timestamp: '2022-10-12 21:42:47+08:00'
+  timestamp: '2022-10-12 22:34:49+08:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: src/graph/tarjan.hpp

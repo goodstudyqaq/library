@@ -36,14 +36,23 @@ data:
     \u6811\r\n    explicit Tree(int n, int root = -1) : Graph<Edge>(n), root(root)\
     \ {}\r\n\r\n    // todo: \u53EF\u4EE5\u52A0\u4E00\u4E9B\u5E38\u7528\u7684\u6811\
     \u7684\u64CD\u4F5C\uFF0C\u6BD4\u5982\u6C42\u91CD\u5FC3\uFF0C\u6C42\u76F4\u5F84\
-    \uFF0C\u6C42\u5B50\u6811\u5927\u5C0F\u7B49\r\n};\r\n#line 4 \"src/graph/lca.hpp\"\
-    \nusing namespace std;\r\n/*\r\n@brief LCA\r\n@docs docs/lca.md\r\n*/\r\ntemplate\
-    \ <typename Tree>\r\nstruct Lca {\r\n    Lca(Tree &tree) : tree(tree), root(tree.root)\
-    \ {}\r\n    int get_lca(int x, int y) {\r\n        if (dep[x] > dep[y]) swap(x,\
-    \ y);\r\n        for (int j = LOG - 1; j >= 0 && dep[x] != dep[y]; j--) {\r\n\
-    \            if (dep[y] - (1 << j) < dep[x]) continue;\r\n            y = parent[y][j];\r\
-    \n        }\r\n        if (x == y) return x;\r\n        for (int j = LOG - 1;\
-    \ j >= 0; j--) {\r\n            if (dep[x] - (1 << j) < 0 || parent[x][j] == parent[y][j])\
+    \uFF0C\u6C42\u5B50\u6811\u5927\u5C0F\u7B49\r\n};\r\n\r\ntemplate <typename Edge>\r\
+    \nstruct BipartiteGraph : Graph<Edge> {\r\n    using Graph<Edge>::g;\r\n    using\
+    \ Graph<Edge>::add_directed_edge;\r\n    using Graph<Edge>::add_undirected_edge;\r\
+    \n    using Graph<Edge>::size;\r\n    int n, m;\r\n    // \u4E8C\u5206\u56FE\u7684\
+    \u5DE6\u53F3\u4E24\u8FB9\u7684\u70B9\r\n    vector<int> bl, br;\r\n\r\n    BipartiteGraph()\
+    \ = default;\r\n    explicit BipartiteGraph(int n, int m) : Graph<Edge>(n + m),\
+    \ n(n), m(m) {\r\n        for (int i = 0; i < n; i++) bl.push_back(i);\r\n   \
+    \     for (int i = n; i < n + m; i++) br.push_back(i);\r\n    }\r\n\r\n    void\
+    \ add_edge(int u, int v) {\r\n        add_directed_edge(Edge(u, v + n));\r\n \
+    \   }\r\n};\n#line 4 \"src/graph/lca.hpp\"\nusing namespace std;\r\n/*\r\n@brief\
+    \ LCA\r\n@docs docs/lca.md\r\n*/\r\ntemplate <typename Tree>\r\nstruct Lca {\r\
+    \n    Lca(Tree &tree) : tree(tree), root(tree.root) {}\r\n    int get_lca(int\
+    \ x, int y) {\r\n        if (dep[x] > dep[y]) swap(x, y);\r\n        for (int\
+    \ j = LOG - 1; j >= 0 && dep[x] != dep[y]; j--) {\r\n            if (dep[y] -\
+    \ (1 << j) < dep[x]) continue;\r\n            y = parent[y][j];\r\n        }\r\
+    \n        if (x == y) return x;\r\n        for (int j = LOG - 1; j >= 0; j--)\
+    \ {\r\n            if (dep[x] - (1 << j) < 0 || parent[x][j] == parent[y][j])\
     \ continue;\r\n            x = parent[x][j], y = parent[y][j];\r\n        }\r\n\
     \        return parent[x][0];\r\n    }\r\n\r\n    void build(int rt = -1) {\r\n\
     \        int n = tree.size();\r\n        // 2^k <= n\r\n\r\n        if (rt !=\
@@ -89,7 +98,7 @@ data:
   isVerificationFile: false
   path: src/graph/lca.hpp
   requiredBy: []
-  timestamp: '2022-10-12 21:42:47+08:00'
+  timestamp: '2022-10-12 22:34:49+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/graph/lca.test.cpp
