@@ -3,74 +3,60 @@
 using namespace std;
 
 /*
-@brief 带权并查集
-@docs docs/weighted_dsu.md
+@brief Graph template
+@docs docs/graph_template.md
 */
 
-template <typename T = int>
 struct Edge {
     int from, to;
-    T cost;
-    int idx;
+    int cost;
 
     Edge() = default;
-    Edge(int from, int to, T cost = 1, int idx = -1) : from(from), to(to), cost(cost), idx(idx) {}
+    Edge(int from, int to, int cost = 1) : from(from), to(to), cost(cost) {}
 
     // Edge e = Edge(); int to = e;
     operator int() const { return to; }
 };
 
-template <typename T = int>
+// [0, n)
+template <typename Edge>
 struct Graph {
-    vector<vector<Edge<T>>> g;
-    int es;  // 边数
+    vector<vector<Edge>> g;
 
     Graph() = default;
-    explicit Graph(int n) : g(n), es(0) {}
+    explicit Graph(int n) : g(n) {}
 
     size_t size() const {
         return g.size();
     }
 
-    void add_directed_edge(int from, int to, T cost = 1) {
-        g[from].emplace_back(from, to, cost, es++);
+    void add_directed_edge(const Edge &e) {
+        g[e.from].push_back(e);
     }
 
-    void add_undirected_edge(int from, int to, T cost = 1) {
-        g[from].emplace_back(from, to, cost, es);
-        g[to].emplace_back(to, from, cost, es++);  // 无向边的编号相同
+    void add_undirected_edge(const Edge &e) {
+        g[e.from].push_back(e);
+        Edge rev = e;
+        swap(rev.from, rev.to);
+        g[rev.from].push_back(rev);
     }
 
-    void read(int m, int offset = -1, bool directed = false, bool weighted = false) {
-        for (int i = 0; i < m; i++) {
-            int u, v;
-            // 需要关闭同步 IO
-            cin >> u >> v;
-            // 默认从 0 开始编号
-            u += offset;
-            v += offset;
-
-            T w = 1;
-            if (weighted) {
-                cin >> w;
-            }
-
-            if (directed) {
-                add_directed_edge(u, v, w);
-            } else {
-                add_undirected_edge(u, v, w);
-            }
-        }
-    }
-
-    inline vector<Edge<T>> &operator[](const int &u) {
-        return g[u];
-    }
-
-    inline const vector<Edge<T>> &operator[](const int &u) const {
+    inline const vector<Edge> &operator[](const int &u) const {
         return g[u];
     }
 };
 
-template <typename T = int>
-using Edges = vector<Edge<T>>;
+template <typename Edge>
+struct Tree : Graph<Edge> {
+    using Graph<Edge>::g;
+    using Graph<Edge>::add_directed_edge;
+    using Graph<Edge>::add_undirected_edge;
+    using Graph<Edge>::size;
+    int root;
+
+    Tree() = default;
+    // root = -1 为无根树
+    explicit Tree(int n, int root = -1) : Graph<Edge>(n), root(root) {}
+
+    // todo: 可以加一些常用的树的操作，比如求重心，求直径，求子树大小等
+};
