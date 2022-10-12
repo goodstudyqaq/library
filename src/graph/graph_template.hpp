@@ -60,3 +60,24 @@ struct Tree : Graph<Edge> {
 
     // todo: 可以加一些常用的树的操作，比如求重心，求直径，求子树大小等
 };
+
+template <typename Edge>
+struct BipartiteGraph : Graph<Edge> {
+    using Graph<Edge>::g;
+    using Graph<Edge>::add_directed_edge;
+    using Graph<Edge>::add_undirected_edge;
+    using Graph<Edge>::size;
+    int n, m;
+    // 二分图的左右两边的点
+    vector<int> bl, br;
+
+    BipartiteGraph() = default;
+    explicit BipartiteGraph(int n, int m) : Graph<Edge>(n + m), n(n), m(m) {
+        for (int i = 0; i < n; i++) bl.push_back(i);
+        for (int i = n; i < n + m; i++) br.push_back(i);
+    }
+
+    void add_edge(int u, int v) {
+        add_directed_edge(Edge(u, v + n));
+    }
+};
