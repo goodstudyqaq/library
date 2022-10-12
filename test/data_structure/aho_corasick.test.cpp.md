@@ -49,7 +49,7 @@ data:
   isVerificationFile: true
   path: test/data_structure/aho_corasick.test.cpp
   requiredBy: []
-  timestamp: '2022-10-10 22:05:47+08:00'
+  timestamp: '2022-10-11 22:28:27+08:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/data_structure/aho_corasick.test.cpp

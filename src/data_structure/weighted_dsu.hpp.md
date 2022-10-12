@@ -53,17 +53,15 @@ redirect_from:
 - /library/src/data_structure/weighted_dsu.hpp.html
 title: "\u5E26\u6743\u5E76\u67E5\u96C6"
 ---
-# 带权并查集
-
-## 概要
+# 概要
 带权并查集是一种在并查集的基础上加入了权值的数据结构，它可以用来维护一些关于并查集的性质，例如：两个集合的大小，两个集合的和，两个集合的最大值，两个集合的最小值等等。
-### `WeightedDSU`
+## `WeightedDSU`
 `WeightedDSU` 是该算法的模板类，`T` 类需要支持 `+` 和 `-` 运算符。
 - `WeightedDSU(int n)`：创建一个包含 `n` 个元素的并查集。区间范围为 `[0, n)` 。
 - `pair<int, T> leader(int x)`：返回 `x` 所在集合的代表元素和 `x` 到代表元素的距离。
 - `bool merge(int x, int y, T z)`：将 `x` 和 `y` 所在的集合合并，如果 `x` 和 `y` 已经在同一个集合中，且关系和 `z` 矛盾，则返回 `false` ，否则返回 `true` 。`z` 表示 `x` 到 `y` 的距离。
 
 
-## 常见问题
+# 常见问题
 
 # 题集
