@@ -6,5 +6,6 @@
 "test/data_structure/rmq.test.cpp": "2022-10-10 22:05:47 +0800",
 "test/data_structure/segment_tree.test.cpp": "2022-10-10 22:48:16 +0800",
 "test/data_structure/weighted_dsu.test.cpp": "2022-10-11 21:52:21 +0800",
-"test/graph/lca.test.cpp": "2022-10-12 21:42:47 +0800"
+"test/graph/dijkstra.test.cpp": "2022-10-12 22:34:49 +0800",
+"test/graph/lca.test.cpp": "2022-10-12 22:34:49 +0800"
 }
