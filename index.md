@@ -99,7 +99,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: src/string/manacher.hpp
       title: Manacher
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/string/sa.hpp
       title: Suffix Array
     - icon: ':warning:'
@@ -159,5 +159,8 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/string/manacher.test.cpp
       title: test/string/manacher.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/string/sa.test.cpp
+      title: test/string/sa.test.cpp
 layout: toppage
 ---
