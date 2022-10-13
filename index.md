@@ -96,7 +96,7 @@ data:
     - icon: ':warning:'
       path: src/string/kmp.hpp
       title: KMP
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: src/string/manacher.hpp
       title: Manacher
     - icon: ':warning:'
@@ -154,5 +154,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/graph/lca.test.cpp
       title: test/graph/lca.test.cpp
+  - name: test/string
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/string/manacher.test.cpp
+      title: test/string/manacher.test.cpp
 layout: toppage
 ---

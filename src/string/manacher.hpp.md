@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/string/manacher.test.cpp
+    title: test/string/manacher.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     _deprecated_at_docs: docs/manacher.md
     document_title: Manacher
@@ -52,8 +55,9 @@ data:
   path: src/string/manacher.hpp
   requiredBy: []
   timestamp: '2022-10-07 12:16:06+08:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/string/manacher.test.cpp
 documentation_of: src/string/manacher.hpp
 layout: document
 redirect_from:
