@@ -31,6 +31,7 @@ struct RMQ {
 
     void build(const vector<T>& _values, function<bool(T, T)> f) {
         values = _values;
+        func = f;
         n = values.size();
         levels = largest_bit(n) + 1;
         range_high.resize(levels);
@@ -42,8 +43,9 @@ struct RMQ {
             range_high[0][i] = i;
 
         for (int k = 1; k < levels; k++)
-            for (int i = 0; i <= n - (1 << k); i++)
+            for (int i = 0; i <= n - (1 << k); i++) {
                 range_high[k][i] = max_index(range_high[k - 1][i], range_high[k - 1][i + (1 << (k - 1))]);
+            }
     }
     // [a, b]
     int rmq_index(int a, int b) const {
