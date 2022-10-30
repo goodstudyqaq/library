@@ -13,6 +13,7 @@ using namespace std;
 */
 
 // 一般形式的 dijkstra
+// https://codeforces.com/contest/1741/problem/G
 template <typename Graph, typename T>
 struct Dijkstra {
     Graph &g;

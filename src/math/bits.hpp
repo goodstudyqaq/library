@@ -20,6 +20,7 @@ using namespace std;
     3. __builtin_ctz(x) 此函数用于计算给定整数的尾随零
     4. __builtin_clz(x) 此函数用于计算整数的前导零。注意：clz = 计算前导零
 */
+// https://codeforces.com/contest/1741/problem/G
 struct Subset {
     /*
     枚举 status 的全部子集
@@ -31,12 +32,14 @@ struct Subset {
         int status;
         bool ok;
         Iterator(int _i, int _s, bool ok = true) : i(_i), status(_s), ok(ok) {}
+        // *it 拿到值
         int operator*() const {
             return i;
         }
         bool operator!=(const Iterator& a) const {
-            return i != a.i && ok != a.ok;
+            return i != a.i || ok != a.ok;
         }
+        // 重载 ++it 符号
         Iterator& operator++() {
             i = (i - 1) & status;
             ok = (i != status);

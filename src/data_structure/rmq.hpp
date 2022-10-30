@@ -6,6 +6,9 @@ using namespace std;
 @docs docs/rmq.md
 */
 
+/*
+https://codeforces.com/contest/1736/problem/C2
+*/
 template <typename T>
 struct RMQ {
     int n = 0, levels = 0;
