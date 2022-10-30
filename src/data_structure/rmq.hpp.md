@@ -18,14 +18,16 @@ data:
   attributes:
     _deprecated_at_docs: docs/rmq.md
     document_title: RMQ
-    links: []
+    links:
+    - https://codeforces.com/contest/1736/problem/C2
   bundledCode: "#line 1 \"src/data_structure/rmq.hpp\"\n#include <bits/stdc++.h>\r\
     \nusing namespace std;\r\n\r\n/*\r\n@brief RMQ\r\n@docs docs/rmq.md\r\n*/\r\n\r\
-    \ntemplate <typename T>\r\nstruct RMQ {\r\n    int n = 0, levels = 0;\r\n    vector<T>\
-    \ values;\r\n    vector<vector<int>> range_high;\r\n    function<bool(T, T)> func;\r\
-    \n\r\n    RMQ(const vector<T>& _values, function<bool(T, T)> f) {\r\n        func\
-    \ = f;\r\n        if (!_values.empty())\r\n            build(_values, f);\r\n\
-    \    }\r\n    RMQ() {}\r\n\r\n    static int largest_bit(int x) {\r\n        return\
+    \n/*\r\nhttps://codeforces.com/contest/1736/problem/C2\r\n*/\r\ntemplate <typename\
+    \ T>\r\nstruct RMQ {\r\n    int n = 0, levels = 0;\r\n    vector<T> values;\r\n\
+    \    vector<vector<int>> range_high;\r\n    function<bool(T, T)> func;\r\n\r\n\
+    \    RMQ(const vector<T>& _values, function<bool(T, T)> f) {\r\n        func =\
+    \ f;\r\n        if (!_values.empty())\r\n            build(_values, f);\r\n  \
+    \  }\r\n    RMQ() {}\r\n\r\n    static int largest_bit(int x) {\r\n        return\
     \ 31 - __builtin_clz(x);\r\n    }\r\n\r\n    int max_index(int a, int b) const\
     \ {\r\n        return func(values[a], values[b]) ? a : b;\r\n        // return\
     \ values[a] > values[b] ? a : b;\r\n    }\r\n\r\n    void build(const vector<T>&\
@@ -47,14 +49,15 @@ data:
     \ == idx) {\r\n                now += (1 << i);\r\n            }\r\n        }\r\
     \n        return now;\r\n    }\r\n};\n"
   code: "#include <bits/stdc++.h>\r\nusing namespace std;\r\n\r\n/*\r\n@brief RMQ\r\
-    \n@docs docs/rmq.md\r\n*/\r\n\r\ntemplate <typename T>\r\nstruct RMQ {\r\n   \
-    \ int n = 0, levels = 0;\r\n    vector<T> values;\r\n    vector<vector<int>> range_high;\r\
-    \n    function<bool(T, T)> func;\r\n\r\n    RMQ(const vector<T>& _values, function<bool(T,\
-    \ T)> f) {\r\n        func = f;\r\n        if (!_values.empty())\r\n         \
-    \   build(_values, f);\r\n    }\r\n    RMQ() {}\r\n\r\n    static int largest_bit(int\
-    \ x) {\r\n        return 31 - __builtin_clz(x);\r\n    }\r\n\r\n    int max_index(int\
-    \ a, int b) const {\r\n        return func(values[a], values[b]) ? a : b;\r\n\
-    \        // return values[a] > values[b] ? a : b;\r\n    }\r\n\r\n    void build(const\
+    \n@docs docs/rmq.md\r\n*/\r\n\r\n/*\r\nhttps://codeforces.com/contest/1736/problem/C2\r\
+    \n*/\r\ntemplate <typename T>\r\nstruct RMQ {\r\n    int n = 0, levels = 0;\r\n\
+    \    vector<T> values;\r\n    vector<vector<int>> range_high;\r\n    function<bool(T,\
+    \ T)> func;\r\n\r\n    RMQ(const vector<T>& _values, function<bool(T, T)> f) {\r\
+    \n        func = f;\r\n        if (!_values.empty())\r\n            build(_values,\
+    \ f);\r\n    }\r\n    RMQ() {}\r\n\r\n    static int largest_bit(int x) {\r\n\
+    \        return 31 - __builtin_clz(x);\r\n    }\r\n\r\n    int max_index(int a,\
+    \ int b) const {\r\n        return func(values[a], values[b]) ? a : b;\r\n   \
+    \     // return values[a] > values[b] ? a : b;\r\n    }\r\n\r\n    void build(const\
     \ vector<T>& _values, function<bool(T, T)> f) {\r\n        values = _values;\r\
     \n        func = f;\r\n        n = values.size();\r\n        levels = largest_bit(n)\
     \ + 1;\r\n        range_high.resize(levels);\r\n\r\n        for (int k = 0; k\
@@ -77,7 +80,7 @@ data:
   path: src/data_structure/rmq.hpp
   requiredBy:
   - src/string/sa.hpp
-  timestamp: '2022-10-13 21:06:23+08:00'
+  timestamp: '2022-10-30 15:53:25+08:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/data_structure/rmq.test.cpp
