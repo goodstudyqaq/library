@@ -10,24 +10,44 @@ typedef long long ll;
 template <typename T = ll>
 struct Matrix {
     int n, m;
-    vector<vector<T>> mat;
-    Matrix(int n, int m, const T& val = T()) : n(n), m(m), mat(n, vector<T>(m, val)) {}
-    Matrix(int n, const T& val = T()) : n(n), m(n), mat(n, vector<T>(n, val)) {}
-    Matrix(const vector<vector<T>>& mat) : n(mat.size()), m(mat[0].size()), mat(mat) {}
+    // 用数组更快
+    T mat[2][2];
+    Matrix() {}
+    Matrix(int n, int m, const T& val = T()) : n(n), m(m) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                mat[i][j] = val;
+            }
+        }
+    }
+    Matrix(int n, const T& val = T()) : n(n), m(n) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                mat[i][j] = val;
+            }
+        }
+    }
+    Matrix(const vector<vector<T>>& _mat) : n(_mat.size()), m(_mat[0].size()) {
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                mat[i][j] = _mat[i][j];
+            }
+        }
+    }
 
     static Matrix I(int n) {
         Matrix res(n);
-        for (int i = 0; i < n; i++) res[i][i] = 1;
+        for (int i = 0; i < n; i++) res.mat[i][i] = 1;
         return res;
     }
 
-    vector<T>& operator[](int i) { return mat[i]; }
+    T* operator[](int i) { return mat[i]; }
 
     Matrix operator+(const Matrix& r) const {
         assert(n == r.n && m == r.m);
         Matrix res(n, m);
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++) res[i][j] = mat[i][j] + r[i][j];
+            for (int j = 0; j < m; j++) res.mat[i][j] = mat[i][j] + r.mat[i][j];
         return res;
     }
 
@@ -35,7 +55,7 @@ struct Matrix {
         assert(n == r.n && m == r.m);
         Matrix res(n, m);
         for (int i = 0; i < n; i++)
-            for (int j = 0; j < m; j++) res[i][j] = mat[i][j] - r[i][j];
+            for (int j = 0; j < m; j++) res.mat[i][j] = mat[i][j] - r.mat[i][j];
         return res;
     }
 
@@ -44,8 +64,18 @@ struct Matrix {
         Matrix res(n, r.m);
         for (int i = 0; i < n; i++)
             for (int j = 0; j < r.m; j++)
-                for (int k = 0; k < m; k++) res[i][j] += mat[i][k] * r[k][j];
+                for (int k = 0; k < m; k++) res.mat[i][j] += mat[i][k] * r.mat[k][j];
         return res;
+    }
+
+    bool operator==(const Matrix& r) const {
+        if (m != r.m || n != r.n) return false;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (mat[i][j] != r.mat[i][j]) return false;
+            }
+        }
+        return true;
     }
 
     Matrix operator^(ll k) const {
@@ -58,16 +88,18 @@ struct Matrix {
         }
         return res;
     }
-
-    static to_string(const Matrix& mat) {
-        string res = "";
-        for (int i = 0; i < mat.n; i++) {
-            for (int j = 0; j < mat.m; j++) res += to_string(mat[i][j]) + " ";
-            res += "\n";
-        }
-        return res;
-    }
 };
+
+// const Matrix<Mint> the_I = Matrix<Mint>::I(2);
+
+// static string to_string(const Matrix<Mint>& mat) {
+//     string res = "";
+//     for (int i = 0; i < mat.n; i++) {
+//         for (int j = 0; j < mat.m; j++) res += to_string(mat.mat[i][j]) + " ";
+//         res += "\n";
+//     }
+//     return res;
+// }
 template <typename T = ll>
 struct Det : Matrix<T> {
     //行列式辗转相除法
