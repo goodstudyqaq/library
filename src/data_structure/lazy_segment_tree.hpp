@@ -38,7 +38,7 @@ struct LazySegmentTree {
             int m = l + r >> 1;
             build(lson);
             build(rson);
-            push_up(rt, l, r);
+            push_up(l, r, rt);
         };
         build(0, n - 1, 1);
     }
