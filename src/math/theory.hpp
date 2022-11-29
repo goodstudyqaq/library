@@ -6,6 +6,7 @@ using namespace std;
 @docs docs/math_theory.md
 */
 
+// 分块
 struct IntegerChunk {
     int n;
     IntegerChunk(int n) : n(n) {}
@@ -77,3 +78,33 @@ struct ReverseIntegerChunk {
         return Iterator(1, n);
     }
 };
+
+// 得到与 x 互质且小于 n 的数的个数
+// 主要思想就是容斥，首先得到 x 的所有质因子，然后根据它的质因子进行容斥
+// https://codeforces.com/contest/1750/problem/D
+int get_coprime_number(int x, int n) {
+    auto get_fac = [&](int x) -> vector<int> {
+
+    };
+    vector<int> v = get_fac(x);
+
+    int sz = v.size();
+    int ans = 0;
+    int LIMIT = 1 << sz;
+    for (int i = 0; i < LIMIT; i++) {
+        int cnt = 0;
+        int val = 1;
+        for (int j = 0; j < sz; j++) {
+            if ((i >> j) & 1) {
+                cnt++;
+                val = val * v[j];
+            }
+        }
+        if (cnt % 2 == 0) {
+            ans += n / val;
+        } else {
+            ans -= n / val;
+        }
+    }
+    return ans;
+}
