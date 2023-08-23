@@ -8,24 +8,10 @@ struct DLX {
    private:
     int n, m, size;
     vector<int> U, D, R, L, Row, Col;
-    vector<int> H;  //行头结点
-    vector<int> S;  //每一列有多少结点
-    void init(int _n, int _m) {
-        n = _n, m = _m;
-        ansd = inf;
-        for (int i = 0; i <= m; i++) {
-            S[i] = 0;
-            U[i] = D[i] = i;  //初始状态下,上下自己指向自己(也就知道了头结点的值为i)
-            L[i] = i - 1;
-            R[i] = i + 1;
-        }
-        R[m] = 0, L[0] = m;  //环状,下面的Link一样也是环,这样，不管从一行中的任意一个结点都可以遍历完这一行.
-        size = m;            //编号,每列的头结点编号1-m，所以size从m+1开始
-        for (int i = 1; i <= n; i++)
-            H[i] = -1;
-    }
+    vector<int> H;  // 行头结点
+    vector<int> S;  // 每一列有多少结点
 
-    void exact_remove(int c)  //删除节点c(列c),并且删除所有在这一列的节点所在的行中的所有的节点。。
+    void exact_remove(int c)  // 删除节点c(列c),并且删除所有在这一列的节点所在的行中的所有的节点。。
     {
         L[R[c]] = L[c];
         R[L[c]] = R[c];
@@ -37,13 +23,13 @@ struct DLX {
             }
     }
 
-    void repeat_remove(int c)  //只删除列
+    void repeat_remove(int c)  // 只删除列
     {
         for (int i = D[c]; i != c; i = D[i])
             L[R[i]] = L[i], R[L[i]] = R[i];
     }
 
-    void exact_resume(int c)  //恢复节点c(列c),以及恢复所有在这一列的节点所在的行中的所有的节点。
+    void exact_resume(int c)  // 恢复节点c(列c),以及恢复所有在这一列的节点所在的行中的所有的节点。
     {
         for (int i = U[c]; i != c; i = U[i])
             for (int j = L[i]; j != i; j = L[j])
@@ -56,7 +42,7 @@ struct DLX {
             L[R[i]] = R[L[i]] = i;
     }
 
-    int f()  //估价函数
+    int f()  // 估价函数
     {
         vector<bool> vv(m + 1);
         int ret = 0, c, i, j;
@@ -71,10 +57,40 @@ struct DLX {
         return ret;
     }
 
+    void clear(vector<int>& V, int sz) {
+        if (V.size() < sz) V.resize(sz);
+        for (int i = 0; i < sz; i++) V[i] = 0;
+    }
+
    public:
     const int inf = numeric_limits<int>::max() / 2;
-    vector<int> ans;
-    int ansd;
+    vector<int> ans;  // ans 表示选了哪些行
+    int ansd; // ansd 表示选了多少行
+    void init(int _n, int _m) {
+        n = _n, m = _m;
+        int maxnnode = n * m + 1;
+        clear(U, maxnnode);
+        clear(D, maxnnode);
+        clear(L, maxnnode);
+        clear(R, maxnnode);
+        clear(Row, maxnnode);
+        clear(Col, maxnnode);
+        clear(H, n + 1);
+        clear(S, m + 1);
+        clear(ans, n + 1);
+
+        ansd = inf;
+        for (int i = 0; i <= m; i++) {
+            S[i] = 0;
+            U[i] = D[i] = i;  // 初始状态下,上下自己指向自己(也就知道了头结点的值为i)
+            L[i] = i - 1;
+            R[i] = i + 1;
+        }
+        R[m] = 0, L[0] = m;  // 环状,下面的Link一样也是环,这样，不管从一行中的任意一个结点都可以遍历完这一行.
+        size = m;            // 编号,每列的头结点编号1-m，所以size从m+1开始
+        for (int i = 1; i <= n; i++)
+            H[i] = -1;
+    }
     DLX(int _n, int _m) {
         n = _n;
         m = _m;
@@ -92,10 +108,10 @@ struct DLX {
     }
     DLX() {}
 
-    void link(int r, int c)  //第r行,第c列
+    void link(int r, int c)  // 第r行,第c列
     {
-        ++S[Col[++size] = c];  //第size个结点的列为c,当前列的节点数++
-        Row[size] = r;         //第size个节点行位置为r
+        ++S[Col[++size] = c];  // 第size个结点的列为c,当前列的节点数++
+        Row[size] = r;         // 第size个节点行位置为r
         D[size] = D[c];
         U[D[c]] = size;
         U[size] = c;
@@ -113,7 +129,7 @@ struct DLX {
     // 和普通搜索一样，这里表示搜索成功，可以得到方案，也可以得到所有方案的个数。
     // 看题目要求, 这里是只得到 1 个方案
     // 精确覆盖，每一列有且仅有 1 个 1
-    bool exact_dance(int d)  //深度
+    bool exact_dance(int d)  // 深度
     {
         if (R[0] == 0) {
             ansd = d;
@@ -123,9 +139,9 @@ struct DLX {
         for (int i = R[0]; i != 0; i = R[i])
             if (S[i] < S[c])
                 c = i;
-        exact_remove(c);  //找到节点数最少的列，当前元素不是原图上0,1的节点,而是列头结点
+        exact_remove(c);  // 找到节点数最少的列，当前元素不是原图上0,1的节点,而是列头结点
         for (int i = D[c]; i != c; i = D[i]) {
-            ans[d] = Row[i];  //列头结点下面的一个节点
+            ans[d] = Row[i];  // 列头结点下面的一个节点
             for (int j = R[i]; j != i; j = R[j])
                 exact_remove(Col[j]);
             if (exact_dance(d + 1)) return true;
