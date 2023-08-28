@@ -36,7 +36,7 @@ struct Manacher {
     int query(int l, int r) {
         // l = r 那么就表示以 l 为中心的最长回文串
         // l + 1 = r 那么就表示以 l 和 r 中间为中心的最长回文串
-        // 返回长度
+        // 返回长度, 如 "aabaa", l = r = 2, 即以 b 位中心的回文串长度，返回 3. 如 "abba", l = 1, r = 2, 返回 2
         int idx = (l + 1) * 2;
         if (l != r) {
             idx++;
