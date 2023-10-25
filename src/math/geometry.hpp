@@ -26,25 +26,42 @@ struct Point {
 
 template <typename T = int>
 struct Graham {
-    bool cmp(const Point<T> &a, const Point<T> &b) const {
+    static bool cmp(const Point<T> &a, const Point<T> &b) {
         T x = a ^ b;
-        return x == 0 ? a.length() < b.length() : x > 0;
+        return x == 0 ? a.abs2() < b.abs2() : x > 0;
     }
 
-    vector<Point<T>> graham(vector<Point<T>> &ps) {
-        sort(ps.begin(), ps.end());
-        ps.erase(unique(ps.begin(), ps.end()), ps.end());
+    vector<Point<T>> graham(vector<Point<T>> ps, bool equal = false) {
         int n = ps.size();
         if (n <= 1) return ps;
+        sort(ps.begin(), ps.end());
+        auto p0 = ps[0];
+        for (int i = 0; i < n; i++) {
+            ps[i] = ps[i] - p0;
+        }
+        sort(ps.begin(), ps.end(), cmp);
+        if (equal) {
+            int sz = n - 1;
+            while (sz >= 0 && ((ps[n - 1] - ps[0]) ^ (ps[sz] - ps[0])) == 0) sz--;
+            for (int l = sz + 1, r = n - 1; l < r; l++, r--) {
+                swap(ps[l], ps[r]);
+            }
+        }
         vector<Point<T>> qs(n);
-
         int k = 0;
         for (int i = 0; i < n; i++) {
-            while (k > 1 && (qs[k - 1] - qs[k - 2]) ^ (ps[i] - qs[k - 1]) <= 0)
-                k--;
+            while (k > 1) {
+                T tmp = (qs[k - 1] - qs[k - 2]) ^ (ps[i] - qs[k - 1]);
+                if (tmp < 0 || (!equal && tmp == 0)) k--;
+                else break;
+            }
             qs[k++] = ps[i];
         }
+        qs.resize(k);
 
+        for (int i = 0; i < k; i++) {
+            qs[i] = qs[i] + p0;
+        }
         return qs;
     }
 };
