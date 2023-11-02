@@ -49,8 +49,7 @@
     - [最小循环节](./string/kmp.hpp#L73)
   - [扩展 KMP (Z algorithm)](./string/ext_kmp.hpp)
   - [最小表示法](./string/smallest_representation.hpp)
-  - 最长回文子串
-    - Manacher 算法
+  - [最长回文子串 Manacher 算法](./string/manacher.hpp)
   - 后缀数组（SA）
   - 后缀自动机
   - 字典树

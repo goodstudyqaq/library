@@ -1,11 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-/*
-@brief  Manacher
-@docs docs/manacher.md
-*/
-
 struct Manacher {
     string s;
     vector<int> Mp;
