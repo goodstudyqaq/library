@@ -47,8 +47,9 @@ struct KMP {
         }
     }
 
-    // 计算 s 在 t 中出现的次数, 需要先调用 kmp_pre 函数
+    // 计算 s 在 t 中出现的位置
     vector<int> count(const string &t) {
+        kmp_pre();
         int m = s.size();
         int n = t.size();
         vector<int> ans;
@@ -64,5 +65,19 @@ struct KMP {
             }
         }
         return ans;
+    }
+
+    // 最小循环节
+    // 返回最小循环节以及循环次数
+    // 如果没有循环节，那么返回原串 和 1
+    pair<string, int> calc_min_period() {
+        kmp_pre();
+        int n = s.size();
+        int m = next[n];
+        if (m > 0 && n % (n - m) == 0) {
+            return {s.substr(0, n - m), n / (n - m)};
+        } else {
+            return {s, 1};
+        }
     }
 };

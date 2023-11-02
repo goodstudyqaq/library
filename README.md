@@ -46,7 +46,7 @@
 - 字符串
   - 字符串哈希
   - [KMP](./string/kmp.hpp)
-    - 最小循环节
+    - [最小循环节](./string/kmp.hpp#L73)
   - 扩展 KMP（Z algorithm）
   - 最小表示法
   - 最长回文子串
