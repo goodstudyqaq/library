@@ -45,7 +45,7 @@
     - 树上莫队
 - 字符串
   - 字符串哈希
-  - KMP
+  - [KMP](./string/kmp.hpp)
     - 最小循环节
   - 扩展 KMP（Z algorithm）
   - 最小表示法

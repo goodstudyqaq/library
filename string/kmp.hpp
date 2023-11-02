@@ -2,62 +2,65 @@
 using namespace std;
 
 /*
-@brief  KMP
-@docs docs/kmp.md
+真前缀：除了 S 本身的 S 的前缀
+真后缀：除了 S 本身的 S 的后缀
+https://oi-wiki.org/string/basic/
+前缀函数 pi[i] = 子串 s[0...i] 最长的相等的真前缀与真后缀的长度
+pi[0] = 0
 */
 
 /*
-KMP 的本质是 next 数组，即找到以当前 i 结尾的 s 子串与前缀完全等价的最长后缀的长度。
-注意这里没有用相同，而是用完全等价这个词，根据不同题意，完全等价的意义是不同的，但核心是最终变出来的东西是一模一样的。
-但感觉好像只能是相等啊？？？？
+KMP 的本质是 next 数组，next[i] 表示子串 s[0:i] 最长的相等的真前缀与真后缀的长度
 */
 struct KMP {
     string s;
-    vector<int> next;  // next[i] 表示前缀长度为 i 的子串 s 的与前缀相同的最长后缀的长度
-    KMP(string &_s) {
+    vector<int> next;
+    KMP(const string &_s) {
         s = _s;
     }
 
     void kmp_pre() {
         int m = s.size();
         next.resize(m + 1);
-        int i, j;
-        j = next[0] = -1;
-        i = 0;
-        while (i < m) {
-            while (j != -1 && s[i] != s[j]) j = next[j];
-            next[++i] = ++j;
+        next[0] = -1;
+        for (int i = 1; i <= m; i++) {
+            int j = next[i - 1];
+            while (j != -1 && s[i - 1] != s[j]) j = next[j];
+            next[i] = j + 1;
         }
     }
 
     void fast_kmp_pre() {
+        // 想想什么时候需要用到 next[i], 进行匹配时，到 s[i] 时失配，那么这时我们需要跳到 next[i].
         int m = s.size();
         next.resize(m + 1);
-        int i, j;
-        j = next[0] = -1;
-        i = 0;
-        while (i < m) {
-            while (j != -1 && s[i] != s[j]) j = next[j];
-            if (s[++i] == s[++j])
+        int j = -1;
+        next[0] = -1;
+        for (int i = 1; i <= m; i++) {
+            while (j != -1 && s[i - 1] != s[j]) j = next[j];
+            j++;
+            if (i < m && s[i] == s[j]) {
                 next[i] = next[j];
-            else
+            } else {
                 next[i] = j;
+            }
         }
     }
 
-    // 计算 s 在 s2 中出现的次数, 需要先调用 kmp_pre 函数
-    int count(string &s2) {
+    // 计算 s 在 t 中出现的次数, 需要先调用 kmp_pre 函数
+    vector<int> count(const string &t) {
         int m = s.size();
-        int n = s2.size();
-        int i = 0, j = 0;
-        int ans = 0;
-        while (i < n) {
-            while (j != -1 && s2[i] != s[j]) {
-                j = next[j];
+        int n = t.size();
+        vector<int> ans;
+        int now = 0;
+        for (int i = 0; i < n; i++) {
+            while (now != -1 && t[i] != s[now]) {
+                now = next[now];
             }
-            i++, j++;
-            if (j >= m) {
-                ans++;
+            now++;
+            // t[0:i+1] 的后缀和 s 的前缀的最长相等长度为 now
+            if (now == m) {
+                ans.push_back(i - m + 1);
             }
         }
         return ans;
