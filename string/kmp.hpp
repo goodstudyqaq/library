@@ -17,6 +17,7 @@ struct KMP {
     vector<int> next;
     KMP(const string &_s) {
         s = _s;
+        kmp_pre();
     }
 
     void kmp_pre() {
@@ -49,7 +50,6 @@ struct KMP {
 
     // 计算 s 在 t 中出现的位置
     vector<int> count(const string &t) {
-        kmp_pre();
         int m = s.size();
         int n = t.size();
         vector<int> ans;
@@ -71,7 +71,6 @@ struct KMP {
     // 返回最小循环节以及循环次数
     // 如果没有循环节，那么返回原串 和 1
     pair<string, int> calc_min_period() {
-        kmp_pre();
         int n = s.size();
         int m = next[n];
         if (m > 0 && n % (n - m) == 0) {
@@ -80,4 +79,64 @@ struct KMP {
             return {s, 1};
         }
     }
+
+    // 统计 s 的每个前缀出现的次数
+    // ans[i] 表示长度为 i 的前缀出现的次数
+    // https://oi-wiki.org/string/kmp/#%E7%BB%9F%E8%AE%A1%E6%AF%8F%E4%B8%AA%E5%89%8D%E7%BC%80%E7%9A%84%E5%87%BA%E7%8E%B0%E6%AC%A1%E6%95%B0
+    // todo: 待验证
+    vector<int> calc_prefix_number() {
+        int n = s.size();
+        vector<int> ans(n + 1, 1);  // 自身
+
+        for (int i = 1; i <= n; i++) {
+            ans[next[i]]++;
+        }
+
+        for (int i = n; i > 0; i--) {
+            ans[next[i]] += ans[i];
+        }
+        return ans;
+    }
+
+    // 统计 s 的每个前缀在 t 中出现的次数
+    // todo: 待验证
+    vector<int> calc_prefix_number(const string &t) {
+        int m = s.size();
+        int n = t.size();
+
+        vector<int> ans(m + 1);
+
+        int now = 0;
+        for (int i = 0; i < n; i++) {
+            while (now != -1 && t[i] != s[now]) {
+                now = next[now];
+            }
+            now++;
+            ans[now]++;
+        }
+
+        for (int i = n; i > 0; i--) {
+            ans[next[i]] += ans[i];
+        }
+        return ans;
+    }
 };
+// 一个字符串中本质不同子串的数目
+// O(n^2) 做法
+// 每一次加一个字符 c 后，构造字符串 t = s + c 并将 t 翻转得到 t`，求 t` 的 next 数组，得到 max_next，那么当添加一个新字符后出现的不同子串的树木为 |s| + 1 - max_next
+int calc_essential_different_substring(const string &str) {
+    int ans = 0;
+    string s = "";
+    int n = str.size();
+    for (int i = 0; i < n; i++) {
+        char c = str[i];
+        string t = s + c;
+        reverse(t.begin(), t.end());
+        KMP kmp(t);
+        int m = t.size();
+        int max_next = *max_element(kmp.next.begin(), kmp.next.end());
+        ans += s.size() + 1 - max_next;
+        s += c;
+    }
+    return ans;
+}
