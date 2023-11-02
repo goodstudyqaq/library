@@ -1,17 +1,11 @@
 #include <bits/stdc++.h>
 
-#include "./src/data_structure/rmq.hpp"
-
-/*
-@brief Suffix Array
-@docs docs/suffix_array.md
-*/
-
+#include "./data_structure/rmq.hpp"
 using namespace std;
 // SA[i]=a 排名为i的下标为a
 // rank[a]=i 下标为a的排名为i
 // height[i]=a 排名为i的和排名为i-1是最长公共前缀
-//下标从1到N 千万不能搞错
+// 下标从1到N 千万不能搞错
 struct SuffixArray {
     vector<int> SA, rank, height;
     int N;
