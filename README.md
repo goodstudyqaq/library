@@ -44,7 +44,7 @@
     - 回滚莫队
     - 树上莫队
 - 字符串
-  - 标准库
+  - [标准库](./string/stl.hpp)
   - 字符串哈希
   - [KMP](./string/kmp.hpp)
     - [最小循环节](./string/kmp.hpp#L73)
