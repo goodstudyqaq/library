@@ -44,6 +44,7 @@
     - 回滚莫队
     - 树上莫队
 - 字符串
+  - 标准库
   - 字符串哈希
   - [KMP](./string/kmp.hpp)
     - [最小循环节](./string/kmp.hpp#L73)
@@ -52,7 +53,10 @@
   - [最长回文子串 Manacher 算法](./string/manacher.hpp)
   - [后缀数组(SA)](./string/sa.hpp)
   - 后缀自动机
-  - 字典树
+  - 广义后缀自动机
+  - 后缀平衡树
+  - 回文树
+  - [字典树](./string/trie.hpp)
     - 持久化
     - AC 自动机
   - 异或字典树
