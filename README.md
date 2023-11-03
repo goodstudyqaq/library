@@ -45,7 +45,7 @@
     - 树上莫队
 - 字符串
   - [标准库](./string/stl.hpp)
-  - 字符串哈希
+  - [字符串哈希](./string/hash.hpp)
   - [KMP](./string/kmp.hpp)
     - [最小循环节](./string/kmp.hpp#L73)
   - [扩展 KMP (Z algorithm)](./string/ext_kmp.hpp)
