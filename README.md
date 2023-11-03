@@ -58,7 +58,7 @@
   - 回文树
   - [字典树](./string/trie.hpp)
     - 持久化
-    - AC 自动机
+    - [AC 自动机](./string/aho_corasick.hpp)
   - 异或字典树
     - 持久化
     - Hack：构造一组数据，最大化树上的节点数
