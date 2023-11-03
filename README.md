@@ -52,7 +52,7 @@
   - [最小表示法](./string/smallest_representation.hpp)
   - [最长回文子串 Manacher 算法](./string/manacher.hpp)
   - [后缀数组(SA)](./string/sa.hpp)
-  - 后缀自动机
+  - [后缀自动机](./string/sam.hpp)
   - 广义后缀自动机
   - 后缀平衡树
   - 回文树
