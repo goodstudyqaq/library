@@ -17,7 +17,7 @@ struct SAM {
 
     int char_size, margin;
 
-    int new_state(int len, int link) {
+    int new_state(int len, int link = -1) {
         st.push_back(state(len, link, char_size));
         return st.size() - 1;
     }
