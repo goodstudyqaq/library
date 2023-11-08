@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
+// https://codeforces.com/gym/101981/problem/M
 
 // z[i] 表示 s 和 s[i, n - 1](即以 s[i] 开头的后缀) 的最长公共前缀(LCP) 的长度
 // O(n)
