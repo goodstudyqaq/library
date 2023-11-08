@@ -1,3 +1,4 @@
+// https://codeforces.com/contest/1838/problem/D
 #include <bits/stdc++.h>
 using namespace std;
 /*
@@ -55,11 +56,11 @@ struct LazySegmentTree {
         return rangeQuery(L, R, 0, n - 1, 1);
     }
 
-    int find_first(int ll, int rr, const function<bool(const Info &)> &f) {
+    int find_first(int ll, int rr, const function<bool(const Info &)> &f) {  // 找到第一个满足 f 的位置 idx, 使用这个函数的前提是在 [ll, idx - 1] 的任意区间都不满足 f,而对于任意 r，[ll, r], r >= idx 都满足 f。
         return find_first(ll, rr, f, 0, n - 1, 1);
     }
 
-    int find_last(int ll, int rr, const function<bool(const Info &)> &f) {
+    int find_last(int ll, int rr, const function<bool(const Info &)> &f) {  // 从后往前找，找到第一个满足 f 的位置
         return find_last(ll, rr, f, 0, n - 1, 1);
     }
 
