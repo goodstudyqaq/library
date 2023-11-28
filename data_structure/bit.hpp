@@ -5,15 +5,25 @@ using namespace std;
 docs: https://goodstudyqaq.notion.site/fcd1b861b033403299c45a8fab32e5a3?pvs=4
 */
 
-// 树状数组二分: http://oj.daimayuan.top/course/15/problem/636
+/*
+树状数组二分: 
+http://oj.daimayuan.top/course/15/problem/636
+https://leetcode.com/problems/finding-mk-average/   
+*/  
 //
 template <typename T>
 struct BIT {
 #define lowbit(x) x & -x
-    const int n;
+    int n;
     vector<T> a;
     // [1, n]
     BIT(int n) : n(n), a(n + 1) {}
+    BIT() {}
+
+    void init(int _n) {
+        n = _n;
+        a = vector<T>(n + 1);
+    }
     void add(int x, T v) {
         while (x <= n) {
             a[x] += v;
