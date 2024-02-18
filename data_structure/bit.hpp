@@ -6,10 +6,10 @@ docs: https://goodstudyqaq.notion.site/fcd1b861b033403299c45a8fab32e5a3?pvs=4
 */
 
 /*
-树状数组二分: 
+树状数组二分:
 http://oj.daimayuan.top/course/15/problem/636
-https://leetcode.com/problems/finding-mk-average/   
-*/  
+https://leetcode.com/problems/finding-mk-average/
+*/
 //
 template <typename T>
 struct BIT {
