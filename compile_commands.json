@@ -1,0 +1,7 @@
+[
+    {
+        "directory": "/Users/guoshen/code/ACM",
+        "command": "/usr/local/bin/g++-13 -DLOCAL -I/Users/guoshen/code/ACM -D_GLIBCXX_DEBUG /Users/guoshen/code/ACM/test.cpp -o /Users/guoshen/code/ACM/test.exe",
+        "file": "/Users/guoshen/code/ACM/test.cpp"
+    }
+]
