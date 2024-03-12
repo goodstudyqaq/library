@@ -14,6 +14,9 @@ using namespace std;
     ~x 按位取反 ~0 = -1, ~1 = -2, ~2 = -3...
     显然 ~x + 1 = -x
     所以 lowbit(x) = x & -x
+    __builtin_popcount = int
+    __builtin_popcountl = long int
+    __builtin_popcountll = long long
 
     2. __builtin_parity(x) x 有偶数个 1 返回 0，奇数个 1 返回 1
     3. __builtin_popcount(x) 返回 x 的 1 的个数
@@ -33,22 +36,16 @@ struct Subset {
         bool ok;
         Iterator(int _i, int _s, bool ok = true) : i(_i), status(_s), ok(ok) {}
         // *it 拿到值
-        int operator*() const {
-            return i;
-        }
-        bool operator!=(const Iterator& a) const {
-            return i != a.i || ok != a.ok;
-        }
+        int operator*() const { return i; }
+        bool operator!=(const Iterator &a) const { return i != a.i || ok != a.ok; }
         // 重载 ++it 符号
-        Iterator& operator++() {
+        Iterator &operator++() {
             i = (i - 1) & status;
             ok = (i != status);
             return *this;
         }
     };
-    Iterator begin() const {
-        return Iterator(status, status, true);
-    }
+    Iterator begin() const { return Iterator(status, status, true); }
     Iterator end() const {
         // 作为结束条件，处理完 0 之后，会有 -1 & status = status
         return Iterator(status, status, false);
@@ -65,23 +62,15 @@ struct NonEmptySubset {
         int i;
         int status;
         Iterator(int _i, int _s) : i(_i), status(_s) {}
-        int operator*() const {
-            return i;
-        }
-        bool operator!=(const Iterator& a) const {
-            return i != a.i;
-        }
-        Iterator& operator++() {
+        int operator*() const { return i; }
+        bool operator!=(const Iterator &a) const { return i != a.i; }
+        Iterator &operator++() {
             i = (i - 1) & status;
             return *this;
         }
     };
-    Iterator begin() const {
-        return Iterator(status, status);
-    }
-    Iterator end() const {
-        return Iterator(0, status);
-    }
+    Iterator begin() const { return Iterator(status, status); }
+    Iterator end() const { return Iterator(0, status); }
 };
 
 struct ProperSubset {
@@ -94,23 +83,15 @@ struct ProperSubset {
         int i;
         int status;
         Iterator(int _i, int _s) : i(_i), status(_s) {}
-        int operator*() const {
-            return i;
-        }
-        bool operator!=(const Iterator& a) const {
-            return i != a.i;
-        }
-        Iterator& operator++() {
+        int operator*() const { return i; }
+        bool operator!=(const Iterator &a) const { return i != a.i; }
+        Iterator &operator++() {
             i = (i - 1) & status;
             return *this;
         }
     };
-    Iterator begin() const {
-        return Iterator(status - 1, status);
-    }
-    Iterator end() const {
-        return Iterator(status, status);
-    }
+    Iterator begin() const { return Iterator(status - 1, status); }
+    Iterator end() const { return Iterator(status, status); }
 };
 
 struct NonEmptyProperSubset {
@@ -123,32 +104,25 @@ struct NonEmptyProperSubset {
         int i;
         int status;
         Iterator(int _i, int _s) : i(_i), status(_s) {}
-        int operator*() const {
-            return i;
-        }
-        bool operator!=(const Iterator& a) const {
-            return i != a.i;
-        }
-        Iterator& operator++() {
+        int operator*() const { return i; }
+        bool operator!=(const Iterator &a) const { return i != a.i; }
+        Iterator &operator++() {
             i = (i - 1) & status;
             return *this;
         }
     };
-    Iterator begin() const {
-        return Iterator(status - 1, status);
-    }
-    Iterator end() const {
-        return Iterator(0, status);
-    }
+    Iterator begin() const { return Iterator(status - 1, status); }
+    Iterator end() const { return Iterator(0, status); }
 };
 
 struct MultiSubset {
     // 求多个集合的所有非空子集的集合
-    vector<bool> multi_subset(vector<int>& status) {
+    vector<bool> multi_subset(vector<int> &status) {
         int mx = *max_element(status.begin(), status.end());
         vector<bool> have(mx + 1);
         function<void(int)> f = [&](int v) {
-            if (have[v]) return;
+            if (have[v])
+                return;
             have[v] = true;
             for (int w = v; w > 0; w &= w - 1) {
                 // w 每次减去最后一个 1
@@ -173,23 +147,15 @@ struct Superset {
         int status;
         int n;
         Iterator(int _i, int _s, int _n) : i(_i), status(_s), n(_n) {}
-        int operator*() const {
-            return i;
-        }
-        bool operator!=(const Iterator& a) const {
-            return i != a.i;
-        }
-        Iterator& operator++() {
+        int operator*() const { return i; }
+        bool operator!=(const Iterator &a) const { return i != a.i; }
+        Iterator &operator++() {
             i = (i + 1) | status;
             return *this;
         }
     };
-    Iterator begin() const {
-        return Iterator(status, status, n);
-    }
-    Iterator end() const {
-        return Iterator(1 << n, status, n);
-    }
+    Iterator begin() const { return Iterator(status, status, n); }
+    Iterator end() const { return Iterator(1 << n, status, n); }
 };
 
 struct SubsetK {
@@ -197,7 +163,8 @@ struct SubsetK {
     // https://en.wikipedia.org/wiki/Combinatorial_number_system#Applications
     // 参考《挑战程序设计竞赛》p.156-158 的实现
     // 把除法改成右移 bits.TrailingZeros 可以快好几倍
-    // 比如在 n 个数中求满足某种性质的最大子集，则可以从 n 开始倒着枚举子集大小，直到找到一个符合性质的子集
+    // 比如在 n 个数中求满足某种性质的最大子集，则可以从 n
+    // 开始倒着枚举子集大小，直到找到一个符合性质的子集
     // 例题（TS1）https://codingcompetitions.withgoogle.com/codejam/round/0000000000007706/0000000000045875
     int n;
     int k;
@@ -207,24 +174,16 @@ struct SubsetK {
         int n;
         int k;
         Iterator(int _i, int _n, int _k) : i(_i), n(_n), k(_k) {}
-        int operator*() const {
-            return i;
-        }
-        bool operator!=(const Iterator& a) const {
-            return i != a.i;
-        }
-        Iterator& operator++() {
+        int operator*() const { return i; }
+        bool operator!=(const Iterator &a) const { return i != a.i; }
+        Iterator &operator++() {
             int lb = i & -i;
             int x = i + lb;
             i = x + ((x ^ i) >> (__builtin_ctz(lb) + 2));
         }
     };
-    Iterator begin() const {
-        return Iterator((1 << k) - 1, n, k);
-    }
-    Iterator end() const {
-        return Iterator(1 << n, n, k);
-    }
+    Iterator begin() const { return Iterator((1 << k) - 1, n, k); }
+    Iterator end() const { return Iterator(1 << n, n, k); }
 };
 
 struct AllOne {
@@ -236,21 +195,13 @@ struct AllOne {
         int i;
         int status;
         Iterator(int _i, int _s) : i(_i), status(_s) {}
-        int operator*() const {
-            return i;
-        }
-        bool operator!=(const Iterator& a) const {
-            return i != a.i;
-        }
-        Iterator& operator++() {
+        int operator*() const { return i; }
+        bool operator!=(const Iterator &a) const { return i != a.i; }
+        Iterator &operator++() {
             i &= (i - 1);
             return *this;
         }
     };
-    Iterator begin() const {
-        return Iterator(status, status);
-    }
-    Iterator end() const {
-        return Iterator(0, status);
-    }
+    Iterator begin() const { return Iterator(status, status); }
+    Iterator end() const { return Iterator(0, status); }
 };
