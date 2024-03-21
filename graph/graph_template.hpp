@@ -7,12 +7,13 @@ using namespace std;
 @docs docs/graph_template.md
 */
 
+template <typename T>
 struct Edge {
     int from, to;
-    int cost;
+    T cost;
 
     Edge() = default;
-    Edge(int from, int to, int cost = 1) : from(from), to(to), cost(cost) {}
+    Edge(int from, int to, T cost = 1) : from(from), to(to), cost(cost) {}
 
     // Edge e = Edge(); int to = e;
     operator int() const { return to; }
@@ -59,6 +60,42 @@ struct Tree : Graph<Edge> {
     explicit Tree(int n, int root = -1) : Graph<Edge>(n), root(root) {}
 
     // todo: 可以加一些常用的树的操作，比如求重心，求直径，求子树大小等
+    vector<int> get_diamater() {
+        // 求直径
+        int n = g.size();
+        vector<int> fa(n), dep(n);
+
+        function<void(int, int, int)> dfs = [&](int u, int pre, int d) {
+            fa[u] = pre;
+            dep[u] = d;
+            for (auto v : g[u]) {
+                if (v == pre) continue;
+                dfs(v, u, d + 1);
+            }
+        };
+        dfs(0, -1, 0);
+        int rt = 0;
+        for (int i = 0; i < n; i++) {
+            if (dep[rt] < dep[i]) {
+                rt = i;
+            }
+        }
+
+        dfs(rt, -1, 0);
+
+        for (int i = 0; i < n; i++) {
+            if (dep[rt] < dep[i]) {
+                rt = i;
+            }
+        }
+        vector<int> ans;
+        int now = rt;
+        while (now != -1) {
+            ans.push_back(now);
+            now = fa[now];
+        }
+        return ans;
+    }
 };
 
 template <typename Edge>
