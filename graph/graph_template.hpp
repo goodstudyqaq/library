@@ -96,6 +96,43 @@ struct Tree : Graph<Edge> {
         }
         return ans;
     }
+
+    // 找质心, 质心保证：将质心拿走，分裂出来的子树，每颗的大小都不会超过总个数 / 2
+    // https://codeforces.com/problemset/problem/321/C : 通过质心不断的去将树分裂
+    int get_centroid() {
+        int n = g.size();
+        vector<int> sz(n);
+        vector<int> fa(n);
+
+        function<void(int, int)> dfs = [&](int u, int pre) {
+            sz[u] = 1;
+            fa[u] = pre;
+            for (auto v : g[u]) {
+                if (v == pre) continue;
+                dfs(v, u);
+                sz[u] += sz[v];
+            }
+        };
+
+        dfs(root, -1);
+        int all = n;
+        int mi = 1e9;
+        int centroid = root;
+
+        for (int i = 0; i < n; i++) {
+            int mx = all - sz[i];
+            for (auto v : g[i]) {
+                if (v == fa[i]) continue;
+                mx = max(mx, sz[v]);
+            }
+
+            if (mx < mi) {
+                mi = mx;
+                centroid = i;
+            }
+        }
+        return centroid;
+    }
 };
 
 template <typename Edge>
