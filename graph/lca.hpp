@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 
-#include "src/graph/graph_template.hpp"
+#include "graph/graph_template.hpp"
 using namespace std;
 /*
 @brief LCA
