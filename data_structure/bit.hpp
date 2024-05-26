@@ -57,3 +57,14 @@ struct BIT {
         return res;
     }
 };
+
+
+struct Max {
+    int v;
+    Max(int x = -1E9) : v{x} {}
+    
+    Max &operator+=(Max a) {
+        v = std::max(v, a.v);
+        return *this;
+    }
+};
