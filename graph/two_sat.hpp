@@ -1,12 +1,16 @@
 #include <bits/stdc++.h>
 
-#include "src/graph/graph_template.hpp"
+#include "graph/graph_template.hpp"
 /*
 @brief two-sat
 @docs docs/two_sat.md
 */
-template <typename T = int>
+template <typename T = Edge<int>>
 struct TwoSat : Graph<T> {
+    using Graph<T>::add_directed_edge;
+    using Graph<T>::add_undirected_edge;
+    using Graph<T>::g;
+
     // [0, 2 * n]
     int n;
     std::vector<bool> ans;
@@ -23,7 +27,7 @@ struct TwoSat : Graph<T> {
         std::function<void(int)> tarjan = [&](int u) {
             stk.push_back(u);
             dfn[u] = low[u] = now++;
-            for (auto v : e[u]) {
+            for (auto v : g[u]) {
                 if (dfn[v] == -1) {
                     tarjan(v);
                     low[u] = std::min(low[u], low[v]);

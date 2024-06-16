@@ -72,4 +72,14 @@ struct RMQ {
         }
         return now;
     }
+    int nxt_idx(int idx, T val) { // <= 根据要求去变，该代码的含义是返回第一个大于 val 的位置
+        int sz = range_high.size() - 1;
+        int now = idx;
+        for (int i = sz; i >= 0; i--) {
+            if (now + (1 << i) - 1 < n && values[range_high[i][now]] <= val) {
+                now += (1 << i);
+            }
+        }
+        return now;
+    }
 };
